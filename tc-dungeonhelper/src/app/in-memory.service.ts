@@ -57,6 +57,8 @@ export class InMemoryService implements InMemoryDbService {
           'A small, old shrine dedicated to a deity stands on the side of the road.',
       },
     ];
+
+    const dungeonEncs = [];
     return { highwayEncs };
   }
 
