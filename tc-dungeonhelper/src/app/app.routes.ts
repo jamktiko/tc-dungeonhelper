@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'random', component: RandomComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'highway', component: HighwayComponent },
-  {path: 'dungeon', component: DungeonComponent},
-  {path: 'settlement', component: SettlementComponent},
-  {path: 'wilderness', component: WildernessComponent},
+  { path: 'dungeon', component: DungeonComponent },
+  { path: 'settlement', component: SettlementComponent },
+  { path: 'wilderness', component: WildernessComponent },
 ];
