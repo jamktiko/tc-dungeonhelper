@@ -58,13 +58,50 @@ export class InMemoryService implements InMemoryDbService {
       },
     ];
 
-    const dungeonEncs = [];
-    return { highwayEncs };
+    const dungeonEncs = [
+      {
+        id: 9,
+        name: 'Injured Dungeoneer',
+        description:
+          'An injured dungeoneer is limping around the dungeon and needs medical attention',
+      },
+      {
+        id: 10,
+        name: 'Orc patrol',
+        description:
+          'A group of 2d4 Orcs are heard patrolling through the dungeon, grunting and bashing down doors',
+      },
+      {
+        id: 11,
+        name: 'Black Apparition',
+        description:
+          'A spirit seeking to communicate with the living, offering clues to the dungeon and its hiddens secrets... for a price',
+      },
+
+      // Add more encounters here
+    ];
+
+    const wildernessEncs = [
+      {
+        id: 12,
+        name: 'Owlbear',
+        description: 'An Owlbear is heard rummaging through the bushes nearby',
+      },
+
+      {
+        id: 13,
+        name: 'Abandoned Campsite',
+        description: 'A Campsite that has hastily been abandoned',
+      },
+
+      // Add more encounters here
+    ];
+    return { highwayEncs, dungeonEncs, wildernessEncs };
   }
 
-  genId(highwayEncs: Enc[]): number {
-    return highwayEncs.length > 0
-      ? Math.max(...highwayEncs.map((enc) => enc.id)) + 1
+  genId(encounters: Enc[]): number {
+    return encounters.length > 0
+      ? Math.max(...encounters.map((enc) => enc.id)) + 1
       : 11;
   }
 }
