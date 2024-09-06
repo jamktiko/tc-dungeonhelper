@@ -10,10 +10,11 @@ import { DicerollService } from '../diceroll.service';
   standalone: true,
   imports: [RouterModule, RouterOutlet, NgFor, CommonModule],
   templateUrl: './highway.component.html',
-  styleUrl: './highway.component.css',
+  styleUrls: ['./highway.component.css'],
 })
 export class HighwayComponent {
   highwayEncs: Enc[] = [];
+  rolledEncounter: Enc | null = null; // Store the whole rolled encounter object
 
   constructor(private eservice: EserviceService, private drs: DicerollService) {
     this.eservice.getEncounters().subscribe(
@@ -21,7 +22,10 @@ export class HighwayComponent {
       (error) => console.error(error)
     );
   }
+
   rollTable() {
-    this.drs.rollForEntity(this.highwayEncs[0]);
+    const randomEncounter = this.drs.rollForEntity(this.highwayEncs);
+    this.rolledEncounter =
+      this.highwayEncs.find((enc) => enc.name === randomEncounter) || null; // Store the whole object
   }
 }

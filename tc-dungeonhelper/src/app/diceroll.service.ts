@@ -14,12 +14,10 @@ export class DicerollService {
     return dice;
   }
 
-  rollForEntity(encounter: Enc): string {
-    const randomNumber = Math.floor(Math.random() * 8);
-    const randomResult = encounter.name[randomNumber];
-
-    //const randomNumber = Math.floor(Math.random() * 6);
-    //const randomEntity = encounter.entities[randomNumber].entity;
-    return randomResult;
+  rollForEntity(encounters: Enc[]): string {
+    const randomNumber = Math.floor(Math.random() * encounters.length); // Select random encounter index
+    const randomEncounter = encounters[randomNumber]; // Get the random encounter object
+    console.log(randomEncounter.name); // Log the full encounter name
+    return randomEncounter.name; // Return the full name
   }
 }
