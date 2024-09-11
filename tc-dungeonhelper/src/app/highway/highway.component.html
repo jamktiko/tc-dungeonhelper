@@ -14,10 +14,16 @@
   </div>
 
 
+
   <!-- Add this to display the rolled encounter's name and description -->
   <div *ngIf="rolledEncounter">
     <h3>Rolled Encounter:</h3>
     <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
     <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
+  </div>
+
+  <div>
+    <button routerLink="/edit-highway">Edit lists</button>
+
   </div>
 </div> 
