@@ -1,10 +1,23 @@
-<h2>Highway Encouters</h2>
-<a routerLink="/random">Back</a>
-<div class="menu">
-  <a *ngFor="let highway of highwayEncs">
-    {{ highway.name }}
-  </a>
-</div>
 <div>
-  <button (click)="rollTable()">Roll</button>
-</div>
+  <h2>Highway Encounters</h2>
+  
+  <button class="back" routerLink="/random"></button>
+  <div class="menu">
+    <a *ngFor="let highway of highwayEncs">
+      {{ highway.name }}
+    </a>
+  </div>
+
+  <br>
+  <div>
+    <button class="roll" (click)="rollTable()"></button>
+  </div>
+
+
+  <!-- Add this to display the rolled encounter's name and description -->
+  <div *ngIf="rolledEncounter">
+    <h3>Rolled Encounter:</h3>
+    <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
+    <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
+  </div>
+</div> 
