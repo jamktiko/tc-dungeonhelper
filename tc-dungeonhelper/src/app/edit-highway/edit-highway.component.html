@@ -1,1 +1,30 @@
-<p>edit-highway works!</p>
+<div>
+  <h2>Edit Highway Encounters</h2>
+
+  <form (ngSubmit)="saveEdits()" #editForm="ngForm">
+    <div *ngFor="let encounter of highwayEncs">
+      <div>
+        <label for="name-{{ encounter.id }}">Name:</label>
+        <input 
+          type="text" 
+          id="name-{{ encounter.id }}" 
+          [(ngModel)]="encounter.name" 
+          name="name-{{ encounter.id }}" 
+          required 
+        />
+      </div>
+      <div>
+        <label for="description-{{ encounter.id }}">Description:</label>
+        <textarea 
+          id="description-{{ encounter.id }}" 
+          [(ngModel)]="encounter.description" 
+          name="description-{{ encounter.id }}" 
+          required 
+        ></textarea>
+      </div>
+      <hr />
+    </div>
+
+    <button type="submit">Save Changes</button>
+  </form>
+</div>

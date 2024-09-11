@@ -58,7 +58,7 @@ export class InMemoryService implements InMemoryDbService {
       },
     ];
 
-    const dungeonEncs = [];
+
     return { highwayEncs };
   }
 

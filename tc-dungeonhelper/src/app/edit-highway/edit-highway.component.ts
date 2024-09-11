@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Enc } from '../enc';
-import { HighwayComponent } from '../highway/highway.component';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
   selector: 'app-edit-highway',
   standalone: true,
-  imports: [HighwayComponent, RouterModule, RouterOutlet],
+  imports: [RouterModule, RouterOutlet, FormsModule, CommonModule], // Include CommonModule
   templateUrl: './edit-highway.component.html',
   styleUrls: ['./edit-highway.component.css']
 })
@@ -23,8 +24,15 @@ export class EditHighwayComponent implements OnInit {
   }
 
   saveEdits(): void {
-    this.http.put('/api/highwayEncs', this.highwayEncs).subscribe(() => {
-      this.router.navigate(['/']);
+    // Use a bulk PUT request if you have a backend that supports it,
+    // or make separate PUT requests for each encounter
+    this.highwayEncs.forEach(encounter => {
+      this.http.put(`/api/highwayEncs/${encounter.id}`, encounter).subscribe(
+        () => {
+          // Successful update
+          this.router.navigate(['/highway']); // Navigate back to the highway page
+        },
+      );
     });
   }
 }

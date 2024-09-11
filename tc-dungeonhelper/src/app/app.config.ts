@@ -10,6 +10,7 @@ import { InMemoryService } from './in-memory.service';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,9 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       HttpClientInMemoryWebApiModule.forRoot(InMemoryService, {
         dataEncapsulation: false,
-      })
-    ), provideAnimationsAsync(), provideAnimationsAsync(),
+      }),
+      FormsModule
+    ),
+    provideAnimationsAsync(),
   ],
 };

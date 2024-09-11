@@ -2,6 +2,7 @@ div{
     background-color: black;
     color: white;
     align-items: center;
+    height: 100%;
 }
 a{
     color: white;
