@@ -1,13 +1,18 @@
-div{
+div {
     background-color: black;
     color: white;
     align-items: center;
     height: 100%;
-    
-}
-p{
-    background:url(../assets/logo.png)
-}
-a{
+    text-align: center; /* Asetetaan teksti ja kuva keskelle */
+  }
+  
+  a {
     color: white;
-}
+  }
+  
+ img {
+    width: 250px; /* Voit muuttaa koon sopivaksi */
+    height: auto;
+    margin-bottom: 20px; /* Voit lisätä tilaa kuvan alle */
+  }
+  
