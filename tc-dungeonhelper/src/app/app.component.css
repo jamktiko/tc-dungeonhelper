@@ -3,6 +3,10 @@ div{
     color: white;
     align-items: center;
     height: 100%;
+    
+}
+p{
+    background:url(../assets/logo.png)
 }
 a{
     color: white;
