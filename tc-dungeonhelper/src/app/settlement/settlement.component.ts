@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-settlement',
+  selector: 'app-my-component',
   standalone: true,
-  imports: [],
   templateUrl: './settlement.component.html',
-  styleUrl: './settlement.component.css'
+  styleUrls: ['./settlement.component.css'],
+  imports: [MatButtonModule] // Lisää MatButtonModule tänne
 })
 export class SettlementComponent {
 
