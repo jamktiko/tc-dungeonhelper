@@ -4,7 +4,7 @@
   <form (ngSubmit)="saveEdits()" #editForm="ngForm">
     <div *ngFor="let encounter of highwayEncs">
       <div>
-        <label for="name-{{ encounter.id }}">Name:</label>
+        <label for="name-{{ encounter.id }}">Name: </label>
         <input 
           type="text" 
           id="name-{{ encounter.id }}" 
@@ -13,6 +13,7 @@
           required 
         />
       </div>
+      <br>
       <div>
         <label for="description-{{ encounter.id }}">Description:</label>
         <textarea 
@@ -25,6 +26,6 @@
       <hr />
     </div>
 
-    <button type="submit">Save Changes</button>
+    <button mat-flat-button style="background-color: #C5231D; color: white;" type="submit">Save Changes</button>
   </form>
 </div>

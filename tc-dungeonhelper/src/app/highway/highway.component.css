@@ -1,3 +1,4 @@
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
 .menu{
     display: block;
 }
@@ -5,10 +6,11 @@
   display: grid;
   grid-template-columns: auto auto;
   width: 80%;
-
-  border-bottom: white solid;
   margin-bottom: 3rem;
-  
+}
+.edit{
+  font-size: 20px;
+  width: 70px;
 }
 .back{
   background: url('../../assets/Back_dungeon.png') no-repeat center center;
@@ -19,14 +21,15 @@
   width: 40px;
   height: 30px;
   cursor: pointer;
+
 }
 
 .roll{
     background: url('../../assets/Roll_dungeon.png') no-repeat center center;
   background-size: contain; 
   border: none; 
-  width: 120px; 
-  height: 120px; 
+  width: 160px; 
+  height: 100px; 
   cursor: pointer;
 }
 

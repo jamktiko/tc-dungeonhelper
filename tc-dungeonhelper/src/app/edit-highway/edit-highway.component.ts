@@ -4,11 +4,13 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Enc } from '../enc';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-edit-highway',
   standalone: true,
-  imports: [RouterModule, RouterOutlet, FormsModule, CommonModule], // Include CommonModule
+  imports: [RouterModule, RouterOutlet, FormsModule, CommonModule, MatButtonModule], // Include CommonModule
   templateUrl: './edit-highway.component.html',
   styleUrls: ['./edit-highway.component.css']
 })

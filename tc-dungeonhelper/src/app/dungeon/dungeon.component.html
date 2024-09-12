@@ -1,1 +1,24 @@
-<p>dungeon works!</p>
+<div>
+  <h2>Dungeon Encounters</h2>
+  <div class="napit">
+    <button class="back" routerLink="/random"></button>
+    <button class="edit" mat-flat-button style="background-color: #C5231D; color: white;" routerLink="/edit-highway">Edit</button>
+  </div>
+  <div class="menu">
+    <a *ngFor="let dungeon of dungeonEncs">
+      {{ dungeon.name }}
+    </a>
+  </div>
+
+  <br>
+  <div>
+    <button class="roll" (click)="rollTable()"></button>
+  </div>
+
+  <!-- Display the rolled encounter's name and description -->
+  <div *ngIf="rolledEncounter">
+    <h3>Rolled Encounter:</h3>
+    <p><strong>Name:</strong> {{ rolledEncounter!.name }}</p>
+    <p><strong>Description:</strong> {{ rolledEncounter!.description }}</p>
+  </div>
+</div>
