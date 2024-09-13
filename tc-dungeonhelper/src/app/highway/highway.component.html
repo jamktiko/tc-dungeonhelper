@@ -1,29 +1,10 @@
-<<<<<<< HEAD
-<h2>Highway Encounters</h2>
-<a routerLink="/random">Back</a>
-<div class="menu">
-  <a *ngFor="let highway of highwayEncs">
-    {{ highway.name }}
-  </a>
-</div>
-
-<div>
-  <button (click)="rollTable()">Roll</button>
-</div>
-
-<!-- Add this to display the rolled encounter's name and description -->
-<div *ngIf="rolledEncounter">
-  <h3>Rolled Encounter:</h3>
-  <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
-  <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
-</div>
-=======
 <div>
   <h2>Highway Encounters</h2>
   <div class="napit">
-  <button class="back" routerLink="/random"></button>
-  <button class="edit" mat-flat-button style="background-color: #C5231D; color: white;" routerLink="/edit-highway">Edit lists</button>
-
+    <button class="back" routerLink="/random"></button>
+    <button class="edit" mat-flat-button style="background-color: #c5231d; color: white" routerLink="/edit-highway">
+      Edit lists
+    </button>
   </div>
   <div class="menu">
     <a *ngFor="let highway of highwayEncs">
@@ -31,12 +12,10 @@
     </a>
   </div>
 
-  <br>
+  <br />
   <div>
     <button class="roll" (click)="rollTable()"></button>
   </div>
-
-
 
   <!-- Add this to display the rolled encounter's name and description -->
   <div *ngIf="rolledEncounter">
@@ -46,5 +25,5 @@
   </div>
 
 
-</div> 
->>>>>>> juho
+</div>
+>>>>>>>>> Temporary merge branch 2
