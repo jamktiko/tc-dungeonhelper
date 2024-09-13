@@ -3,3 +3,5 @@ export interface Enc {
   name: string;
   description: string;
 }
+
+//Interface tulevalle datalle, "Encounter" toimintoon.
