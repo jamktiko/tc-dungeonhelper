@@ -1,6 +1,9 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 .menu{
     display: block;
+    text-align: left;
+    list-style-type: none;
+
 }
 .napit{
   display: grid;
@@ -13,7 +16,7 @@
   width: 70px;
 }
 .back{
-  background: url('../../assets/Back_dungeon.png') no-repeat center center;
+  background: url('/assets/Back_dungeon.png') no-repeat center center;
   display: flex;
   background-size: contain;
   justify-content: flex-start;
@@ -25,7 +28,7 @@
 }
 
 .roll{
-    background: url('../../assets/Roll_dungeon.png') no-repeat center center;
+    background: url('/assets/Roll_dungeon.png') no-repeat center center;
   background-size: contain; 
   border: none; 
   width: 160px; 
@@ -34,7 +37,7 @@
 }
 
 div{
-    color: white;
+
     background-color: black;
     display: flex;
     display: grid; /* Tee div:stä grid-kontaineri */
