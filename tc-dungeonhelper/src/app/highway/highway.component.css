@@ -1,17 +1,16 @@
-.menu{
-    display: block;
+.menu {
+  display: block;
 }
-.napit{
+.napit {
   display: grid;
   grid-template-columns: auto auto;
   width: 80%;
 
   border-bottom: white solid;
   margin-bottom: 3rem;
-  
 }
-.back{
-  background: url('../../assets/Back_dungeon.png') no-repeat center center;
+.back {
+  background: url("/assets/Back_dungeon.png") no-repeat center center;
   display: flex;
   background-size: contain;
   justify-content: flex-start;
@@ -21,22 +20,22 @@
   cursor: pointer;
 }
 
-.roll{
-    background: url('../../assets/Roll_dungeon.png') no-repeat center center;
-  background-size: contain; 
-  border: none; 
-  width: 120px; 
-  height: 120px; 
+.roll {
+  background: url("/assets/Roll_dungeon.png") no-repeat center center;
+  background-size: contain;
+  border: none;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
 }
 
-div{
-    color: white;
-    background-color: black;
-    display: flex;
-    display: grid; /* Tee div:stä grid-kontaineri */
-    place-items: center;
+div {
+  color: white;
+  background-color: black;
+  display: flex;
+  display: grid; /* Tee div:stä grid-kontaineri */
+  place-items: center;
 }
-a{
-    color: white;
+a {
+  color: white;
 }
