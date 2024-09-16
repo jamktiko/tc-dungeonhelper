@@ -5,11 +5,13 @@ import { Enc } from '../enc';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-edit-highway',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule],
+  imports: [FormsModule, CommonModule, MatIconModule, MatButton],
   templateUrl: './edit-highway.component.html',
   styleUrls: ['./edit-highway.component.css']
 })
