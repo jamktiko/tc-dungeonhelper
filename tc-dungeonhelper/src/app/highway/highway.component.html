@@ -7,9 +7,13 @@
     </button>
   </div>
   <div class="menu">
-    <a *ngFor="let highway of highwayEncs">
-      {{ highway.name }}
-    </a>
+    <ol>
+      <a *ngFor="let highway of highwayEncs">
+        <li>
+          {{ highway.name }}
+        </li>
+      </a>
+    </ol>
   </div>
 
   <br />
