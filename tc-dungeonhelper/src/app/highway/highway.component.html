@@ -1,29 +1,7 @@
-<div>
-  <h2>Highway Encounters</h2>
-  <div class="napit">
-    <button class="back" routerLink="/random"></button>
-    <button class="edit" mat-flat-button style="background-color: #c5231d; color: white" routerLink="/edit-highway">
-      Edit lists
-    </button>
-  </div>
-  <div class="menu">
-    <ol>
-      <!-- Loop over 'randomEncs' and display each encounter's name -->
-      <li *ngFor="let random of randomEncs">
-        {{ random.name }}
-      </li>
-    </ol>
-  </div>
-
-  <br />
-  <div>
-    <button class="roll" (click)="rollTable()"></button>
-  </div>
-
-  <!-- Display the rolled encounter's details -->
-  <div *ngIf="rolledEncounter">
-    <h3>Rolled Encounter:</h3>
-    <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
-    <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
+<div *ngIf="rE">
+  <h2>Encounter Details</h2>
+  <div *ngFor="let encounter of rE">
+    <p>Biome: {{ encounter.biome }}</p>
+    <!-- Add more properties of encounter as needed -->
   </div>
 </div>

@@ -11,6 +11,7 @@ export class InMemoryService implements InMemoryDbService {
       {
         REL: [
           {
+            id: 1,
             biome: 'highway',
             enc: [
               {
@@ -64,6 +65,7 @@ export class InMemoryService implements InMemoryDbService {
             ],
           },
           {
+            id: 2,
             biome: 'dungeon',
             enc: [
               {
@@ -87,6 +89,7 @@ export class InMemoryService implements InMemoryDbService {
             ],
           },
           {
+            id: 3,
             biome: 'settlement',
             enc: [
               {
@@ -98,6 +101,7 @@ export class InMemoryService implements InMemoryDbService {
             ],
           },
           {
+            id: 4,
             biome: 'wilderness',
             enc: [
               {
