@@ -11,8 +11,8 @@ export class InMemoryService implements InMemoryDbService {
       {
         REL: [
           {
-            highway: 'highway',
-            hEnc: [
+            biome: 'highway',
+            enc: [
               {
                 id: 1,
                 name: 'Highwaymen',
@@ -62,8 +62,10 @@ export class InMemoryService implements InMemoryDbService {
                   'A small, old shrine dedicated to a deity stands on the side of the road.',
               },
             ],
-            dungeon: 'dungeon',
-            dEnc: [
+          },
+          {
+            biome: 'dungeon',
+            enc: [
               {
                 id: 9,
                 name: 'Bandits',
@@ -83,8 +85,10 @@ export class InMemoryService implements InMemoryDbService {
                   'A group of devout pilgrims, traveling to a nearby holy site, are seeking donations or food from the party.',
               },
             ],
-            settlement: 'settlement',
-            sEnc: [
+          },
+          {
+            biome: 'settlement',
+            enc: [
               {
                 id: 12,
                 name: 'Abandoned House',
@@ -92,8 +96,10 @@ export class InMemoryService implements InMemoryDbService {
                   'A rickety cart, abandoned by its owner, contains a few scattered goods and a cryptic note hinting at a local mystery',
               },
             ],
-            wilderness: 'wilderness',
-            wEnc: [
+          },
+          {
+            biome: 'wilderness',
+            enc: [
               {
                 id: 13,
                 name: 'Abandoned Mine',
