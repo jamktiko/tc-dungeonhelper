@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Enc } from '../enc';
@@ -19,7 +19,7 @@ export class EditHighwayComponent implements OnInit {
   highwayEncs: Enc[] = [];
   showDetails: boolean[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef){}
 
   ngOnInit(): void {
     this.http.get<Enc[]>('/api/highwayEncs').subscribe(data => {
@@ -49,10 +49,29 @@ export class EditHighwayComponent implements OnInit {
     this.showDetails.push(true);  // Automatically show the details for the new encounter
   }
 
+  
+  deleteEncounter(index: number, event: Event): void {
+    if(window.confirm('u sure')){
+    event.stopPropagation();
+  
+
+    console.log('Delete button clicked. Removing encounter at index:', index);
+  
+
+    this.highwayEncs.splice(index, 1);
+    this.showDetails.splice(index, 1);
+  
+    this.cdr.detectChanges();
+
+    console.log('Updated encounters:', this.highwayEncs);
+  };}
+  
   toggleDetails(index: number): void {
     this.showDetails[index] = !this.showDetails[index];
+    this.cdr.detectChanges();
+  }
+  trackByFn(index: number, item: Enc): number {
+    return item.id;
   }
 
-  
-  
 }

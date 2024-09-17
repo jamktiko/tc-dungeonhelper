@@ -5,25 +5,24 @@
 
   <form (ngSubmit)="saveEdits()" #editForm="ngForm">
 
-    <div *ngFor="let encounter of highwayEncs; let i = index ">
+    <div *ngFor="let encounter of highwayEncs; let i = index trackBy: trackByFn">
 
-      
       <div 
         class="encounter-item" 
         [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}"
         (click)="toggleDetails(i)" 
-        style="cursor: pointer; padding: 10px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+        >
         
         <span class="encounter-number">{{ i + 1 }}</span>
         
         <strong>{{ encounter.name || 'Add new' }}</strong>
         
-        
-        <button mat-icon-button  style="background-color: transparent; border: none; padding: 0;">
+        <!-- Updated delete button with stopPropagation -->
+        <button mat-icon-button (click)="deleteEncounter(i, $event)" style="background-color: transparent; cursor: pointer; border: none; padding: 0;">
           <img src="assets/bin.png" style="width: 28px; height: 28px;">
         </button>
       </div>
-
+      
 
       <div *ngIf="showDetails[i]" style="padding: 10px;">
         <div>
@@ -50,7 +49,6 @@
 
     </div>
 
-    <!-- Save Changes button -->
     <button mat-flat-button style="background-color: #C5231D; color: white;" type="submit">Save Changes</button>
   </form>
 </div>
