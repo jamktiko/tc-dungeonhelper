@@ -6,6 +6,7 @@ export interface Enc {
 }
 
 export interface REL {
+  id: number;
   biome?: string;
   enc?: Enc[];
 }

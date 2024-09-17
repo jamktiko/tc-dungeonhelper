@@ -13,31 +13,42 @@ import { REL } from '../enc';
   styleUrls: ['./highway.component.css'],
 })
 export class HighwayComponent implements OnInit {
-  rE: REL | undefined;
+  rE: REL[] = [];
 
- // rolledEncounter: any | null = null;
- // currentEncounterType: string = 'highway'; // Default encounter type
+  // rolledEncounter: any | null = null;
+  // currentEncounterType: string = 'highway'; // Default encounter type
 
-  constructor(private eservice: EserviceService, private route: ActivatedRoute) {}
+  constructor(
+    private eservice: EserviceService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const pageId = Number(params.get('pageId'));
-      this.eservice.getEncounters().subscribe((data) => {
-        this.rE = data.find((data) => data.id === pageId);
-      })
-    })
+      this.eservice.getEncounters().subscribe((rel) => {
+        console.log('Received data:', rel);
 
-  // Function to roll a random encounter from the current encounter type
+        this.rE = rel.find((rel) => rel.id === pageId);
 
-///    const randomEncounter = this.drs.rollForEntity(encountersList);
-///    this.rolledEncounter =
-///      encountersList.find((enc) => enc.name === randomEncounter) || null;
-///  }
-///
-///  // Method to switch the current encounter type
-///  setEncounterType(type: string) {
-///    this.currentEncounterType = type;
-///    this.rolledEncounter = null; // Reset rolled encounter when changing type
-///  }
-///}
+        console.log('rE', this.rE);
+        console.log('rel.biome:', rel.biome);
+        console.log('pageId:', pageId);
+      });
+    });
+
+    // Function to roll a random encounter from the current encounter type
+
+    ///    const randomEncounter = this.drs.rollForEntity(encountersList);
+    ///    this.rolledEncounter =
+    ///      encountersList.find((enc) => enc.name === randomEncounter) || null;
+    ///  }
+    ///
+    ///  // Method to switch the current encounter type
+    ///  setEncounterType(type: string) {
+    ///    this.currentEncounterType = type;
+    ///    this.rolledEncounter = null; // Reset rolled encounter when changing type
+    ///  }
+    ///
+  }
+}
