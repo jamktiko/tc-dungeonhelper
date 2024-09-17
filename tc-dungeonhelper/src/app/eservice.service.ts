@@ -16,11 +16,19 @@ export class EserviceService {
     return; // Return an empty array on error
   }
 
+<<<<<<< HEAD
   getEncounters(): Observable<REL> {
     return this.http.get<any>(this.apiUrl).pipe(
       map((data) => {
         // Here we extract the 'hEnc' array from within the nested structure
         return data[0].REL[0];
+=======
+  getEncounters(): Observable<Enc[]> {
+    return this.http.get<any>(this.apiUrl).pipe(
+      map((data) => {
+        // Here we extract the 'hEnc' array from within the nested structure
+        return data[0].REL[0].hEnc;
+>>>>>>> 9c71196 (siirto in-memory dataan)
       }),
       catchError(this.handleError)
     );

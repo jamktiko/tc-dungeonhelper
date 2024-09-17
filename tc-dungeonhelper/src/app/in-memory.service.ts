@@ -11,9 +11,14 @@ export class InMemoryService implements InMemoryDbService {
       {
         REL: [
           {
+<<<<<<< HEAD
             id: 1,
             biome: 'highway',
             enc: [
+=======
+            highway: 'highway',
+            hEnc: [
+>>>>>>> 9c71196 (siirto in-memory dataan)
               {
                 id: 1,
                 name: 'Highwaymen',
@@ -63,11 +68,16 @@ export class InMemoryService implements InMemoryDbService {
                   'A small, old shrine dedicated to a deity stands on the side of the road.',
               },
             ],
+<<<<<<< HEAD
           },
           {
             id: 2,
             biome: 'dungeon',
             enc: [
+=======
+            dungeon: 'dungeon',
+            dEnc: [
+>>>>>>> 9c71196 (siirto in-memory dataan)
               {
                 id: 9,
                 name: 'Bandits',
@@ -87,11 +97,16 @@ export class InMemoryService implements InMemoryDbService {
                   'A group of devout pilgrims, traveling to a nearby holy site, are seeking donations or food from the party.',
               },
             ],
+<<<<<<< HEAD
           },
           {
             id: 3,
             biome: 'settlement',
             enc: [
+=======
+            settlement: 'settlement',
+            sEnc: [
+>>>>>>> 9c71196 (siirto in-memory dataan)
               {
                 id: 12,
                 name: 'Abandoned House',
@@ -99,11 +114,16 @@ export class InMemoryService implements InMemoryDbService {
                   'A rickety cart, abandoned by its owner, contains a few scattered goods and a cryptic note hinting at a local mystery',
               },
             ],
+<<<<<<< HEAD
           },
           {
             id: 4,
             biome: 'wilderness',
             enc: [
+=======
+            wilderness: 'wilderness',
+            wEnc: [
+>>>>>>> 9c71196 (siirto in-memory dataan)
               {
                 id: 13,
                 name: 'Abandoned Mine',

@@ -12,6 +12,7 @@ import { REL } from '../enc';
   templateUrl: './highway.component.html',
   styleUrls: ['./highway.component.css'],
 })
+<<<<<<< HEAD
 export class HighwayComponent implements OnInit {
   rE: REL[] = [];
 
@@ -50,5 +51,22 @@ export class HighwayComponent implements OnInit {
     ///    this.rolledEncounter = null; // Reset rolled encounter when changing type
     ///  }
     ///
+=======
+export class HighwayComponent {
+  randomEncs: Enc[] = [];
+  rolledEncounter: Enc | null = null; // Store the whole rolled encounter object
+
+  constructor(private eservice: EserviceService, private drs: DicerollService) {
+    this.eservice.getEncounters().subscribe(
+      (data) => (this.randomEncs = data),
+      (error) => console.error(error)
+    );
+  }
+
+  rollTable() {
+    const randomEncounter = this.drs.rollForEntity(this.randomEncs);
+    this.rolledEncounter =
+      this.randomEncs.find((enc) => enc.name === randomEncounter) || null; // Store the whole object
+>>>>>>> 9c71196 (siirto in-memory dataan)
   }
 }

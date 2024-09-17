@@ -4,4 +4,27 @@
     <p>Biome: {{ encounter.biome }}</p>
     <!-- Add more properties of encounter as needed -->
   </div>
+<<<<<<< HEAD
+=======
+  <div class="menu">
+    <ol>
+      <!-- Loop over 'randomEncs' and display each encounter's name -->
+      <li *ngFor="let random of randomEncs">
+        {{ random.name }}
+      </li>
+    </ol>
+  </div>
+
+  <br />
+  <div>
+    <button class="roll" (click)="rollTable()"></button>
+  </div>
+
+  <!-- Display the rolled encounter's details -->
+  <div *ngIf="rolledEncounter">
+    <h3>Rolled Encounter:</h3>
+    <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
+    <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
+  </div>
+>>>>>>> 9c71196 (siirto in-memory dataan)
 </div>
