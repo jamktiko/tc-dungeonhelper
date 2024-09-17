@@ -8,11 +8,10 @@
   </div>
   <div class="menu">
     <ol>
-      <a *ngFor="let highway of highwayEncs">
-        <li>
-          {{ highway.name }}
-        </li>
-      </a>
+      <!-- Loop over 'randomEncs' and display each encounter's name -->
+      <li *ngFor="let random of randomEncs">
+        {{ random.name }}
+      </li>
     </ol>
   </div>
 
@@ -21,12 +20,10 @@
     <button class="roll" (click)="rollTable()"></button>
   </div>
 
-  <!-- Add this to display the rolled encounter's name and description -->
+  <!-- Display the rolled encounter's details -->
   <div *ngIf="rolledEncounter">
     <h3>Rolled Encounter:</h3>
     <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
     <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
   </div>
-
-
 </div>

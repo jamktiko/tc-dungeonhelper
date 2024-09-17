@@ -13,19 +13,19 @@ import { DicerollService } from '../diceroll.service';
   styleUrls: ['./highway.component.css'],
 })
 export class HighwayComponent {
-  highwayEncs: Enc[] = [];
+  randomEncs: Enc[] = [];
   rolledEncounter: Enc | null = null; // Store the whole rolled encounter object
 
   constructor(private eservice: EserviceService, private drs: DicerollService) {
     this.eservice.getEncounters().subscribe(
-      (data) => (this.highwayEncs = data),
+      (data) => (this.randomEncs = data),
       (error) => console.error(error)
     );
   }
 
   rollTable() {
-    const randomEncounter = this.drs.rollForEntity(this.highwayEncs);
+    const randomEncounter = this.drs.rollForEntity(this.randomEncs);
     this.rolledEncounter =
-      this.highwayEncs.find((enc) => enc.name === randomEncounter) || null; // Store the whole object
+      this.randomEncs.find((enc) => enc.name === randomEncounter) || null; // Store the whole object
   }
 }
