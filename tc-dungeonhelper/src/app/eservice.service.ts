@@ -20,7 +20,7 @@ export class EserviceService {
     return this.http.get<any>(this.apiUrl).pipe(
       map((data) => {
         // Here we extract the 'hEnc' array from within the nested structure
-        return data[0].REL[0].hEnc;
+        return data[0].REL[0];
       }),
       catchError(this.handleError)
     );
