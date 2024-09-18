@@ -13,7 +13,7 @@ export class EserviceService {
 
   private handleError(error: any): Observable<REL> {
     console.error('An error occurred', error);
-    return; // Return an empty array on error
+    return error; // Return an empty array on error
   }
 
   getEncounters(): Observable<REL> {

@@ -28,8 +28,7 @@ export class HighwayComponent implements OnInit {
       const pageId = Number(params.get('pageId'));
       this.eservice.getEncounters().subscribe((rel) => {
         console.log('Received data:', rel);
-
-        this.rE = rel.find((rel) => rel.id === pageId);
+        this.rE.push(rel);
 
         console.log('rE', this.rE);
         console.log('rel.biome:', rel.biome);
