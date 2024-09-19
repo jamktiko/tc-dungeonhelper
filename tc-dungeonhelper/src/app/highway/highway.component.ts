@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 
-import { RandomEncounters } from '../types';
+import { Enc } from '../types';
 
 @Component({
   selector: 'app-highway',
@@ -13,7 +13,7 @@ import { RandomEncounters } from '../types';
   styleUrls: ['./highway.component.css'],
 })
 export class HighwayComponent implements OnInit {
-  randomEncounters: RandomEncounters[] = [];
+  encounters: Enc[] = [];
 
   // rolledEncounter: any | null = null;
   // currentEncounterType: string = 'highway'; // Default encounter type
@@ -26,11 +26,9 @@ export class HighwayComponent implements OnInit {
    * where each object has a biome and an array of encounter objects.
    */
   ngOnInit(): void {
-    this.eservice.getEncounters().subscribe((randomEncounters) => {
-      this.randomEncounters = randomEncounters;
-      console.log('täsä ollaan', randomEncounters);
-      console.log(randomEncounters[0].enc);
-      console.log(randomEncounters[0].biome);
+    this.eservice.getEncounters().subscribe((re) => {
+      this.encounters = re;
+      console.log('täsä ollaan', re);
     });
   }
 }
