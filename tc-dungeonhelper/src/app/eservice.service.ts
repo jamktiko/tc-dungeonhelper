@@ -1,33 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Enc, REL } from './enc';
-import { catchError, Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { RandomEncounters } from './types';
+import { catchError, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EserviceService {
-  private apiUrl = 'api/randomEncs'; // API URL to get the random encounters
+  private apiUrl = 'api/randomEncounters'; // API URL to get the random encounters
   constructor(private http: HttpClient) {}
 
-  private handleError(error: any): Observable<REL> {
+  private handleError(error: any): Observable<RandomEncounters> {
     console.error('An error occurred', error);
     return error; // Return an empty array on error
   }
 
-  getEncounters(): Observable<REL> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map((data) => {
-        // Here we extract the 'hEnc' array from within the nested structure
-        return data[0].REL[0];
-      }),
-      catchError(this.handleError)
-    );
+  getEncounters(): Observable<RandomEncounters[]> {
+    return this.http.get<RandomEncounters[]>(this.apiUrl);
   }
 }
-
-//  getEncounters(): Observable<Enc[]> {
-//    return this.http.get<Enc[]>(this.apiUrl).pipe(catchError(this.handleError));
-//  }
-//

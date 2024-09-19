@@ -1,53 +1,36 @@
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 
-import { REL } from '../enc';
+import { RandomEncounters } from '../types';
 
 @Component({
   selector: 'app-highway',
   standalone: true,
-  imports: [RouterModule, RouterOutlet, NgFor, CommonModule],
+  imports: [RouterModule, RouterOutlet, NgFor, CommonModule, NgIf],
   templateUrl: './highway.component.html',
   styleUrls: ['./highway.component.css'],
 })
 export class HighwayComponent implements OnInit {
-  rE: REL[] = [];
+  randomEncounters: RandomEncounters[] = [];
 
   // rolledEncounter: any | null = null;
   // currentEncounterType: string = 'highway'; // Default encounter type
 
-  constructor(
-    private eservice: EserviceService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private eservice: EserviceService) {}
 
+  /**
+   * OnInit lifecycle hook. Subscribes to the encounter service, logging
+   * the result to the console. The result is an array of REL objects,
+   * where each object has a biome and an array of encounter objects.
+   */
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const pageId = Number(params.get('pageId'));
-      this.eservice.getEncounters().subscribe((rel) => {
-        console.log('Received data:', rel);
-        this.rE.push(rel);
-
-        console.log('rE', this.rE);
-        console.log('rel.biome:', rel.biome);
-        console.log('pageId:', pageId);
-      });
+    this.eservice.getEncounters().subscribe((randomEncounters) => {
+      this.randomEncounters = randomEncounters;
+      console.log('täsä ollaan', randomEncounters);
+      console.log(randomEncounters[0].enc);
+      console.log(randomEncounters[0].biome);
     });
-
-    // Function to roll a random encounter from the current encounter type
-
-    ///    const randomEncounter = this.drs.rollForEntity(encountersList);
-    ///    this.rolledEncounter =
-    ///      encountersList.find((enc) => enc.name === randomEncounter) || null;
-    ///  }
-    ///
-    ///  // Method to switch the current encounter type
-    ///  setEncounterType(type: string) {
-    ///    this.currentEncounterType = type;
-    ///    this.rolledEncounter = null; // Reset rolled encounter when changing type
-    ///  }
-    ///
   }
 }

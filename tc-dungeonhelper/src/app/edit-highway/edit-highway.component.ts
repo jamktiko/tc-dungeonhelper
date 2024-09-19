@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { Enc } from '../enc';
+import { Enc } from '../types';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
   standalone: true,
   imports: [RouterModule, RouterOutlet, FormsModule, CommonModule], // Include CommonModule
   templateUrl: './edit-highway.component.html',
-  styleUrls: ['./edit-highway.component.css']
+  styleUrls: ['./edit-highway.component.css'],
 })
 export class EditHighwayComponent implements OnInit {
   highwayEncs: Enc[] = [];
@@ -18,7 +18,7 @@ export class EditHighwayComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<Enc[]>('/api/highwayEncs').subscribe(data => {
+    this.http.get<Enc[]>('/api/highwayEncs').subscribe((data) => {
       this.highwayEncs = data;
     });
   }
@@ -26,13 +26,13 @@ export class EditHighwayComponent implements OnInit {
   saveEdits(): void {
     // Use a bulk PUT request if you have a backend that supports it,
     // or make separate PUT requests for each encounter
-    this.highwayEncs.forEach(encounter => {
-      this.http.put(`/api/highwayEncs/${encounter.id}`, encounter).subscribe(
-        () => {
+    this.highwayEncs.forEach((encounter) => {
+      this.http
+        .put(`/api/highwayEncs/${encounter.id}`, encounter)
+        .subscribe(() => {
           // Successful update
           this.router.navigate(['/highway']); // Navigate back to the highway page
-        },
-      );
+        });
     });
   }
 }

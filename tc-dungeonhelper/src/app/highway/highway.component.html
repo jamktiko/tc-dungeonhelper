@@ -1,7 +1,10 @@
-<div *ngIf="rE">
-  <h2>Encounter Details</h2>
-  <div *ngFor="let encounter of rE">
-    <p>Biome: {{ encounter.biome }}</p>
-    <!-- Add more properties of encounter as needed -->
-  </div>
+<p>Haloo</p>
+<div>
+  <a *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
+    <ul>
+      <li>{{ encounter.biome }}</li>
+      <li>{{ encounter.enc[encounter.enc.length].name }}</li>
+    </ul>
+
+  </a>
 </div>

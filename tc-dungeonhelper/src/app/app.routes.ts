@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'random', component: RandomComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'highway', component: HighwayComponent },
+  { path: 'biome/:biomeName', component: HighwayComponent },
 
   { path: 'edit-highway', component: EditHighwayComponent },
 ];

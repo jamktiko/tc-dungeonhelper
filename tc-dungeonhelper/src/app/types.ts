@@ -5,12 +5,11 @@ export interface Enc {
   description: string;
 }
 
-export interface REL {
-  id: number;
-  biome?: string;
-  enc?: Enc[];
+export interface RandomEncounters {
+  biome: string;
+  enc: Enc[];
 }
 
 export interface InMemory {
-  REL: REL[];
+  randomEncounters: RandomEncounters[];
 }
