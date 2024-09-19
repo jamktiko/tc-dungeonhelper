@@ -6,7 +6,7 @@ import {
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryService } from './in-memory.service';
+
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -18,12 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(),
-    importProvidersFrom(
-      HttpClientInMemoryWebApiModule.forRoot(InMemoryService, {
-        dataEncapsulation: false,
-      }),
-      FormsModule
-    ),
+
     provideAnimationsAsync(),
   ],
 };

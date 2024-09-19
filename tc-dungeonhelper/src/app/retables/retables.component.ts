@@ -1,18 +1,17 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { EserviceService } from '../eservice.service';
-
 import { RandomEncounters } from '../types';
+import { EserviceService } from '../eservice.service';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-highway',
+  selector: 'app-retables',
   standalone: true,
-  imports: [RouterModule, RouterOutlet, NgFor, CommonModule, NgIf],
-  templateUrl: './highway.component.html',
-  styleUrls: ['./highway.component.css'],
+  imports: [RouterOutlet, CommonModule, NgFor, NgIf, RouterModule],
+  templateUrl: './retables.component.html',
+  styleUrl: './retables.component.css',
 })
-export class HighwayComponent implements OnInit {
+export class RetablesComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
 
   // rolledEncounter: any | null = null;

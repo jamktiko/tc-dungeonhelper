@@ -1,11 +1,25 @@
-//Interface tulevalle datalle, "Encounter" toimintoon.
-export interface Enc {
-  id: number;
-  name: string;
-  description: string;
+////Interface tulevalle datalle, "Encounter" toimintoon.
+//export interface Enc {
+//  id: number;
+//  name: string;
+//  description: string;
+//}
+//
+//export interface RandomEncounters {
+//  biome: string;
+//  enc: {
+//    id: number;
+//    name: string;
+//    description: string;
+//  };
+//}
+//
+export interface InMemory {
+  randomEncounters: RandomEncounters[];
 }
 
 export interface RandomEncounters {
+  id: any;
   biome: string;
   enc: {
     id: number;
@@ -14,6 +28,8 @@ export interface RandomEncounters {
   };
 }
 
-export interface InMemory {
-  randomEncounters: RandomEncounters[];
+export interface Enc {
+  id: number;
+  name: string;
+  description: string;
 }

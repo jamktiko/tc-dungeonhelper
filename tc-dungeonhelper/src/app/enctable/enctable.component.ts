@@ -2,17 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 import { RandomEncounters, Enc } from '../types';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-enctable',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
-export class EnctableComponent implements OnInit {
+export class EnctableComponent {
   randomEncounters: RandomEncounters[] = [];
-  encounters: Enc[] = [];
+  encs: Enc[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class EnctableComponent implements OnInit {
   private getTable(): void {
     this.eservice.getTable().subscribe((hw) => {
       this.randomEncounters = hw;
-      console.log('täsä ollaan', hw[0].enc);
+      hw.forEach((x) => console.log('Ollaan tässä', x.enc.name));
     });
   }
 }

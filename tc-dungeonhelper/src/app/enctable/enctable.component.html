@@ -1,2 +1,8 @@
 <p>enctable works!</p>
-<p>{{ randomEncounters[0].enc }}</p>
+
+
+<div *ngFor="let enc of randomEncounters">
+  <ul>
+    <li>{{ enc.enc.name }}</li>
+  </ul>
+</div>
