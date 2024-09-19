@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RandomEncounters } from './types';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -25,9 +25,11 @@ export class EserviceService {
    * @returns An observable of the requested encounter table.
    */
   getTable(): Observable<RandomEncounters[]> {
-    const url = `${this.apiUrl}`;
-    return this.http
-      .get<RandomEncounters[]>(url)
-      .pipe(catchError((error) => this.handleError<RandomEncounters>(error)));
+    return this.http.get<RandomEncounters[]>(this.apiUrl).pipe(
+      catchError((error) => this.handleError<RandomEncounters>(error)),
+      map((encounters) => {
+        return encounters.filter((encounter) => encounter.enc);
+      })
+    );
   }
 }

@@ -14,6 +14,9 @@ import { NgFor } from '@angular/common';
 export class EnctableComponent {
   randomEncounters: RandomEncounters[] = [];
   encs: Enc[] = [];
+  encprops = Object.keys(this.randomEncounters);
+  neededArray = [];
+  i = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,9 +28,9 @@ export class EnctableComponent {
   }
 
   private getTable(): void {
-    this.eservice.getTable().subscribe((hw) => {
-      this.randomEncounters = hw;
-      hw.forEach((x) => console.log('Ollaan tässä', x.enc.name));
+    this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
+      this.randomEncounters = data;
+      console.log('Encounters', data);
     });
   }
 }
