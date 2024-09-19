@@ -7,6 +7,20 @@ import { RandomEncounters } from './types';
 })
 export class InMemoryService implements InMemoryDbService {
   createDb() {
+    const highwayEncs: HighwayEncs[] = [
+      {
+        id: 1,
+        name: 'Highwaymen',
+        description:
+          'A group of bandits, armed to the teeth, are lying in wait to harass unsuspecting travelers.',
+      },
+      {
+        id: 2,
+        name: 'Niko',
+        description:
+          'Niko teleports behind the party and attempts to whip one of the players with an extension cord.',
+      },
+    ];
     const randomEncounters: RandomEncounters[] = [
       {
         biome: 'Highway',
@@ -108,7 +122,7 @@ export class InMemoryService implements InMemoryDbService {
       },
     ];
 
-    return { randomEncounters };
+    return { randomEncounters, highwayEncs };
   }
   //
   //  genId(encounters: REL[]): number {

@@ -4,6 +4,7 @@ import { HighwayComponent } from './highway/highway.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditHighwayComponent } from './edit-highway/edit-highway.component';
+import { BiomeTableComponent } from './biome-table/biome-table.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/app', pathMatch: 'full' },
@@ -11,7 +12,7 @@ export const routes: Routes = [
   { path: 'random', component: RandomComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'highway', component: HighwayComponent },
-  { path: 'biome/:biomeName', component: HighwayComponent },
+  { path: 'biome/:id', component: BiomeTableComponent },
 
   { path: 'edit-highway', component: EditHighwayComponent },
 ];

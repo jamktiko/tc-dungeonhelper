@@ -13,3 +13,9 @@ export interface RandomEncounters {
 export interface InMemory {
   randomEncounters: RandomEncounters[];
 }
+
+export interface Highway {
+  id: number;
+  name: string;
+  description: string;
+}
