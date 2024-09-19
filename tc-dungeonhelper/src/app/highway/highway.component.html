@@ -1,8 +1,8 @@
 <p>Haloo</p>
 <div>
-  <a *ngFor="let encounter of encounters" routerLink="/biome/{{ encounter}}">
+  <a *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
     <ul>
-      <li>{{ encounter }}</li>
+      <li>{{ encounter.biome }}</li>
 
     </ul>
 

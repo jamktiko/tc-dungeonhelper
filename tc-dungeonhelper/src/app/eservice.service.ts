@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Enc } from './types';
+import { RandomEncounters } from './types';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,16 +7,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class EserviceService {
-  private apiUrl = 'api/highWayEncs';
+  private apiUrl = 'api/randomEncounters';
 
   constructor(private http: HttpClient) {}
 
-  private handleError(error: any): Observable<Enc[]> {
+  private handleError<T>(error: any): Observable<T[]> {
     console.error('An error occurred', error);
-    return of([]); // Return an empty array on error
+    return of([] as T[]); // Return an empty array on error
   }
-  getEncounters(): Observable<Enc[]> {
-    return this.http.get<Enc[]>(this.apiUrl);
+  getEncounters(): Observable<RandomEncounters[]> {
+    return this.http.get<RandomEncounters[]>(this.apiUrl);
   }
 
   /**
@@ -24,10 +24,10 @@ export class EserviceService {
    * @param id The id of the encounter table to be retrieved.
    * @returns An observable of the requested encounter table.
    */
-  // getTable(id: Number): Observable<Enc[]> {
-  //   const url = `${this.hiWayUrl}/${id}`;
-  //   return this.http
-  //     .get<Enc[]>(url)
-  //     .pipe(catchError((error) => this.handleError(error)));
-  // }
+  getTable(): Observable<RandomEncounters[]> {
+    const url = `${this.apiUrl}`;
+    return this.http
+      .get<RandomEncounters[]>(url)
+      .pipe(catchError((error) => this.handleError<RandomEncounters>(error)));
+  }
 }
