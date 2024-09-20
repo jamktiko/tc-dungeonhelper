@@ -1,10 +1,8 @@
-<p>Enctable works!</p>
 <div *ngFor="let encounter of randomEncounters">
   <h3> {{ encounter.biome }}</h3>
   <ul>
     <div *ngFor="let enc of encounter.enc">
       <li><strong>Name:</strong> {{ enc.name }} <strong>Description:</strong> {{ enc.description }}</li>
-
     </div>
   </ul>
 </div>

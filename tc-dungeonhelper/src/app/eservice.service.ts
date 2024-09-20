@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class EserviceService {
-  private apiUrl = 'http://localhost:3000/encounters';
+  private apiUrl = 'api/randomEncounters';
 
   constructor(private http: HttpClient) {}
 
