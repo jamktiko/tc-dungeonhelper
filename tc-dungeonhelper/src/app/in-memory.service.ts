@@ -112,11 +112,9 @@ export class InMemoryService implements InMemoryDbService {
     return { randomEncounters };
   }
 
-  //
-  //  genId(encounters: REL[]): number {
-  //    return encounters.length > 0
-  //      ? Math.max(...encounters.map((enc) => .id)) + 1
-  //      : 11;
-  //  }
-  //}
+  genId(encounters: RandomEncounters[]): number {
+    return encounters.length > 0
+      ? Math.max(...encounters.map((enc) => enc.id)) + 1
+      : 11;
+  }
 }

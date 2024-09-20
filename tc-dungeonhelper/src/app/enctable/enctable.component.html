@@ -1,7 +1,7 @@
-<div *ngFor="let encounter of randomEncounters">
-  <h3> {{ encounter.biome }}</h3>
+<div *ngIf="filteredEncounters">
+  <h3> {{ filteredEncounters.biome }}</h3>
   <ul>
-    <div *ngFor="let enc of encounter.enc">
+    <div *ngFor="let enc of filteredEncounters.enc">
       <li><strong>Name:</strong> {{ enc.name }} <strong>Description:</strong> {{ enc.description }}</li>
     </div>
   </ul>
