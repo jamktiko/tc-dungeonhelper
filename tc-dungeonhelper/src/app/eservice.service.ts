@@ -19,6 +19,13 @@ export class EserviceService {
     return this.http.get<RandomEncounters[]>(this.apiUrl);
   }
 
+  getOneEncouter(id: number): Observable<RandomEncounters[]> {
+    const url = `${this.apiUrl}/${}/${id}`;
+    return this.http
+      .get<RandomEncounters[]>(url)
+      .pipe(catchError((error) => this.handleError<RandomEncounters>(error)));
+  }
+
   /**
    * Gets a random encounter table by its id.
    * @param id The id of the encounter table to be retrieved.

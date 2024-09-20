@@ -1,11 +1,18 @@
 <div *ngIf="filteredEncounters">
   <h3> {{ filteredEncounters.biome }}</h3>
-  <ol>
+  <div>
 
-    <div *ngFor="let enc of filteredEncounters.enc">
-      <li><strong>Name:</strong> {{ enc.name }}</li>
-      <strong>Description:</strong> {{ enc.description }}
 
-    </div>
-  </ol>
+    <a *ngFor="let enc of filteredEncounters.enc" routerLink="/detail/{{ enc.id }}">
+      <div></div>
+      <strong>Name:</strong> {{ enc.name }}
+
+
+    </a>
+
+
+  </div>
+
+
+
 </div>

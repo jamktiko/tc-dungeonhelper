@@ -4,11 +4,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditHighwayComponent } from './edit-highway/edit-highway.component';
 import { EnctableComponent } from './enctable/enctable.component';
 import { RetablesComponent } from './retables/retables.component';
+import { EncdetailComponent } from './encdetail/encdetail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/app', pathMatch: 'full' },
   { path: 'app', component: DashboardComponent },
   { path: 'retables', component: RetablesComponent },
+  { path: 'detail/:id', component: EncdetailComponent },
 
   { path: 'dashboard', component: DashboardComponent },
 
