@@ -67,21 +67,21 @@ export class InMemoryService implements InMemoryDbService {
         enc: [
           {
             id: 9,
-            name: 'Bandits',
+            name: 'Spider`s web',
             description:
-              'A group of bandits, armed to the teeth, are lying in wait to harass unsuspecting travelers.',
+              'A narrow corridor is filled with a thick layer of spider webs. ',
           },
           {
             id: 10,
-            name: 'Merchant',
+            name: 'Rival Dungeon Crawlers',
             description:
-              'A lone merchant, heavily laden with goods, is making their way down the highway. They may offer to trade or sell goods to the party.',
+              'A rival gang of 2d4 Dungeon Crawlers are heard fighting a group of 2d6 Goblins in an adjacent room',
           },
           {
             id: 11,
-            name: 'Pilgrims',
+            name: 'Skeletons',
             description:
-              'A group of devout pilgrims, traveling to a nearby holy site, are seeking donations or food from the party.',
+              '2d6 Skeletal sentinels are guarding an artifact placed on a pedestal. Their bones creak with a malevolent rattle. ',
           },
         ],
       },
@@ -90,9 +90,9 @@ export class InMemoryService implements InMemoryDbService {
         enc: [
           {
             id: 12,
-            name: 'Abandoned House',
+            name: 'Paranoid Guards',
             description:
-              'A rickety cart, abandoned by its owner, contains a few scattered goods and a cryptic note hinting at a local mystery',
+              'A patrol of stalwart defenders of the realm are convinced that you are hiding something. Probably several somethings. In fact, they accuse the party of being a spy, a thief, a murdered and a pastry thief all rolled into one.',
           },
         ],
       },
@@ -102,8 +102,7 @@ export class InMemoryService implements InMemoryDbService {
           {
             id: 13,
             name: 'Abandoned Mine',
-            description:
-              'A rickety cart, abandoned by its owner, contains a few scattered goods and a cryptic note hinting at a local mystery',
+            description: 'A raiding team of 2d4 Orcs run through the forest.',
           },
         ],
       },
