@@ -27,18 +27,9 @@ export class EncdetailComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-
-    this.getOneEncouter();
   }
 
   goBack(): void {
     this.location.back(); // Use the Location service to navigate back to the previous page
-  }
-
-  private getOneEncouter(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.eservice
-      .getOneEncouter(id)
-      .subscribe((encounter) => (this.randomEncounters = encounter));
   }
 }

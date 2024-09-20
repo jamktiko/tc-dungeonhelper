@@ -10,7 +10,7 @@
   margin-bottom: 3rem;
 }
 .back {
-  background: url("../../assets/Back_dungeon.png") no-repeat center center;
+  background: url("/assets/Back_dungeon.png") no-repeat center center;
   display: flex;
   background-size: contain;
   justify-content: flex-start;
@@ -21,7 +21,7 @@
 }
 
 .roll {
-  background: url("../../assets/Roll_dungeon.png") no-repeat center center;
+  background: url("/assets/Roll_dungeon.png") no-repeat center center;
   background-size: contain;
   border: none;
   width: 120px;

@@ -19,10 +19,9 @@ export class EserviceService {
     return this.http.get<RandomEncounters[]>(this.apiUrl);
   }
 
-  getOneEncouter(id: number): Observable<RandomEncounters[]> {
-    const url = `${this.apiUrl}/${id}`;
+  getOneEncouter(): Observable<RandomEncounters[]> {
     return this.http
-      .get<RandomEncounters[]>(url)
+      .get<RandomEncounters[]>(this.apiUrl)
       .pipe(catchError((error) => this.handleError<RandomEncounters>(error)));
   }
 
