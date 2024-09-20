@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 import { RandomEncounters, Enc } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
 import { DicerollService } from '../diceroll.service';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { of } from 'rxjs';
 
 @Component({
@@ -14,12 +15,15 @@ import { of } from 'rxjs';
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
-export class EnctableComponent {
+export class EnctableComponent implements OnInit, OnDestroy {
   randomEncounters: RandomEncounters[] = [];
   encs: Enc[] = [];
   filteredEncounters: RandomEncounters | undefined;
   rolledEncounter: Enc | null = null; // Store the whole rolled encounter object
+  location: any;
+  allEncounters: any[] = [];
   //subIds = this.randomEncounters[0].enc.map((encounter) => encounter.id);
+  private subscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +32,6 @@ export class EnctableComponent {
   ) {}
 
   ngOnInit() {
-    this.getOneEncouter(this.randomEncounters, 'Highway');
     this.getTable();
     const biome = this.route.snapshot.paramMap.get('biome');
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
@@ -40,39 +43,46 @@ export class EnctableComponent {
     });
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
   rollTable() {
     const randomEncounter = this.drs.rollForEntity(this.encs);
     this.rolledEncounter =
-      this.encs.find((enc) => enc.name === randomEncounter) || null; // Store the whole object
+      this.encs.find((enc) => enc.name === randomEncounter) || null;
   }
 
-  private getOneEncouter(
-    encs: RandomEncounters[],
-    biome: string
-  ): number[] | undefined {
-    console.log('getOneEncouter called with', encs, biome);
-    const biomeEncounters = encs.find((e) => e.biome === biome);
-    if (biomeEncounters) {
-      console.log('Found biome', biomeEncounters.biome);
-      return biomeEncounters.enc.map((enc) => enc.id);
-    }
-    console.log('No biome found');
-    return undefined;
-  }
-
+  /**
+   * Subscribes to the encounter service and assigns the result to
+   * randomEncounters. Then it iterates over the result and pushes each
+   * encounter into the encs array.
+   */
   private getTable(): void {
-    this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
-      this.randomEncounters = data;
-      //console.log('Encounters', data);
-      this.encs = [];
+    this.subscription = this.eservice.getTable().subscribe({
+      next: (data: RandomEncounters[]) => {
+        this.randomEncounters = data;
+        this.allEncounters = [];
 
-      data.forEach((encounter: RandomEncounters) => {
-        //console.log('Biome:', encounter.biome);
-        encounter.enc.forEach((enc) => {
-          this.encs.push(enc); // Push each encounter into the encs array
-          console.log('Tätä on data', enc);
+        data.forEach((encounter: RandomEncounters) => {
+          encounter.enc.forEach((enc) => {
+            this.allEncounters.push({
+              biome: encounter.biome,
+              ...enc,
+            });
+          });
         });
-      });
+
+        console.log('Total encounters:', this.allEncounters.length);
+        console.log('Id', this.allEncounters);
+      },
+      error: (err) => console.error('Error fetching encounters:', err),
     });
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
