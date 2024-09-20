@@ -20,7 +20,7 @@ export class EserviceService {
   }
 
   getOneEncouter(id: number): Observable<RandomEncounters[]> {
-    const url = `${this.apiUrl}/${}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http
       .get<RandomEncounters[]>(url)
       .pipe(catchError((error) => this.handleError<RandomEncounters>(error)));
