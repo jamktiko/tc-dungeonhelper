@@ -48,9 +48,14 @@ export class EnctableComponent implements OnInit, OnDestroy {
   }
 
   rollTable() {
-    const randomEncounter = this.drs.rollForEntity(this.encs);
-    this.rolledEncounter =
-      this.encs.find((enc) => enc.name === randomEncounter) || null;
+    const randomEncounter: Enc | null = this.drs.rollForEntity(this.encs);
+    if (randomEncounter) {
+      this.rolledEncounter = randomEncounter; // Store the whole encounter object directly
+      console.log('Rolled encounter successfully stored:', this.rolledEncounter);
+    } else {
+      this.rolledEncounter = null; // Handle the case when no valid encounter is rolled
+      console.warn('No valid encounter was rolled.');
+    }
   }
 
   /**

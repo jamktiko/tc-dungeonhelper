@@ -3,11 +3,13 @@ import { RandomEncounters } from '../types';
 import { EserviceService } from '../eservice.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-retables',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NgFor, NgIf, RouterModule],
+  imports: [RouterOutlet, CommonModule, NgFor, NgIf, RouterModule, MatButtonModule,],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
 })

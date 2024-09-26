@@ -1,18 +1,13 @@
-div {
+.main-content {
     background-color: black;
     color: white;
     align-items: center;
     height: 100%;
-    text-align: center; /* Asetetaan teksti ja kuva keskelle */
+    text-align: center;
+
   }
   
   a {
     color: white;
-  }
-  
- img {
-    width: 250px; /* Voit muuttaa koon sopivaksi */
-    height: auto;
-    margin-bottom: 20px; /* Voit lisätä tilaa kuvan alle */
   }
   

@@ -1,9 +1,9 @@
 <div>
-  <a *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
-    <ul>
-      <li>{{ encounter.biome }}</li>
+  <div  *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
+    <div>
+      <button mat-flat-button style="background-color: #C5231D; margin: 10px; color: white;">{{ encounter.biome }}</button>
 
-    </ul>
+    </div>
 
-  </a>
+  </div>
 </div>

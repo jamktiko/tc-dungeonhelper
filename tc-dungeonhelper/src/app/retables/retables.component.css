@@ -1,14 +1,13 @@
-.menu {
-  display: block;
-}
-.napit {
-  display: grid;
-  grid-template-columns: auto auto;
-  width: 80%;
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
 
-  border-bottom: white solid;
-  margin-bottom: 3rem;
+
+
+a{
+  border: solid white 2px;
+  align-items: center;
+  gap: 5px;
 }
+
 .back {
   background: url("/assets/Back_dungeon.png") no-repeat center center;
   display: flex;
