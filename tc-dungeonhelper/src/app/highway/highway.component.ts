@@ -1,7 +1,7 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { Enc } from '../enc';
+import { Enc } from '../types';
 import { EserviceService } from '../eservice.service';
 import { DicerollService } from '../diceroll.service';
 import { MatButtonModule } from '@angular/material/button';

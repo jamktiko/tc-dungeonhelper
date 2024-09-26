@@ -1,0 +1,24 @@
+<div *ngIf="filteredEncounters">
+  <h3> {{ filteredEncounters.biome }}</h3>
+  <div>
+
+
+    <a *ngFor="let enc of filteredEncounters.enc" routerLink="/detail/{{ enc.id }}">
+      <strong>Name:</strong> {{ enc.name }}
+
+    </a>
+
+    <div>
+      <button class="roll" (click)="rollTable()"></button>
+    </div>
+    <div *ngIf="rolledEncounter">
+      <h3>Rolled Encounter:</h3>
+      <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
+      <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
+    </div>
+
+  </div>
+
+
+
+</div>

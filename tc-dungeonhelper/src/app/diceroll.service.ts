@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DiceRoll } from '@dice-roller/rpg-dice-roller';
-import { Enc } from './enc';
+import { Enc } from './types';
 
 @Injectable({
   providedIn: 'root',
