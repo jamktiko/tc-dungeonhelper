@@ -1,4 +1,28 @@
 div{
-    background-color: black;
+
     color: white;
+
+}
+.grid-container{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+}
+.grid-item1{
+    background:url('/assets/dungeon_crawler.png')no-repeat center center;
+    background-size: contain; 
+    width: 300px; 
+    height: 300px; 
+    cursor: pointer;
+    padding: 0;
+}
+.grid-item2{
+    background:url('/assets/dungeon_master.png')no-repeat center center;
+    background-size: contain; 
+    width: 300px; 
+    height: 300px; 
+    cursor: pointer;
+    padding: 0;
 }

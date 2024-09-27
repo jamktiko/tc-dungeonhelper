@@ -25,9 +25,14 @@ nav {
     margin-right: 5%;
   }
   
-  .nav-item {
+  .nav-item{
     margin: 0 15px;
     color: white;
+
+  }
+  .nav-item:hover{
+    cursor: pointer;
+    color: #C5231D;
   }
   
   .logo {

@@ -4,6 +4,10 @@
     align-items: center;
     height: 100%;
     text-align: center;
+    background: url('/assets/background_dungeon.png') no-repeat center center;
+    background-size: cover;
+    width: 105%;
+
 
   }
   
