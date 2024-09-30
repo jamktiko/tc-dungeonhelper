@@ -3,19 +3,15 @@
   <div>
 
 
-    <a *ngFor="let enc of filteredEncounters.enc" routerLink="/detail/{{ enc.id }}">
-      <strong>Name:</strong> {{ enc.name }}
+    <a *ngFor="let enc of filteredEncounters.enc" (click)="openEncounterModal(enc)">
+      {{ enc.name }}
 
     </a>
 
     <div>
-      <button class="roll" (click)="getTable()"></button>
+      <button class="roll" (click)="rollTable(filteredEncounters)"></button>
     </div>
-    <div *ngIf="rolledEncounter">
-      <h3>Rolled Encounter:</h3>
-      <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
-      <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
-    </div>
+
 
 
   </div>
