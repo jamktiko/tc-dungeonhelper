@@ -1,0 +1,18 @@
+<mat-card>
+  <h1 mat-dialog-title>Encounter Details</h1>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content>
+    <p><strong>Name:</strong> {{ data.encounter.name }}</p>
+    <p><strong>Description:</strong> {{ data.encounter.description }}</p>
+    <div *ngIf="showResult">
+      <h3>Random Encounter:</h3>
+      <p>{{ rolledEncounter }}</p>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-flat-button color="primary" (click)="chooseEncounter()">Choose This</button>
+    <button mat-button mat-flat-button color="accent" (click)="rollRandom()">Roll Random</button>
+    <button mat-button mat-flat-button color="warn" (click)="close()">Close</button>
+  </div>
+</mat-card>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RandomEncounters, Enc } from '../types';
+import { RandomEncounters } from '../types';
 import { CommonModule, Location, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,9 +14,8 @@ import { EserviceService } from '../eservice.service';
 })
 export class EncdetailComponent {
   randomEncounters: RandomEncounters[] = [];
-  encs: Enc[] = [];
+
   filteredEncounters: RandomEncounters | undefined;
-  rolledEncounter: Enc | null = null; // Store the whole rolled encount
 
   constructor(
     private route: ActivatedRoute,

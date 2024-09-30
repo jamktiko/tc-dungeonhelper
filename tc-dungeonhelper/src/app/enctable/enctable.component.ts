@@ -1,12 +1,20 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
-import { RandomEncounters, Enc } from '../types';
+import { RandomEncounters } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
 import { DicerollService } from '../diceroll.service';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
+import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 
 @Component({
   selector: 'app-enctable',
@@ -17,9 +25,10 @@ import { of } from 'rxjs';
 })
 export class EnctableComponent implements OnInit, OnDestroy {
   randomEncounters: RandomEncounters[] = [];
-  encs: Enc[] = [];
+
+  showResult = false;
   filteredEncounters: RandomEncounters | undefined;
-  rolledEncounter: Enc | null = null; // Store the whole rolled encounter object
+  rolledEncounter: RandomEncounters | null = null; // Store the whole rolled encounter object
   location: any;
   allEncounters: any[] = [];
   //subIds = this.randomEncounters[0].enc.map((encounter) => encounter.id);
@@ -28,7 +37,9 @@ export class EnctableComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private eservice: EserviceService,
-    private drs: DicerollService
+    private drs: DicerollService,
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -43,19 +54,31 @@ export class EnctableComponent implements OnInit, OnDestroy {
     });
   }
 
+  openEncounterModal(encounter: any): void {
+    this.dialog.open(EncounterModalComponent, {
+      data: { encounter: encounter.enc }, // Pass the selected encounter data
+    });
+  }
+
   goBack(): void {
     this.location.back();
   }
 
-  rollTable() {
-    const randomEncounter: Enc | null = this.drs.rollForEntity(this.encs);
-    if (randomEncounter) {
-      this.rolledEncounter = randomEncounter; // Store the whole encounter object directly
-      console.log('Rolled encounter successfully stored:', this.rolledEncounter);
-    } else {
-      this.rolledEncounter = null; // Handle the case when no valid encounter is rolled
-      console.warn('No valid encounter was rolled.');
-    }
+  rollTable(encounter: RandomEncounters): void {
+    const randomNumber = Math.floor(Math.random() * encounter.enc.length);
+    const randomEntity =
+      encounter.enc[randomNumber].name +
+      ': ' +
+      encounter.enc[randomNumber].description;
+    console.log(randomNumber);
+    console.log(encounter.enc[randomNumber].name);
+    encounter.result = randomEntity; // Store the result in the encounter object
+    this.cdr.detectChanges(); // Update the view
+    this.showResult = true;
+
+    this.dialog.open(EncounterModalComponent, {
+      data: { result: encounter.result },
+    });
   }
 
   /**

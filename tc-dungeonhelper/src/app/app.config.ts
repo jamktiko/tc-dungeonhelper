@@ -24,6 +24,6 @@ export const appConfig: ApplicationConfig = {
       }),
       FormsModule
     ),
-    provideAnimationsAsync(),
+    provideAnimationsAsync(), provideAnimationsAsync(),
   ],
 };

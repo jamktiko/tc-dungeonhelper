@@ -21,11 +21,10 @@ export interface InMemory {
 export interface RandomEncounters {
   id?: any;
   biome: string;
-  enc: Enc[];
-}
-
-export interface Enc {
-  id: number;
-  name: string;
-  description: string;
+  enc: {
+    id: number;
+    name: string;
+    description: string;
+  }[];
+  result?: any;
 }
