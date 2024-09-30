@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RandomEncounters, Enc } from './types';
+import { RandomEncounters } from './types';
 import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
