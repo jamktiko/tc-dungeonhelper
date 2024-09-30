@@ -6,15 +6,17 @@ import { RandomEncounters } from './types';
   providedIn: 'root',
 })
 export class DicerollService {
-  randomEncounters: RandomEncounters[] = [];
-  encs: Enc[] = [];
   roll20 = new DiceRoll('1d20');
   constructor() {}
+
+  roll(diceNotation: string): any {
+    const dice = new DiceRoll(diceNotation);
+    return dice;
+  }
 
   // Updated to return Enc object
   rollForEntity(encounters: RandomEncounters[]): RandomEncounters | null {
     if (encounters.length === 0) {
-      console.log(encounters);
       console.error('Encounter list is empty, cannot roll.');
       return null; // Return null if no encounters are available
     }

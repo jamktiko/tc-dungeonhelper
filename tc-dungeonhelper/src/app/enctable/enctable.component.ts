@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 import { RandomEncounters } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
-
+import { DicerollService } from '../diceroll.service';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -43,7 +43,7 @@ export class EnctableComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    //  this.getTable();
+    this.getTable();
     const biome = this.route.snapshot.paramMap.get('biome');
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
       this.randomEncounters = data;
@@ -86,10 +86,11 @@ export class EnctableComponent implements OnInit, OnDestroy {
    * randomEncounters. Then it iterates over the result and pushes each
    * encounter into the encs array.
    */
-  getTable(): void {
+  private getTable(): void {
     this.subscription = this.eservice.getTable().subscribe({
       next: (data: RandomEncounters[]) => {
         this.randomEncounters = data;
+        this.allEncounters = [];
 
         data.forEach((encounter: RandomEncounters) => {
           encounter.enc.forEach((enc) => {
