@@ -15,7 +15,7 @@ import { of } from 'rxjs';
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
-export class EnctableComponent implements OnInit, OnDestroy {
+export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
   encs: Enc[] = [];
   filteredEncounters: RandomEncounters | undefined;
@@ -32,7 +32,6 @@ export class EnctableComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getTable();
     const biome = this.route.snapshot.paramMap.get('biome');
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
       this.randomEncounters = data;
@@ -51,43 +50,13 @@ export class EnctableComponent implements OnInit, OnDestroy {
     const randomEncounter: Enc | null = this.drs.rollForEntity(this.encs);
     if (randomEncounter) {
       this.rolledEncounter = randomEncounter; // Store the whole encounter object directly
-      console.log('Rolled encounter successfully stored:', this.rolledEncounter);
+      console.log(
+        'Rolled encounter successfully stored:',
+        this.rolledEncounter
+      );
     } else {
       this.rolledEncounter = null; // Handle the case when no valid encounter is rolled
       console.warn('No valid encounter was rolled.');
-    }
-  }
-
-  /**
-   * Subscribes to the encounter service and assigns the result to
-   * randomEncounters. Then it iterates over the result and pushes each
-   * encounter into the encs array.
-   */
-  private getTable(): void {
-    this.subscription = this.eservice.getTable().subscribe({
-      next: (data: RandomEncounters[]) => {
-        this.randomEncounters = data;
-        this.allEncounters = [];
-
-        data.forEach((encounter: RandomEncounters) => {
-          encounter.enc.forEach((enc) => {
-            this.allEncounters.push({
-              biome: encounter.biome,
-              ...enc,
-            });
-          });
-        });
-
-        console.log('Total encounters:', this.allEncounters.length);
-        console.log('Id', this.allEncounters);
-      },
-      error: (err) => console.error('Error fetching encounters:', err),
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
     }
   }
 }
