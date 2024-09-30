@@ -5,11 +5,17 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
-
 @Component({
   selector: 'app-retables',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NgFor, NgIf, RouterModule, MatButtonModule,],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    NgFor,
+    NgIf,
+    RouterModule,
+    MatButtonModule,
+  ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
 })
@@ -30,6 +36,7 @@ export class RetablesComponent implements OnInit {
     this.eservice.getEncounters().subscribe((re) => {
       this.randomEncounters = re;
       console.log('täsä ollaan', re);
+      console.log(re[re.length - 1].biome);
     });
   }
 }

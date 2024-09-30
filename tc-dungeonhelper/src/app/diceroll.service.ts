@@ -1,35 +1,32 @@
 import { Injectable } from '@angular/core';
 import { DiceRoll } from '@dice-roller/rpg-dice-roller';
-import { Enc } from './types';
+import { Enc, RandomEncounters } from './types';
+import e from 'express';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DicerollService {
+  randomEncounters: RandomEncounters[] = [];
+  encs: Enc[] = [];
   roll20 = new DiceRoll('1d20');
   constructor() {}
 
-  roll(diceNotation: string): any {
-    const dice = new DiceRoll(diceNotation);
-    return dice;
-  }
-
   // Updated to return Enc object
-  rollForEntity(encounters: Enc[]): Enc | null {
+  rollForEntity(encounters: Enc[]): Enc {
     if (encounters.length === 0) {
+      console.log(encounters);
       console.error('Encounter list is empty, cannot roll.');
-      return null;  // Return null if no encounters are available
     }
-  
+
     const randomNumber = Math.floor(Math.random() * encounters.length); // Select random encounter index
     const randomEncounter = encounters[randomNumber]; // Get the full encounter object
-  
+
     if (!randomEncounter) {
       console.error('Encounter is undefined at index:', randomNumber);
-      return null;  // Return null if the encounter is undefined
     }
-  
+
     console.log('Selected encounter:', randomEncounter); // Log the full encounter object
-    return randomEncounter;  // Return the full encounter object
+    return randomEncounter; // Return the full encounter object
   }
 }

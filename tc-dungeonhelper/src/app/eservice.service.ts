@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RandomEncounters } from './types';
+import { RandomEncounters, Enc } from './types';
 import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EserviceService {
   private apiUrl = 'api/randomEncounters';
+  private tableUrl = 'api/encounters';
 
   constructor(private http: HttpClient) {}
 

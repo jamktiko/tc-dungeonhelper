@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 import { RandomEncounters, Enc } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
-import { DicerollService } from '../diceroll.service';
+
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { of } from 'rxjs';
@@ -27,12 +27,11 @@ export class EnctableComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private eservice: EserviceService,
-    private drs: DicerollService
+    private eservice: EserviceService
   ) {}
 
   ngOnInit() {
-    this.getTable();
+    //  this.getTable();
     const biome = this.route.snapshot.paramMap.get('biome');
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
       this.randomEncounters = data;
@@ -47,27 +46,22 @@ export class EnctableComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  rollTable() {
-    const randomEncounter: Enc | null = this.drs.rollForEntity(this.encs);
-    if (randomEncounter) {
-      this.rolledEncounter = randomEncounter; // Store the whole encounter object directly
-      console.log('Rolled encounter successfully stored:', this.rolledEncounter);
-    } else {
-      this.rolledEncounter = null; // Handle the case when no valid encounter is rolled
-      console.warn('No valid encounter was rolled.');
-    }
-  }
+  /**
+   * Rolls a random encounter table. Subscribes to the encounter service
+   * and generates a random number between 0 and the length of the encounters
+   * array. If the encounter with the rolled id exists, it is stored in the
+   * rolledEncounter property.
+   */
 
   /**
    * Subscribes to the encounter service and assigns the result to
    * randomEncounters. Then it iterates over the result and pushes each
    * encounter into the encs array.
    */
-  private getTable(): void {
+  getTable(): void {
     this.subscription = this.eservice.getTable().subscribe({
       next: (data: RandomEncounters[]) => {
         this.randomEncounters = data;
-        this.allEncounters = [];
 
         data.forEach((encounter: RandomEncounters) => {
           encounter.enc.forEach((enc) => {
