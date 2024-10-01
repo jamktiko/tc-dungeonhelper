@@ -16,6 +16,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 import { filter, sample } from 'lodash';
 
+
+
 @Component({
   selector: 'app-enctable',
   standalone: true,
@@ -77,7 +79,20 @@ export class EnctableComponent implements OnInit {
     console.log(this.w);
     console.log(this.percentCalc(8, this.w));
   }
-
+  
+  increaseWeight(enc: any): void {
+    enc.weight += 1;
+    this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
+    this.cdr.detectChanges();
+  }
+  
+  decreaseWeight(enc: any): void {
+    if (enc.weight > 0) {
+      enc.weight -= 1;
+      this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
+      this.cdr.detectChanges();
+    }
+  }
   /**
    * Arpoo satunnaiskohtaamisen ja palauttaa valitun Encounterin.
    * Käyttää Logashin sample -metodia joka satunnaisesti valitsee alkion taulukosta

@@ -1,24 +1,3 @@
-.menu {
-  display: block;
-}
-.napit {
-  display: grid;
-  grid-template-columns: auto auto;
-  width: 80%;
-
-  border-bottom: white solid;
-  margin-bottom: 3rem;
-}
-.back {
-  background: url("/assets/Back_dungeon.png") no-repeat center center;
-  display: flex;
-  background-size: contain;
-  justify-content: flex-start;
-  border: none;
-  width: 40px;
-  height: 30px;
-  cursor: pointer;
-}
 
 .roll {
   background: url("/assets/Roll_dungeon.png") no-repeat center center;
@@ -29,13 +8,67 @@
   cursor: pointer;
 }
 
-div {
-  color: white;
-  background-color: black;
-  display: flex;
-  display: grid; /* Tee div:stä grid-kontaineri */
-  place-items: center;
+.encounter-container {
+  display: grid;
+  margin-left: 30%;
+  margin-right: 30%;
+  cursor: default;
 }
-a {
-  color: white;
+
+
+.encounter-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.item-weight-container {
+  display: flex;
+  align-items: center;
+}
+
+.weight-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px; 
+}
+
+.weight-buttons button {
+  background-color: transparent;
+  border: none;
+  color: #C5231D;
+  cursor: pointer;
+}
+.weight-buttons button:hover {
+  background-color: #C5231D;
+  color: black;
+}
+
+
+
+.item-number,
+.item-name {
+  flex: 1;
+  text-align: left;
+}
+.item-wight,
+.item-percent{
+color: aquamarine;
+flex: 1;
+padding: 10px;
+text-align: right;
+
+}
+
+.even-item {
+  background-color: #222222;
+}
+
+.odd-item {
+  background-color: #000000;
+}
+
+.encounter-item:hover {
+  border-bottom: groove 5px #C5231D;
+  
 }

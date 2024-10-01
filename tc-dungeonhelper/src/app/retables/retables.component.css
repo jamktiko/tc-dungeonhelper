@@ -34,6 +34,8 @@ div {
   display: flex;
   display: grid; /* Tee div:stä grid-kontaineri */
   place-items: center;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 a {
   color: white;
