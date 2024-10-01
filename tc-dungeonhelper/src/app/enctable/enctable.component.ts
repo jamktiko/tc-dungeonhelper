@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
+import { filter, sample } from 'lodash';
 
 @Component({
   selector: 'app-enctable',
@@ -23,12 +24,11 @@ import { EncounterModalComponent } from '../encounter-modal/encounter-modal.comp
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
-export class EnctableComponent implements OnInit, OnDestroy {
+export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
 
-  showResult = false;
-  filteredEncounters: RandomEncounters | undefined;
-  rolledEncounter: RandomEncounters | null = null; // Store the whole rolled encounter object
+  filteredEncounters: RandomEncounters | any;
+
   location: any;
   allEncounters: any[] = [];
   //subIds = this.randomEncounters[0].enc.map((encounter) => encounter.id);
@@ -42,8 +42,12 @@ export class EnctableComponent implements OnInit, OnDestroy {
     public dialog: MatDialog
   ) {}
 
+  /**
+   * Fetches the encounter data from the EserviceService and filters it
+   * to show only the encounters of the selected biome.
+   * The selected biome is passed as a route parameter.
+   */
   ngOnInit() {
-    this.getTable();
     const biome = this.route.snapshot.paramMap.get('biome');
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
       this.randomEncounters = data;
@@ -51,66 +55,36 @@ export class EnctableComponent implements OnInit, OnDestroy {
       this.filteredEncounters = this.randomEncounters.find(
         (encounter) => encounter.biome === biome
       );
+      console.log('Filtered encounters:', this.filteredEncounters);
     });
   }
 
+  /**
+   * Arpoo satunnaiskohtaamisen ja palauttaa valitun Encounterin.
+   * Käyttää Logashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
+
+   */
+  rollTable(): void {
+    if (this.filteredEncounters) {
+      const encounters = this.filteredEncounters.enc;
+      const randomEncounter = sample(encounters);
+      console.log(`Encounter ${randomEncounter.id}: ${randomEncounter.name}`);
+      console.log(randomEncounter.description);
+      this.dialog.open(EncounterModalComponent, {
+        data: randomEncounter,
+      });
+    }
+  }
+
   openEncounterModal(encounter: any): void {
+    console.log('openEncounterModal()');
+    console.log('Selected encounter:', encounter);
     this.dialog.open(EncounterModalComponent, {
-      data: { encounter: encounter.enc }, // Pass the selected encounter data
+      data: { encounter: encounter }, // Pass the selected encounter data
     });
   }
 
   goBack(): void {
     this.location.back();
-  }
-
-  rollTable(encounter: RandomEncounters): void {
-    const randomNumber = Math.floor(Math.random() * encounter.enc.length);
-    const randomEntity =
-      encounter.enc[randomNumber].name +
-      ': ' +
-      encounter.enc[randomNumber].description;
-    console.log(randomNumber);
-    console.log(encounter.enc[randomNumber].name);
-    encounter.result = randomEntity; // Store the result in the encounter object
-    this.cdr.detectChanges(); // Update the view
-    this.showResult = true;
-
-    this.dialog.open(EncounterModalComponent, {
-      data: { result: encounter.result },
-    });
-  }
-
-  /**
-   * Subscribes to the encounter service and assigns the result to
-   * randomEncounters. Then it iterates over the result and pushes each
-   * encounter into the encs array.
-   */
-  private getTable(): void {
-    this.subscription = this.eservice.getTable().subscribe({
-      next: (data: RandomEncounters[]) => {
-        this.randomEncounters = data;
-        this.allEncounters = [];
-
-        data.forEach((encounter: RandomEncounters) => {
-          encounter.enc.forEach((enc) => {
-            this.allEncounters.push({
-              biome: encounter.biome,
-              ...enc,
-            });
-          });
-        });
-
-        console.log('Total encounters:', this.allEncounters.length);
-        console.log('Id', this.allEncounters);
-      },
-      error: (err) => console.error('Error fetching encounters:', err),
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

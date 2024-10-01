@@ -19,12 +19,13 @@ export interface InMemory {
 }
 
 export interface RandomEncounters {
-  id?: any;
+  id: any;
   biome: string;
-  enc: {
-    id: number;
-    name: string;
-    description: string;
-  }[];
-  result?: any;
+  enc: Enc[];
+}
+
+export interface Enc {
+  id: number;
+  name: string;
+  description: string;
 }
