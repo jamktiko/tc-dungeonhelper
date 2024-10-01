@@ -16,6 +16,5 @@ export const routes: Routes = [
 
   { path: 'biome/:biome', component: EnctableComponent },
 
-  { path: 'edit-highway', component: EditHighwayComponent },
   { path: 'merchants', component: MerchantsComponent },
 ];

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
-import { RandomEncounters } from '../types';
+import { Enc, RandomEncounters } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
 import { DicerollService } from '../diceroll.service';
 import { RouterModule } from '@angular/router';
@@ -24,10 +24,8 @@ import { filter, sample } from 'lodash';
   styleUrl: './enctable.component.css',
 })
 export class EnctableComponent implements OnInit {
-  w: number = 0;
-export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
-
+  w: number = 0;
   filteredEncounters: RandomEncounters | any;
 
   location: any;
@@ -78,26 +76,6 @@ export class EnctableComponent implements OnInit {
   logW() {
     console.log(this.w);
     console.log(this.percentCalc(8, this.w));
-  }
-  goBack(): void {
-    this.location.back();
-  }
-
-  rollTable() {
-    const randomEncounter: Enc | null = this.drs.rollForEntity(this.encs);
-    if (randomEncounter) {
-      this.rolledEncounter = randomEncounter; // Store the whole encounter object directly
-      console.log(
-        'Rolled encounter successfully stored:',
-        this.rolledEncounter
-      );
-    } else {
-      this.rolledEncounter = null; // Handle the case when no valid encounter is rolled
-      console.warn('No valid encounter was rolled.');
-    }
-  }
-      console.log('Filtered encounters:', this.filteredEncounters);
-    });
   }
 
   /**
