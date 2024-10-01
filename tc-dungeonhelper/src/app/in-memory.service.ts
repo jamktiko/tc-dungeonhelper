@@ -24,14 +24,14 @@ export class InMemoryService implements InMemoryDbService {
             name: 'Niko',
             description:
               'Niko teleports behind the party and attempts to whip one of the players with an extension cord.',
-            weight: 1,
+            weight: 8,
           },
           {
             id: 3,
             name: 'Travelling Merchant',
             description:
               'A lone merchant, heavily laden with goods, is making their way down the highway. They may offer to trade or sell goods to the party.',
-            weight: 1,
+            weight: 3,
           },
           {
             id: 4,
@@ -45,14 +45,14 @@ export class InMemoryService implements InMemoryDbService {
             name: 'Wanted Poster',
             description:
               'A posted notice on a nearby tree or milestone announces a reward for the capture of a notorious outlaw, who may be hiding in the nearby area. ',
-            weight: 1,
+            weight: 20,
           },
           {
             id: 6,
             name: 'Abandoned Cart',
             description:
               'A rickety cart, abandoned by its owner, contains a few scattered goods and a cryptic note hinting at a local mystery',
-            weight: 1,
+            weight: 10,
           },
           {
             id: 7,

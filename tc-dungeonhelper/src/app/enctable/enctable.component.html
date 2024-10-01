@@ -1,11 +1,14 @@
 <div *ngIf="filteredEncounters">
-  <h3> {{ filteredEncounters.biome }}</h3>
+  <h3>{{ filteredEncounters.biome }}</h3>
   <div>
-
-
-    <a *ngFor="let enc of filteredEncounters.enc" routerLink="/detail/{{ enc.id }}">
+    <a
+      *ngFor="let enc of filteredEncounters.enc"
+      routerLink="/detail/{{ enc.id }}"
+    >
       <strong>Name:</strong> {{ enc.name }}
-
+      <p>Weight: {{ enc.weight }}</p>
+      <p>%: {{ this.percentCalc(this.enc.weight, this.w) }}</p>
+      <p></p>
     </a>
 
     <div>
@@ -16,10 +19,5 @@
       <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
       <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
     </div>
-    
-
   </div>
-
-
-
 </div>

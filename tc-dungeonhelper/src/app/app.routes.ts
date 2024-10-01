@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { HighwayComponent } from './highway/highway.component';
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditHighwayComponent } from './edit-highway/edit-highway.component';
 import { EnctableComponent } from './enctable/enctable.component';
@@ -20,5 +18,5 @@ export const routes: Routes = [
   { path: 'biome/:biome', component: EnctableComponent },
 
   { path: 'edit-highway', component: EditHighwayComponent },
-  {path: 'merchants', component: MerchantsComponent},
+  { path: 'merchants', component: MerchantsComponent },
 ];

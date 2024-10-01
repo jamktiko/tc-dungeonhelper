@@ -16,6 +16,7 @@ import { of } from 'rxjs';
   styleUrl: './enctable.component.css',
 })
 export class EnctableComponent implements OnInit {
+  w: number = 0;
   randomEncounters: RandomEncounters[] = [];
   encs: Enc[] = [];
   filteredEncounters: RandomEncounters | undefined;
@@ -39,9 +40,29 @@ export class EnctableComponent implements OnInit {
       this.filteredEncounters = this.randomEncounters.find(
         (encounter) => encounter.biome === biome
       );
+      console.log(this.filteredEncounters?.enc);
+      this.w = this.totalWeight(this.filteredEncounters?.enc);
+      this.logW();
     });
   }
+  totalWeight(x: Enc[] | undefined) {
+    if (x == undefined) {
+      return 0;
+    }
+    let total = 0;
+    for (let y of x) {
+      total += y.weight;
+    }
+    return total;
+  }
+  percentCalc(x: number, y: number) {
+    return ((x / y) * 100).toFixed(2);
+  }
 
+  logW() {
+    console.log(this.w);
+    console.log(this.percentCalc(8, this.w));
+  }
   goBack(): void {
     this.location.back();
   }
