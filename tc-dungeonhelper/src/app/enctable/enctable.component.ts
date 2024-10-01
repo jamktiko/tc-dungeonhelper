@@ -13,7 +13,6 @@ import { DicerollService } from '../diceroll.service';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { of } from 'rxjs';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 import { filter, sample } from 'lodash';
 
@@ -30,9 +29,6 @@ export class EnctableComponent implements OnInit {
   filteredEncounters: RandomEncounters | any;
 
   location: any;
-  allEncounters: any[] = [];
-  //subIds = this.randomEncounters[0].enc.map((encounter) => encounter.id);
-  private subscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +39,9 @@ export class EnctableComponent implements OnInit {
   ) {}
 
   /**
+   * Fetchaa satunnaiskohtaamistiedot Eservicestä ja suodattaa ne
+   *
+   *
    * Fetches the encounter data from the EserviceService and filters it
    * to show only the encounters of the selected biome.
    * The selected biome is passed as a route parameter.
@@ -64,7 +63,7 @@ export class EnctableComponent implements OnInit {
    * Käyttää Logashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
 
    */
-  rollTable(): void {
+  public rollTable(): void {
     if (this.filteredEncounters) {
       const encounters = this.filteredEncounters.enc;
       const randomEncounter = sample(encounters);
@@ -76,7 +75,7 @@ export class EnctableComponent implements OnInit {
     }
   }
 
-  openEncounterModal(encounter: any): void {
+  public openEncounterModal(encounter: any): void {
     console.log('openEncounterModal()');
     console.log('Selected encounter:', encounter);
     this.dialog.open(EncounterModalComponent, {
@@ -84,7 +83,7 @@ export class EnctableComponent implements OnInit {
     });
   }
 
-  goBack(): void {
+  public goBack(): void {
     this.location.back();
   }
 }

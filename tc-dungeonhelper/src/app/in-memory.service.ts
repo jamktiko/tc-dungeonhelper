@@ -61,7 +61,6 @@ export class InMemoryService implements InMemoryDbService {
               'A small, old shrine dedicated to a deity stands on the side of the road.',
           },
         ],
-        id: undefined,
       },
       {
         biome: 'Dungeon',
@@ -85,7 +84,6 @@ export class InMemoryService implements InMemoryDbService {
               '2d6 Skeletal sentinels are guarding an artifact placed on a pedestal. Their bones creak with a malevolent rattle. ',
           },
         ],
-        id: undefined,
       },
       {
         biome: 'Settlement',
@@ -97,10 +95,8 @@ export class InMemoryService implements InMemoryDbService {
               'A patrol of stalwart defenders of the realm are convinced that you are hiding something. Probably several somethings. In fact, they accuse the party of being a spy, a thief, a murdered and a pastry thief all rolled into one.',
           },
         ],
-        id: undefined,
       },
       {
-        id: undefined,
         biome: 'Wilderness',
         enc: [
           {
@@ -113,11 +109,5 @@ export class InMemoryService implements InMemoryDbService {
     ];
 
     return { randomEncounters };
-  }
-
-  genId(encounters: RandomEncounters[]): number {
-    return encounters.length > 0
-      ? Math.max(...encounters.map((enc) => enc.id)) + 1
-      : 11;
   }
 }

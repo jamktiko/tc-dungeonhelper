@@ -1,0 +1,32 @@
+mat-dialog-container {
+  background-color: #333;
+  color: #fff;
+}
+
+h1[mat-dialog-title] {
+  color: #ff0000;
+}
+
+mat-dialog-content {
+  color: #fff;
+}
+
+mat-dialog-actions {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-top: 1px solid #555;
+}
+
+mat-dialog-actions button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+mat-dialog-actions button:hover {
+  background-color: #555;
+}
