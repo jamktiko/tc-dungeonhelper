@@ -27,4 +27,5 @@ export interface Enc {
   id: number;
   name: string;
   description: string;
+  weight: number;
 }

@@ -1,21 +1,28 @@
 <div *ngIf="filteredEncounters">
-  <h3> {{ filteredEncounters.biome }}</h3>
+  <h3>{{ filteredEncounters.biome }}</h3>
   <div>
+    <a *ngFor="let enc of filteredEncounters.enc" routerLink="/detail/{{ enc.id }}">
+      <strong>Name:</strong> {{ enc.name }}
+      <p>Weight: {{ enc.weight }}</p>
+      <p>%: {{ this.percentCalc(this.enc.weight, this.w) }}</p>
+      <p></p>
 
 
-    <a *ngFor="let enc of filteredEncounters.enc" (click)="openEncounterModal(enc)">
-      {{ enc.name }}
+      <a *ngFor="let enc of filteredEncounters.enc" (click)="openEncounterModal(enc)">
+        {{ enc.name }}
 
-    </a>
+      </a>
 
-    <div>
-      <button class="roll" (click)="rollTable()"></button>
-    </div>
+      <div>
+        <button class="roll" (click)="rollTable()"></button>
+      </div>
+      <div *ngIf="rolledEncounter">
+        <h3>Rolled Encounter:</h3>
+        <p><strong>Name:</strong> {{ rolledEncounter.name }}</p>
+        <p><strong>Description:</strong> {{ rolledEncounter.description }}</p>
+      </div>
 
 
 
   </div>
-
-
-
 </div>

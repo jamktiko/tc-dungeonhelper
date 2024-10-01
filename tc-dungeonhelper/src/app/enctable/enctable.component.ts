@@ -24,6 +24,8 @@ import { filter, sample } from 'lodash';
   styleUrl: './enctable.component.css',
 })
 export class EnctableComponent implements OnInit {
+  w: number = 0;
+export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
 
   filteredEncounters: RandomEncounters | any;
@@ -54,6 +56,46 @@ export class EnctableComponent implements OnInit {
       this.filteredEncounters = this.randomEncounters.find(
         (encounter) => encounter.biome === biome
       );
+      console.log(this.filteredEncounters?.enc);
+      this.w = this.totalWeight(this.filteredEncounters?.enc);
+      this.logW();
+    });
+  }
+  totalWeight(x: Enc[] | undefined) {
+    if (x == undefined) {
+      return 0;
+    }
+    let total = 0;
+    for (let y of x) {
+      total += y.weight;
+    }
+    return total;
+  }
+  percentCalc(x: number, y: number) {
+    return ((x / y) * 100).toFixed(2);
+  }
+
+  logW() {
+    console.log(this.w);
+    console.log(this.percentCalc(8, this.w));
+  }
+  goBack(): void {
+    this.location.back();
+  }
+
+  rollTable() {
+    const randomEncounter: Enc | null = this.drs.rollForEntity(this.encs);
+    if (randomEncounter) {
+      this.rolledEncounter = randomEncounter; // Store the whole encounter object directly
+      console.log(
+        'Rolled encounter successfully stored:',
+        this.rolledEncounter
+      );
+    } else {
+      this.rolledEncounter = null; // Handle the case when no valid encounter is rolled
+      console.warn('No valid encounter was rolled.');
+    }
+  }
       console.log('Filtered encounters:', this.filteredEncounters);
     });
   }
