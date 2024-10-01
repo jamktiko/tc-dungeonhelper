@@ -45,7 +45,7 @@ export class InMemoryService implements InMemoryDbService {
             name: 'Wanted Poster',
             description:
               'A posted notice on a nearby tree or milestone announces a reward for the capture of a notorious outlaw, who may be hiding in the nearby area. ',
-            weight: 20,
+            weight: 100,
           },
           {
             id: 6,

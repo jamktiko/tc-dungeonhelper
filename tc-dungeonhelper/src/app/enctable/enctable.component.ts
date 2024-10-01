@@ -40,11 +40,8 @@ export class EnctableComponent implements OnInit {
 
   /**
    * Fetchaa satunnaiskohtaamistiedot Eservicestä ja suodattaa ne
-   *
-   *
-   * Fetches the encounter data from the EserviceService and filters it
-   * to show only the encounters of the selected biome.
-   * The selected biome is passed as a route parameter.
+   * näyttäen biomikohtaisesti encounterit
+   * Valittu biome siirretään "route" parametriksi
    */
   ngOnInit() {
     const biome = this.route.snapshot.paramMap.get('biome');
@@ -95,6 +92,12 @@ export class EnctableComponent implements OnInit {
     }
   }
 
+  /**
+   * Avaa EncounterModal -komponentin valitulla encounterilla.
+   * Eli kun sivulla on lista esim. "Highwaymen" ja painat siitä, se valitsee kyseisen esimerkin
+   * ja avaa siitä modaalin
+   * @param encounter valittu encounter data
+   */
   public openEncounterModal(encounter: any): void {
     console.log('openEncounterModal()');
     console.log('Selected encounter:', encounter);
