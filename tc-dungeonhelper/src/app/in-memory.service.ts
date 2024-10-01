@@ -107,15 +107,141 @@ export class InMemoryService implements InMemoryDbService {
               'A patrol of stalwart defenders of the realm are convinced that you are hiding something. Probably several somethings. In fact, they accuse the party of being a spy, a thief, a murdered and a pastry thief all rolled into one.',
             weight: 1,
           },
+          {
+            id: 13,
+            name: 'Lost Child',
+            description:
+              'A young child, no more than 6 years old, is wandering the streets of the settlement, crying and looking for their parents. The child is dirty and hungry, and seems to have been on their own for some time.',
+            weight: 1,
+          },
+          {
+            id: 14,
+            name: 'Market Scuffle',
+            description:
+              'A dispute between two merchants has escalated into a physical altercation, with the two men shouting and shoving each other in the middle of the market. The crowd is gathering to watch, and the town guards are struggling to intervene.',
+            weight: 1,
+          },
+          {
+            id: 15,
+            name: 'Traveling Performer',
+            description:
+              'A lone musician, juggler, or other performer has arrived in the settlement, seeking to entertain the locals and earn some coin. They may offer to perform for the party, or ask for their help in setting up their act.',
+            weight: 1,
+          },
+          {
+            id: 16,
+            name: 'Suspicious Stranger',
+            description:
+              'A hooded figure is lurking around the edges of the settlement, eyeing the party with suspicion. They seem to be trying to keep a low profile, but may be willing to approach the party if they seem friendly.',
+            weight: 1,
+          },
+          {
+            id: 17,
+            name: 'Town Crier',
+            description:
+              'The town crier is standing in the center of the settlement, shouting out the latest news and announcements to the gathered crowd. They may have information about local events, rumors, or job opportunities.',
+            weight: 1,
+          },
+          {
+            id: 18,
+            name: 'Food Cart Fire',
+            description:
+              'A food cart has caught fire, and the vendor is frantically trying to put out the flames. The party may be able to help, or may need to navigate around the chaos.',
+            weight: 1,
+          },
+          {
+            id: 19,
+            name: 'Noble Patron',
+            description:
+              'A wealthy noble or merchant is seeking to hire a group of adventurers for a private task. They may offer a generous reward, but may also have ulterior motives.',
+            weight: 1,
+          },
+          {
+            id: 20,
+            name: 'Town Festival',
+            description:
+              'The settlement is in the midst of a festive celebration, with music, dancing, and feasting in the streets. The party may be able to join in the fun, or may need to navigate around the crowds.',
+            weight: 1,
+          },
         ],
       },
       {
         biome: 'Wilderness',
         enc: [
           {
-            id: 13,
+            id: 20,
             name: 'Orc Raiders',
             description: 'A raiding team of 2d4 Orcs run through the forest.',
+            weight: 1,
+          },
+          {
+            id: 21,
+            name: 'Wild Pack',
+            description:
+              'A pack of wild animals, including wolves, bears, or mountain lions, is roaming through the wilderness. They may attack the party if they get too close.',
+            weight: 1,
+          },
+          {
+            id: 22,
+            name: 'Ravaging Beast',
+            description:
+              'A powerful and ferocious creature, such as a dragon, giant spider, or tyrannosaurus, is terrorizing the wilderness. The party may be able to help, or may need to find a way to avoid it.',
+            weight: 1,
+          },
+          {
+            id: 23,
+            name: 'Lost Traveler',
+            description:
+              'A traveler, perhaps a merchant or a wanderer, has become lost in the wilderness. They may be able to provide the party with valuable information, or may need help finding their way back.',
+            weight: 1,
+          },
+          {
+            id: 24,
+            name: 'Mysterious Ruins',
+            description:
+              'A set of ancient ruins, perhaps a long-abandoned city or a temple, is hidden deep in the wilderness. The party may be able to explore the ruins, or may need to avoid any dangers that may be present.',
+            weight: 1,
+          },
+          {
+            id: 25,
+            name: 'Savage Creature',
+            description:
+              'A ferocious creature, such as a grizzly bear, giant spider, or giant eel, is lurking in the wilderness, waiting for its next victim. The party may be able to hunt it down, or may need to find a way to avoid it.',
+            weight: 1,
+          },
+          {
+            id: 26,
+            name: 'River Crossing',
+            description:
+              'The party needs to cross a river, but the water is swollen and dangerous, and there may be rapids or other hazards that could put the party in danger.',
+            weight: 1,
+          },
+          {
+            id: 27,
+            name: 'Mysterious Sign',
+            description:
+              'A mysterious sign, perhaps a map or a riddle, is hidden in the wilderness. The sign may lead the party to valuable treasure, or may be a trap that could harm the party.',
+            weight: 1,
+          },
+          {
+            id: 28,
+            name: 'Sudden Storm',
+            description:
+              'A sudden storm is brewing in the wilderness, with strong winds, heavy rain, and lightning. The party may need to find shelter, or may need to navigate through the storm safely.',
+            weight: 1,
+          },
+          {
+            id: 29,
+            name: 'Marauding Bandits',
+            description:
+              'A band of marauding bandits is attacking travelers in the wilderness. The party may be able to help, or may need to find a way to avoid them.',
+            weight: 1,
+          },
+          {
+            id: 30,
+            name: 'Feral Animals',
+            description:
+              'A pack of feral animals, such as wolves or mountain lions, is attacking travelers in the wilderness. The party may be able to help, or may need to find a way to avoid them.',
             weight: 1,
           },
         ],
