@@ -105,7 +105,7 @@ export class InMemoryService implements InMemoryDbService {
         enc: [
           {
             id: 13,
-            name: 'Abandoned Mine',
+            name: 'Orc Raiders',
             description: 'A raiding team of 2d4 Orcs run through the forest.',
           },
         ],

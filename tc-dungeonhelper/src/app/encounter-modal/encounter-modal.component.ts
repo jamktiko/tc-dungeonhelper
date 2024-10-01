@@ -1,17 +1,22 @@
 import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogContent,
+  MatDialogRef,
+  MatDialogModule,
 } from '@angular/material/dialog';
+
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-encounter-modal',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, MatDialogModule],
   templateUrl: './encounter-modal.component.html',
-  styleUrl: './encounter-modal.component.css',
+  styleUrls: ['./encounter-modal.component.css'],
 })
 export class EncounterModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<EncounterModalComponent>
+  ) {}
 }

@@ -71,7 +71,7 @@ export class EnctableComponent implements OnInit {
       console.log(`Encounter ${randomEncounter.id}: ${randomEncounter.name}`);
       console.log(randomEncounter.description);
       this.dialog.open(EncounterModalComponent, {
-        data: randomEncounter,
+        data: { encounter: randomEncounter },
       });
     }
   }

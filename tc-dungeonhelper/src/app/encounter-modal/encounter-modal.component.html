@@ -1,7 +1,7 @@
-<h1 mat-dialog-title>Encounter: {{ data.name }}</h1>
+<h1 mat-dialog-title>Encounter: {{ data.encounter.name }}</h1>
 <div>
-  <p>{{ data.description }}</p>
+  <p>{{ data.encounter.description }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="dialogRef.close()">Close</button>
 </div>
