@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12fa1e3f1b29356249ed25565c3fd36f66da73d1
 .roll {
   background: url("/assets/Roll_dungeon.png") no-repeat center center;
   background-size: contain;
@@ -15,7 +18,10 @@
   cursor: default;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12fa1e3f1b29356249ed25565c3fd36f66da73d1
 .encounter-item {
   display: flex;
   align-items: center;
@@ -25,6 +31,51 @@
 .item-weight-container {
   display: flex;
   align-items: center;
+<<<<<<< HEAD
+=======
+}
+
+.weight-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.weight-buttons button {
+  background-color: transparent;
+  border: none;
+  color: #c5231d;
+  cursor: pointer;
+}
+.weight-buttons button:hover {
+  background-color: #c5231d;
+  color: black;
+}
+
+.item-number,
+.item-name {
+  flex: 1;
+  text-align: left;
+}
+.item-wight,
+.item-percent {
+  color: aquamarine;
+  flex: 1;
+  padding: 10px;
+  text-align: right;
+}
+
+.even-item {
+  background-color: #222222;
+}
+
+.odd-item {
+  background-color: #000000;
+}
+
+.encounter-item:hover {
+  border-bottom: groove 5px #c5231d;
+>>>>>>> 12fa1e3f1b29356249ed25565c3fd36f66da73d1
 }
 
 .weight-buttons {

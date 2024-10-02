@@ -170,15 +170,15 @@ export class InMemoryService implements InMemoryDbService {
         enc: [
           {
             id: 20,
-            name: 'Orc Raiders',
-            description: 'A raiding team of 2d4 Orcs run through the forest.',
+            name: 'Anturai Raiders',
+            description:
+              'A marauding band of 2d4 Anturai, are tearing through the wilderness with reckless abandon. Their gnarly grunts and piercing shrieks echo through the trees as they hunt for their next victim. The air is thick with the stench of their musky scent, and the ground trembles beneath their feet as they bound through the forest with deadly precision .',
             weight: 1,
           },
           {
             id: 21,
-            name: 'Wild Pack',
-            description:
-              'A pack of wild animals, including wolves, bears, or mountain lions, is roaming through the wilderness. They may attack the party if they get too close.',
+            name: '',
+            description: 'A pack of w.',
             weight: 1,
           },
           {
@@ -197,51 +197,50 @@ export class InMemoryService implements InMemoryDbService {
           },
           {
             id: 24,
-            name: 'Mysterious Ruins',
+            name: 'Menhir',
             description:
-              'A set of ancient ruins, perhaps a long-abandoned city or a temple, is hidden deep in the wilderness. The party may be able to explore the ruins, or may need to avoid any dangers that may be present.',
+              'A set of standing stones, worn smooth by the elements and covered in moss and lichen, stand sentinel in the wilderness. The stones, each one towering above the others, seem to be arranged in a deliberate pattern, as if they are trying to convey a message to anyone who approaches. The air around the menhir is heavy with an otherworldly energy, and the stones seem to hum with a gentle, pulsing power. As you draw closer, you can feel the weight of centuries of history and ritual emanating from the stones, and you begin to suspect that this is a place of great spiritual significance',
             weight: 1,
           },
           {
             id: 25,
             name: 'Savage Creature',
-            description:
-              'A ferocious creature, such as a grizzly bear, giant spider, or giant eel, is lurking in the wilderness, waiting for its next victim. The party may be able to hunt it down, or may need to find a way to avoid it.',
+            description: '',
             weight: 1,
           },
           {
             id: 26,
-            name: 'River Crossing',
+            name: 'Forest Bandits',
             description:
-              'The party needs to cross a river, but the water is swollen and dangerous, and there may be rapids or other hazards that could put the party in danger.',
+              '2d4 Forest Bandits leap out of the shadows - Ambushing the party.',
             weight: 1,
           },
           {
             id: 27,
-            name: 'Mysterious Sign',
+            name: 'Strange Mist',
             description:
-              'A mysterious sign, perhaps a map or a riddle, is hidden in the wilderness. The sign may lead the party to valuable treasure, or may be a trap that could harm the party.',
+              'A strange, sweet-scented mist fills the air, causing the PCs´ eyelids to grow heavy and their thoughts to slow. The world blurs and distorts, and the sound of their own breathing grows loud, as the mist wraps around them like a damp shroud, threatening to drag them down into a deep, dreamless sleep',
             weight: 1,
           },
           {
             id: 28,
-            name: 'Sudden Storm',
+            name: 'Rotted Tree',
             description:
-              'A sudden storm is brewing in the wilderness, with strong winds, heavy rain, and lightning. The party may need to find shelter, or may need to navigate through the storm safely.',
+              'A decrepit, ancient tree, its trunk rotten and unstable, suddenly collapses, its massive branches crashing towards the PCs with a deafening roar. The ground shakes and debris flies everywhere as the tree´s trunk hurtles towards them, threatening to crush them beneath its weight.',
             weight: 1,
           },
           {
             id: 29,
-            name: 'Marauding Bandits',
+            name: 'Trapped adventurer',
             description:
-              'A band of marauding bandits is attacking travelers in the wilderness. The party may be able to help, or may need to find a way to avoid them.',
+              'An adventurer, their screams echoing through the wilderness, lies on the ground, their ankle trapped in a bear trap. The wound is deep and bloody, and the limb is clearly broken, the bone sticking out through the skin. The adventurer is thrashing about, clearly unable to free themselves without help.',
             weight: 1,
           },
           {
             id: 30,
-            name: 'Feral Animals',
+            name: 'Ancient Anturai',
             description:
-              'A pack of feral animals, such as wolves or mountain lions, is attacking travelers in the wilderness. The party may be able to help, or may need to find a way to avoid them.',
+              'An ancient great Anturai drags 1d4 injured, tied-up rival adventurers.',
             weight: 1,
           },
         ],
