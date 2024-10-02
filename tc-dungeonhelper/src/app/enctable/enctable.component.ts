@@ -115,6 +115,20 @@ export class EnctableComponent implements OnInit {
     });
   }
 
+  increaseWeight(enc: any): void {
+    enc.weight += 1;
+    this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
+    this.cdr.detectChanges();
+  }
+
+  decreaseWeight(enc: any): void {
+    if (enc.weight > 0) {
+      enc.weight -= 1;
+      this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
+      this.cdr.detectChanges();
+    }
+  }
+
   public goBack(): void {
     this.location.back();
   }
