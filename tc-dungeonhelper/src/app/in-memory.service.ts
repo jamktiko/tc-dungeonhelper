@@ -178,14 +178,6 @@ export class InMemoryService implements InMemoryDbService {
             weight: 1,
             img: 'assets/ettercap.png',
           },
-          {
-            id: 20,
-            name: 'Town Festival',
-            description:
-              'The settlement is in the midst of a festive celebration, with music, dancing, and feasting in the streets. The party may be able to join in the fun, or may need to navigate around the crowds.',
-            weight: 1,
-            img: 'assets/ettercap.png',
-          },
         ],
       },
       {
@@ -202,16 +194,17 @@ export class InMemoryService implements InMemoryDbService {
           },
           {
             id: 21,
-            name: 'ASD',
-            description: 'A pack of w.',
+            name: 'Ettercap',
+            description:
+              'An Ettercap carefully spins its web between the trees. Its gleaming red eyes glinting with a focused eerie intelligence.',
             weight: 1,
             img: 'assets/ettercap.png',
           },
           {
             id: 22,
-            name: 'Ravaging Beast',
+            name: 'Giant Spiders',
             description:
-              'A powerful and ferocious creature, such as a dragon, giant spider, or tyrannosaurus, is terrorizing the wilderness. The party may be able to help, or may need to find a way to avoid it.',
+              'This part of the forest is heavily laden with thick spider webs. Chittering can be heard in distant trees.',
             weight: 1,
             img: 'assets/ettercap.png',
           },
@@ -233,8 +226,8 @@ export class InMemoryService implements InMemoryDbService {
           },
           {
             id: 25,
-            name: 'Savage Creature',
-            description: '',
+            name: 'Hunters',
+            description: 'A campfire with 1d4 Hunters',
             weight: 1,
             img: 'assets/ettercap.png',
           },
