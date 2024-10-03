@@ -20,6 +20,7 @@ export interface InMemory {
 
 export interface RandomEncounters {
   biome: string;
+  img: string;
   enc: Enc[];
 }
 
@@ -28,4 +29,5 @@ export interface Enc {
   name: string;
   description: string;
   weight: number;
+  img: string;
 }

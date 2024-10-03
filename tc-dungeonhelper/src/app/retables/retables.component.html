@@ -1,7 +1,9 @@
 <div>
-  <div  *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
+  <div *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
     <div>
-      <button mat-flat-button style="background-color: #C5231D; margin: 10px; color: white;">{{ encounter.biome }}</button>
+      <img class="biome-img" [src]="encounter.img" />
+      <button mat-flat-button style="background-color: #C5231D; margin: 10px; color: white;">{{ encounter.biome
+        }}</button>
 
     </div>
 

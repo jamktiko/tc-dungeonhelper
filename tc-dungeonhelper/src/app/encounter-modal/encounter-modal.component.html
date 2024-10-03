@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Encounter: {{ data.encounter.name }}</h1>
 <div>
   <p>{{ data.encounter.description }}</p>
+  <img class="enc-img" [src]="data.encounter.img" />
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Close</button>

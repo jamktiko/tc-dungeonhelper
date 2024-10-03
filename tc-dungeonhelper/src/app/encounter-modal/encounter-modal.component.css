@@ -9,6 +9,8 @@ h1[mat-dialog-title] {
 
 mat-dialog-content {
   color: #fff;
+
+  padding: 30px;
 }
 
 mat-dialog-actions {
@@ -29,4 +31,11 @@ mat-dialog-actions button {
 
 mat-dialog-actions button:hover {
   background-color: #555;
+}
+
+.enc-img {
+  max-width: 50% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
