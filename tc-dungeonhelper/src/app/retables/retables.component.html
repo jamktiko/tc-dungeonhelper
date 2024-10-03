@@ -1,9 +1,13 @@
-<div>
-  <div *ngFor="let encounter of randomEncounters" routerLink="/biome/{{ encounter.biome }}">
-    <div>
+<button class="back" (click)="backClicked()"></button>
+<div class="grid-container">
+
+  <div class="grid-item flex-container" *ngFor="let encounter of randomEncounters"
+    routerLink="/biome/{{ encounter.biome }}">
+    <div class="grid-item">
+      <span>{{ encounter.biome }}</span>
       <img class="biome-img" [src]="encounter.img" />
-      <button mat-flat-button style="background-color: #C5231D; margin: 10px; color: white;">{{ encounter.biome
-        }}</button>
+
+
 
     </div>
 
