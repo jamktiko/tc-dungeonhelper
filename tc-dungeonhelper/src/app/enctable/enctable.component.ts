@@ -90,6 +90,7 @@ export class EnctableComponent implements OnInit {
     if (this.filteredEncounters) {
       const encounters = this.encTimesW(this.filteredEncounters.enc); //creates a new variable, which gets a array with encounters based on their weight.
       const randomEncounter = sample(encounters);
+      console.log(encounters);
       if (randomEncounter == undefined) {
         return;
       }
