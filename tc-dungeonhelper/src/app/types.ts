@@ -14,9 +14,9 @@
 //  };
 //}
 //
-export interface InMemory {
-  randomEncounters: RandomEncounters[];
-}
+//export interface InMemory {
+//  randomEncounters: RandomEncounters[];
+//}
 
 export interface RandomEncounters {
   biome: string;

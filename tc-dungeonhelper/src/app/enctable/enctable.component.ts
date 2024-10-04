@@ -46,15 +46,29 @@ export class EnctableComponent implements OnInit {
    * The selected biome is passed as a route parameter.
    */
   ngOnInit() {
+    // Haetaan biome data routella
     const biome = this.route.snapshot.paramMap.get('biome');
+
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
-      this.randomEncounters = data;
-      // Filter encounters based on the selected biome
-      this.filteredEncounters = this.randomEncounters.find(
+      console.log('Raw MongoDB data:', data);
+
+      // Etsitään biomekohtaiset encounterit
+      const biomeEncounters = data.find(
         (encounter) => encounter.biome === biome
       );
-      console.log('Tässä', this.filteredEncounters?.enc);
-      this.w = this.totalWeight(this.filteredEncounters?.enc);
+
+      if (biomeEncounters) {
+        // Flatten eli liiskataan nestattu 'enc' taulukko
+        this.filteredEncounters = {
+          ...biomeEncounters,
+          enc: biomeEncounters.enc.flatMap((enc) => enc), // Flatten nested arrays
+        };
+
+        console.log('Flattened Encounters:', this.filteredEncounters);
+        this.w = this.totalWeight(this.filteredEncounters.enc); // Calculate total weight for flattened array
+      } else {
+        console.warn(`No encounters found for biome: ${biome}`);
+      }
     });
   }
   totalWeight(x: Enc[] | undefined) {
