@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 import { filter, sample } from 'lodash';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-enctable',
   standalone: true,
@@ -28,14 +28,13 @@ export class EnctableComponent implements OnInit {
   w: number = 0;
   filteredEncounters: RandomEncounters | any;
 
-  location: any;
-
   constructor(
     private route: ActivatedRoute,
     private eservice: EserviceService,
     private drs: DicerollService,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private location: Location
   ) {}
 
   /**

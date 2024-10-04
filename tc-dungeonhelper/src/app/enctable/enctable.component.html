@@ -1,20 +1,3 @@
-<!---<div *ngIf="filteredEncounters">
-  <h3>{{ filteredEncounters.biome }}</h3>
-  <div>
-    <a *ngFor="let enc of filteredEncounters.enc" (click)="openEncounterModal(enc)">
-      <strong>Name:</strong> {{ enc.name }}
-      <p>Weight: {{ enc.weight }}</p>
-      <p>%: {{ this.percentCalc(this.enc.weight, this.w) }}</p>
-     Stupid but effective way for showing % chance for encounters.
-      <p></p>
-    </a>
-
-    <div>
-      <button class="roll" (click)="rollTable()"></button>
-    </div>
-  </div>
-</div>-->
-
 <div *ngIf="filteredEncounters"></div>
 <h3>{{ filteredEncounters.biome }}</h3>
 <div class="encounter-container">
