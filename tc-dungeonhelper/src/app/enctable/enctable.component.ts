@@ -53,7 +53,7 @@ export class EnctableComponent implements OnInit {
       this.filteredEncounters = this.randomEncounters.find(
         (encounter) => encounter.biome === biome
       );
-      console.log(this.filteredEncounters?.enc);
+      console.log('Tässä', this.filteredEncounters?.enc);
       this.w = this.totalWeight(this.filteredEncounters?.enc);
     });
   }
