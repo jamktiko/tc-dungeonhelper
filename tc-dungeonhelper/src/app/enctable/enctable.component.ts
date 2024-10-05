@@ -16,10 +16,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 import { filter, sample } from 'lodash';
 import { Location } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-enctable',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterModule],
+  imports: [NgFor, CommonModule, RouterModule, FormsModule],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
@@ -27,6 +28,10 @@ export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
   w: number = 0;
   filteredEncounters: RandomEncounters | any;
+  name = '';
+  description = '';
+  id = '';
+  isEditing: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -129,18 +134,26 @@ export class EnctableComponent implements OnInit {
     });
   }
 
-  increaseWeight(enc: any): void {
+  public increaseWeight(enc: any): void {
     enc.weight += 1;
     this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
     this.cdr.detectChanges();
   }
 
-  decreaseWeight(enc: any): void {
+  public decreaseWeight(enc: any): void {
     if (enc.weight > 0) {
       enc.weight -= 1;
       this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
       this.cdr.detectChanges();
     }
+  }
+
+  public editEnc(enc: any) {
+    console.log('test');
+    this.isEditing = !this.isEditing;
+    this.id = enc._id;
+    this.name = enc.name;
+    this.description = enc.description;
   }
 
   public goBack(): void {

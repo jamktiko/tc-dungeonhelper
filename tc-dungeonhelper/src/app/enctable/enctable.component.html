@@ -1,4 +1,5 @@
 <div *ngIf="filteredEncounters"></div>
+<button class="edit" (click)="editEnc(filteredEncounters)">Edit</button>
 <h3>{{ filteredEncounters.biome }}</h3>
 <div class="encounter-container">
 
@@ -6,13 +7,24 @@
     [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}" (click)="openEncounterModal(enc)">
 
     <span class="item-number">{{ i + 1 }}.</span>
-    <span class="item-name">{{ enc.name }}</span>
 
-    <div class="item-weight-container">
+    <span class="item-name" *ngIf="!enc.isEditing">{{ enc.name }}</span>
+    <input class="item-name-edit" *ngIf="enc.isEditing" [(ngModel)]="enc.name" />
+
+    <p class="item-description" *ngIf="!enc.isEditing">{{ enc.description }}</p>
+    <textarea class="item-description-edit" *ngIf="enc.isEditing" [(ngModel)]="enc.description"></textarea>
+
+
+    <div *ngIf="isEditing" class="item-weight-container">
       <span class="item-weight"> {{ enc.weight }}</span>
+
       <div class="weight-buttons">
         <button (click)="increaseWeight(enc); $event.stopPropagation()">&#9650;</button>
         <button (click)="decreaseWeight(enc); $event.stopPropagation()">&#9660;</button>
+      </div>
+      <div class="edit-buttons">
+        <button>Save</button>
+        <button>Delete</button>
       </div>
     </div>
 
