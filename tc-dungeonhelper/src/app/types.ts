@@ -19,6 +19,7 @@
 //}
 
 export interface RandomEncounters {
+  _id: string;
   biome: string;
   img: string;
   enc: Enc[];

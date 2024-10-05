@@ -26,27 +26,40 @@ export class EserviceService {
     console.error('An error occurred', error);
     return error.message || error;
   }
-  getEncounters(): Observable<any> {
+  public getEncounters(): Observable<any> {
     return this.http.get<any>(this.apiUrl).pipe(catchError(this.handleError));
   }
 
-  getTable(): Observable<RandomEncounters[]> {
+  public getTable(): Observable<RandomEncounters[]> {
     return this.http
       .get<RandomEncounters[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
   }
 
-  /**
-   * Gets a random encounter table by its id.
-   * @param id The id of the encounter table to be retrieved.
-   * @returns An observable of the requested encounter table.
-   */
-  //  getTable(): Observable<RandomEncounters[]> {
-  //    return this.http.get<RandomEncounters[]>(this.apiUrl).pipe(
-  //      catchError((error) => this.handleError<RandomEncounters>(error)),
-  //      map((encounters) => {
-  //        return encounters.filter((encounter) => encounter.enc);
-  //      })
-  //    );
-  //  }
+  public deleteEnc(biomeId: string, encounterId: string): Observable<any> {
+    const url = `${this.apiUrl}/${biomeId}/addEnc`;
+    return this.http
+      .put<any>(url, encounterId, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
+  public saveEnc(enc: RandomEncounters): Observable<RandomEncounters> {
+    return this.http
+      .put<RandomEncounters>(this.apiUrl + '/' + enc._id, enc, headers)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addEnc(biomeId: string, newEncounter: any): Observable<any> {
+    const url = `${this.apiUrl}/${biomeId}/addEnc`;
+    return this.http
+      .put<any>(url, newEncounter, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
 }
