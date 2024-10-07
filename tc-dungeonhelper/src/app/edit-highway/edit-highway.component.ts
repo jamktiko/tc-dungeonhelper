@@ -55,6 +55,7 @@ export class EditHighwayComponent implements OnInit {
       name: '',
       description: '',
       weight: 1,
+      img: '',
     };
     this.highwayEncs.push(newEncounter);
     this.showDetails.push(true); // Automatically show the details for the new encounter

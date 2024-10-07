@@ -17,7 +17,7 @@ export class InMemoryService implements InMemoryDbService {
             id: 1,
             name: 'Highwaymen',
             description:
-              'A group of bandits, armed to the teeth, are lying in wait to harass unsuspecting travelers.',
+              'The party gets waylaid by a group of 2d4 Bandits. They utter: "My men would like a word about your belongings!" as they draw their blades.',
             weight: 1,
             img: 'assets/ettercap.png',
           },

@@ -1,45 +1,71 @@
-<!---<div *ngIf="filteredEncounters">
-  <h3>{{ filteredEncounters.biome }}</h3>
-  <div>
-    <a *ngFor="let enc of filteredEncounters.enc" (click)="openEncounterModal(enc)">
-      <strong>Name:</strong> {{ enc.name }}
-      <p>Weight: {{ enc.weight }}</p>
-      <p>%: {{ this.percentCalc(this.enc.weight, this.w) }}</p>
-     Stupid but effective way for showing % chance for encounters.
-      <p></p>
-    </a>
-
-    <div>
-      <button class="roll" (click)="rollTable()"></button>
-    </div>
-  </div>
-</div>-->
-
+<!--Näytetään encounterit jos filteredEncounters onnistuu-->
 <div *ngIf="filteredEncounters"></div>
+<!--Muokkaus painike, sitä kun painetaan pystyy muokkaamaan nimeä, kuvausta, painoarvoja. Kun painiketta ei ole vielä painettu, näyttää "Edit", painaessa muuttuu "Quit editing"iksi-->
+<button class="edit" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing' : 'Edit' }}</button>
+<!--Näytetään biomekohtaiset encounterit-->
 <h3>{{ filteredEncounters.biome }}</h3>
 <div class="encounter-container">
-
+  <!--Käydään läpi kaikki encounterit forEachillä filteredencounters taulukosta-->
   <div class="encounter-item" *ngFor="let enc of filteredEncounters.enc; let i = index"
-    [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}" (click)="openEncounterModal(enc)">
+    [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}">
 
     <span class="item-number">{{ i + 1 }}.</span>
-    <span class="item-name">{{ enc.name }}</span>
 
-    <div class="item-weight-container">
+    <!-- Display encounter name or input field for editing -->
+    <span class="item-name" *ngIf="!enc.isEditing" (click)="openEncounterModal(enc)">{{ enc.name }}</span>
+    <input class="item-name-edit" *ngIf="enc.isEditing" [(ngModel)]="enc.name" />
+
+    <!-- Avaa teksti kentän kuvauksen muokkaukselle -->
+
+    <textarea class="item-description-edit" *ngIf="enc.isEditing" [(ngModel)]="enc.description"></textarea>
+
+    <div *ngIf="isEditing" class="item-weight-container">
       <span class="item-weight"> {{ enc.weight }}</span>
+
       <div class="weight-buttons">
         <button (click)="increaseWeight(enc); $event.stopPropagation()">&#9650;</button>
         <button (click)="decreaseWeight(enc); $event.stopPropagation()">&#9660;</button>
+      </div>
+
+      <div class="edit-buttons">
+        <button>Save</button>
+        <button (click)="deleteEnc(filteredEncounters.biome, enc._id)">Delete</button>
       </div>
     </div>
 
     <span class="item-percent">{{ percentCalc(enc.weight, w) }} %</span>
 
-
-
-
   </div>
+
   <div>
     <button class="roll" (click)="rollTable()"></button>
   </div>
+
+  <!-- Button to open the modal -->
+  <button (click)="openAddEncounterModal()">Add New Encounter</button>
+
+  <!-- The Modal -->
+  <div class="modal" *ngIf="showAddEncounterModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeAddEncounterModal()">&times;</span>
+
+      <h4>Add New Encounter</h4>
+
+      <!-- Modal form to add encounter -->
+      <label for="name">Name</label>
+      <input id="name" [(ngModel)]="newEncounter.name" type="text" placeholder="Encounter Name" />
+
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="newEncounter.description" placeholder="Encounter Description"></textarea>
+
+      <label for="weight">Weight</label>
+      <input id="weight" [(ngModel)]="newEncounter.weight" type="number" min="1" />
+
+      <label for="img">Image</label>
+      <input id="img" [(ngModel)]="newEncounter.img" type="text" placeholder="Image URL" />
+
+      <button (click)="addEnc()">Add Encounter</button>
+    </div>
+  </div>
+
 </div>
