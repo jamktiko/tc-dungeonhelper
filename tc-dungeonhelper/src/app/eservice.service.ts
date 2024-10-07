@@ -37,9 +37,9 @@ export class EserviceService {
   }
 
   public deleteEnc(biomeId: string, encounterId: string): Observable<any> {
-    const url = `${this.apiUrl}/${biomeId}/addEnc`;
+    const url = `${this.apiUrl}/${biomeId}/deleteEnc/${encounterId}`;
     return this.http
-      .put<any>(url, encounterId, {
+      .delete<any>(url, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
