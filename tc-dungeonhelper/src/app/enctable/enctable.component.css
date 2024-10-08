@@ -66,3 +66,14 @@
 .encounter-item:hover {
   border-bottom: groove 5px #c5231d;
 }
+
+.back {
+  background: url("/assets/Back_dungeon.png") no-repeat center center;
+  display: flex;
+  background-size: contain;
+  justify-content: flex-start;
+  border: none;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+}

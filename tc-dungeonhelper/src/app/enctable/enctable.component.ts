@@ -37,6 +37,10 @@ export class EnctableComponent implements OnInit {
     private location: Location
   ) {}
 
+  backClicked() {
+    this.location.back();
+  }
+
   /**
    * Fetchaa satunnaiskohtaamistiedot Eservicest채 ja suodattaa ne
    *
