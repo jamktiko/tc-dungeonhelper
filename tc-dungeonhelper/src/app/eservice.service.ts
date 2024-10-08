@@ -49,7 +49,7 @@ export class EserviceService {
 
   // Inside eservice.service.ts
   saveEnc(enc: any): Observable<any> {
-    const url = `${this.apiUrl}/${enc.biomeId}/saveEnc`;
+    const url = `${this.apiUrl}/saveEnc/${biomeId}/`;
     return this.http.put(url, {
       encounterId: enc._id, // Pass the encounter ID
       name: enc.name,

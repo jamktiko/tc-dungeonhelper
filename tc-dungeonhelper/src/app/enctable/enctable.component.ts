@@ -222,16 +222,24 @@ export class EnctableComponent implements OnInit {
 
   saveEnc(enc: any) {
     console.log('Saving encounter:', enc);
-    this.eservice.saveEnc(enc).subscribe(
-      (response) => {
-        console.log('Encounter saved:', response);
-      },
-      (error) => {
-        console.error('Error saving encounter:', error);
-      }
-    );
+    this.eservice
+      .saveEnc({
+        biomeId: this.filteredEncounters._id,
+        _id: enc._id,
+        name: enc.name,
+        description: enc.description,
+        weight: enc.weight,
+        img: enc.img,
+      })
+      .subscribe(
+        (response) => {
+          console.log('Encounter saved:', response);
+        },
+        (error) => {
+          console.error('Error saving encounter:', error);
+        }
+      );
   }
-
   // Delete the encounter
   deleteEnc(biomeId: string, encounterId: string): void {
     console.log('Filtered Encounters:', this.filteredEncounters);
