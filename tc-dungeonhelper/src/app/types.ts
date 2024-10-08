@@ -14,11 +14,12 @@
 //  };
 //}
 //
-export interface InMemory {
-  randomEncounters: RandomEncounters[];
-}
+//export interface InMemory {
+//  randomEncounters: RandomEncounters[];
+//}
 
 export interface RandomEncounters {
+  _id: string;
   biome: string;
   img: string;
   enc: Enc[];

@@ -9,17 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 import { Enc, RandomEncounters } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
-import { DicerollService } from '../diceroll.service';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 import { filter, sample } from 'lodash';
 import { Location } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-enctable',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterModule],
+  imports: [NgFor, CommonModule, RouterModule, FormsModule],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
@@ -27,11 +27,19 @@ export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
   w: number = 0;
   filteredEncounters: RandomEncounters | any;
+  newEncounter: any = {
+    name: '',
+    description: '',
+    weight: 1,
+    img: '',
+    _id: '',
+  };
+  isEditing: boolean = false;
+  showAddEncounterModal: boolean = false; // Boolean to control modal visibility
 
   constructor(
     private route: ActivatedRoute,
     private eservice: EserviceService,
-    private drs: DicerollService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     private location: Location
@@ -50,15 +58,29 @@ export class EnctableComponent implements OnInit {
    * The selected biome is passed as a route parameter.
    */
   ngOnInit() {
+    // Haetaan biome data routella
     const biome = this.route.snapshot.paramMap.get('biome');
+
     this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
-      this.randomEncounters = data;
-      // Filter encounters based on the selected biome
-      this.filteredEncounters = this.randomEncounters.find(
+      console.log('Raw MongoDB data:', data);
+
+      // Etsitään biomekohtaiset encounterit
+      const biomeEncounters = data.find(
         (encounter) => encounter.biome === biome
       );
-      console.log(this.filteredEncounters?.enc);
-      this.w = this.totalWeight(this.filteredEncounters?.enc);
+
+      if (biomeEncounters) {
+        // Flatten eli liiskataan nestattu 'enc' taulukko
+        this.filteredEncounters = {
+          ...biomeEncounters,
+          enc: biomeEncounters.enc.flatMap((enc) => enc), // Flatten nested arrays
+        };
+
+        console.log('Flattened Encounters:', this.filteredEncounters);
+        this.w = this.totalWeight(this.filteredEncounters.enc); // Calculate total weight for flattened array
+      } else {
+        console.warn(`No encounters found for biome: ${biome}`);
+      }
     });
   }
   totalWeight(x: Enc[] | undefined) {
@@ -105,6 +127,14 @@ export class EnctableComponent implements OnInit {
     }
   }
 
+  public openAddEncounterModal() {
+    this.showAddEncounterModal = true;
+  }
+
+  public goBack(): void {
+    this.location.back();
+  }
+
   /**
    * Avaa EncounterModal -komponentin valitulla encounterilla.
    * Eli kun sivulla on lista esim. "Highwaymen" ja painat siitä, se valitsee kyseisen esimerkin
@@ -119,13 +149,18 @@ export class EnctableComponent implements OnInit {
     });
   }
 
-  increaseWeight(enc: any): void {
+  // Method to close the modal
+  public closeAddEncounterModal() {
+    this.showAddEncounterModal = false;
+  }
+
+  public increaseWeight(enc: any): void {
     enc.weight += 1;
     this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
     this.cdr.detectChanges();
   }
 
-  decreaseWeight(enc: any): void {
+  public decreaseWeight(enc: any): void {
     if (enc.weight > 0) {
       enc.weight -= 1;
       this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
@@ -133,7 +168,69 @@ export class EnctableComponent implements OnInit {
     }
   }
 
-  public goBack(): void {
-    this.location.back();
+  public editEnc(enc: any) {
+    console.log('test');
+    this.isEditing = !this.isEditing;
+  }
+
+  public toggleEditMode() {
+    this.isEditing = !this.isEditing;
+    this.filteredEncounters.enc.forEach((enc: any) => {
+      enc.isEditing = this.isEditing;
+    });
+  }
+
+  public getEncounters() {
+    this.eservice.getEncounters().subscribe((data: any) => {
+      this.getEncounters = data;
+    });
+  }
+
+  /**
+   * Adds a new encounter to the selected biome.
+   * @param newEncounter The new encounter to add.
+   */
+  public addEnc(): void {
+    if (this.filteredEncounters && this.filteredEncounters._id) {
+      this.eservice
+        .addEnc(this.filteredEncounters._id, this.newEncounter)
+        .subscribe(
+          (response) => {
+            this.filteredEncounters.enc.push(
+              response.enc[response.enc.length - 1]
+            );
+            this.resetForm();
+            this.closeAddEncounterModal();
+          },
+          (error) => console.error('Error adding encounter:', error)
+        );
+    } else {
+      console.warn(
+        'No valid encounter to add. Please select a valid encounter first.'
+      );
+    }
+  }
+  /******  7c5fd62e-ddbd-4b7d-a780-3699d09101ff  *******/
+  // Reset the form after adding
+  resetForm() {
+    this.newEncounter = {
+      name: '',
+      description: '',
+      weight: 1,
+      img: '',
+    };
+  }
+  // Delete the encounter
+  deleteEnc(biome: string, encounterId: string): void {
+    this.eservice.deleteEnc(biome, encounterId).subscribe(
+      (response) => {
+        console.log('Encounter deleted:', response);
+        // Optionally, refresh the list of encounters or remove it from the displayed list
+        this.getEncounters(); // method to refresh encounters (you may need to implement this)
+      },
+      (error) => {
+        console.error('Error deleting encounter:', error);
+      }
+    );
   }
 }

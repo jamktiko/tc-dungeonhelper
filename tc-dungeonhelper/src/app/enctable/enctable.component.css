@@ -67,13 +67,42 @@
   border-bottom: groove 5px #c5231d;
 }
 
-.back {
-  background: url("/assets/Back_dungeon.png") no-repeat center center;
+/* Modal styles */
+.modal {
   display: flex;
-  background-size: contain;
-  justify-content: flex-start;
-  border: none;
-  width: 40px;
-  height: 30px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content Box */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
   cursor: pointer;
 }
