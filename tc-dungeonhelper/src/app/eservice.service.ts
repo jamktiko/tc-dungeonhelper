@@ -44,12 +44,19 @@ export class EserviceService {
           'Content-Type': 'application/json',
         }),
       })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError)); // Handles errors
   }
-  public saveEnc(enc: RandomEncounters): Observable<RandomEncounters> {
-    return this.http
-      .put<RandomEncounters>(this.apiUrl + '/' + enc._id, enc, headers)
-      .pipe(catchError(this.handleError));
+
+  // Inside eservice.service.ts
+  saveEnc(enc: any): Observable<any> {
+    const url = `${this.apiUrl}/saveEnc/${biomeId}/`;
+    return this.http.put(url, {
+      encounterId: enc._id, // Pass the encounter ID
+      name: enc.name,
+      description: enc.description,
+      weight: enc.weight,
+      img: enc.img,
+    });
   }
 
   public addEnc(biomeId: string, newEncounter: any): Observable<any> {

@@ -45,6 +45,10 @@ export class EnctableComponent implements OnInit {
     private location: Location
   ) {}
 
+  backClicked() {
+    this.location.back();
+  }
+
   /**
    * Fetchaa satunnaiskohtaamistiedot Eservicest채 ja suodattaa ne
    *
@@ -72,7 +76,6 @@ export class EnctableComponent implements OnInit {
           enc: biomeEncounters.enc.flatMap((enc) => enc), // Flatten nested arrays
         };
 
-        console.log('Flattened Encounters:', this.filteredEncounters);
         this.w = this.totalWeight(this.filteredEncounters.enc); // Calculate total weight for flattened array
       } else {
         console.warn(`No encounters found for biome: ${biome}`);
@@ -216,13 +219,38 @@ export class EnctableComponent implements OnInit {
       img: '',
     };
   }
+
+  saveEnc(enc: any) {
+    console.log('Saving encounter:', enc);
+    this.eservice
+      .saveEnc({
+        biomeId: this.filteredEncounters._id,
+        _id: enc._id,
+        name: enc.name,
+        description: enc.description,
+        weight: enc.weight,
+        img: enc.img,
+      })
+      .subscribe(
+        (response) => {
+          console.log('Encounter saved:', response);
+        },
+        (error) => {
+          console.error('Error saving encounter:', error);
+        }
+      );
+  }
   // Delete the encounter
-  deleteEnc(biome: string, encounterId: string): void {
-    this.eservice.deleteEnc(biome, encounterId).subscribe(
+  deleteEnc(biomeId: string, encounterId: string): void {
+    console.log('Filtered Encounters:', this.filteredEncounters);
+    console.log(`Deleting encounter ${encounterId} from biome ${biomeId}`);
+    this.eservice.deleteEnc(biomeId, encounterId).subscribe(
       (response) => {
         console.log('Encounter deleted:', response);
-        // Optionally, refresh the list of encounters or remove it from the displayed list
-        this.getEncounters(); // method to refresh encounters (you may need to implement this)
+
+        this.filteredEncounters.enc = this.filteredEncounters.enc.filter(
+          (enc: any) => enc._id !== encounterId
+        );
       },
       (error) => {
         console.error('Error deleting encounter:', error);
