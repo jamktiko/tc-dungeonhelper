@@ -38,11 +38,11 @@
   </div>
 
   <div>
-    <button class="roll" (click)="rollTable()"></button>
+    <button [disabled]="isEditing" class="roll" (click)="rollTable()"></button>
   </div>
 
   <!-- Button to open the modal -->
-  <button (click)="openAddEncounterModal()">Add New Encounter</button>
+  <button [disabled]="isEditing" (click)="openAddEncounterModal()">Add New Encounter</button>
 
   <!-- The Modal -->
   <div class="modal" *ngIf="showAddEncounterModal">

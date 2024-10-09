@@ -50,12 +50,8 @@ export class EnctableComponent implements OnInit {
   }
 
   /**
-   * Fetchaa satunnaiskohtaamistiedot Eservicest채 ja suodattaa ne
+   * Fetchaa satunnaiskohtaamistiedot Eservicestä ja suodattaa ne
    *
-   *
-   * Fetches the encounter data from the EserviceService and filters it
-   * to show only the encounters of the selected biome.
-   * The selected biome is passed as a route parameter.
    */
   ngOnInit() {
     // Haetaan biome data routella
@@ -70,7 +66,7 @@ export class EnctableComponent implements OnInit {
       );
 
       if (biomeEncounters) {
-        // Flatten eli liiskataan nestattu 'enc' taulukko
+        // FlatMap eli liiskataan nestattu 'enc' taulukko
         this.filteredEncounters = {
           ...biomeEncounters,
           enc: biomeEncounters.enc.flatMap((enc) => enc), // Flatten nested arrays
@@ -82,7 +78,7 @@ export class EnctableComponent implements OnInit {
       }
     });
   }
-  totalWeight(x: Enc[] | undefined) {
+  public totalWeight(x: Enc[] | undefined) {
     if (x == undefined) {
       return 0;
     }
@@ -107,7 +103,7 @@ export class EnctableComponent implements OnInit {
   }
   /**
    * Arpoo satunnaiskohtaamisen ja palauttaa valitun Encounterin.
-   * K채ytt채채 Logashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
+   * Käytää Loashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
 
    */
   public rollTable(): void {
