@@ -45,12 +45,15 @@ export class EnctableComponent implements OnInit {
     private location: Location
   ) {}
 
+  /**
+   * Navigoi takaisin edelliselle sivulle
+   */
   backClicked() {
     this.location.back();
   }
 
   /**
-   * Fetchaa satunnaiskohtaamistiedot Eservicestä ja suodattaa ne
+   * Fetchaa randomEncounterit Eservicestä ja suodattaa ne
    *
    */
   ngOnInit() {
@@ -69,15 +72,16 @@ export class EnctableComponent implements OnInit {
         // FlatMap eli liiskataan nestattu 'enc' taulukko
         this.filteredEncounters = {
           ...biomeEncounters,
-          enc: biomeEncounters.enc.flatMap((enc) => enc), // Flatten nested arrays
+          enc: biomeEncounters.enc.flatMap((enc) => enc), // Flattää nestatut taulukot
         };
 
-        this.w = this.totalWeight(this.filteredEncounters.enc); // Calculate total weight for flattened array
+        this.w = this.totalWeight(this.filteredEncounters.enc); // Lasketaan kokonaispaino
       } else {
         console.warn(`No encounters found for biome: ${biome}`);
       }
     });
   }
+
   public totalWeight(x: Enc[] | undefined) {
     if (x == undefined) {
       return 0;
@@ -88,6 +92,7 @@ export class EnctableComponent implements OnInit {
     }
     return total;
   }
+
   percentCalc(x: number, y: number) {
     return ((x / y) * 100).toFixed(2);
   }
@@ -103,7 +108,7 @@ export class EnctableComponent implements OnInit {
   }
   /**
    * Arpoo satunnaiskohtaamisen ja palauttaa valitun Encounterin.
-   * Käytää Loashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
+   * Käytää Lodashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
 
    */
   public rollTable(): void {
@@ -205,7 +210,7 @@ export class EnctableComponent implements OnInit {
       );
     }
   }
-  /******  7c5fd62e-ddbd-4b7d-a780-3699d09101ff  *******/
+
   // Reset the form after adding
   resetForm() {
     this.newEncounter = {
@@ -216,6 +221,12 @@ export class EnctableComponent implements OnInit {
     };
   }
 
+  /**
+   * Saves any edited encounters to the database.
+   * Iterates over all encounters in the filteredEncounters list and checks if the
+   * encounter is in editing mode. If it is, the service is called to save the
+   * encounter, and the editing mode is exited after a successful save.
+   */
   saveEnc() {
     // Check if filteredEncounters is valid and there are any edited encounters
     if (this.filteredEncounters && this.filteredEncounters.enc) {
@@ -240,8 +251,6 @@ export class EnctableComponent implements OnInit {
 
   // Delete the encounter
   deleteEnc(biomeId: string, encounterId: string): void {
-    console.log('Filtered Encounters:', this.filteredEncounters);
-    console.log(`Deleting encounter ${encounterId} from biome ${biomeId}`);
     this.eservice.deleteEnc(biomeId, encounterId).subscribe(
       (response) => {
         console.log('Encounter deleted:', response);
