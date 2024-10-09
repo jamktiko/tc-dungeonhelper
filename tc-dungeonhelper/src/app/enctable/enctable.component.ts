@@ -220,26 +220,28 @@ export class EnctableComponent implements OnInit {
     };
   }
 
-  saveEnc(enc: any) {
-    console.log('Saving encounter:', enc);
-    this.eservice
-      .saveEnc({
-        biomeId: this.filteredEncounters._id,
-        _id: enc._id,
-        name: enc.name,
-        description: enc.description,
-        weight: enc.weight,
-        img: enc.img,
-      })
-      .subscribe(
-        (response) => {
-          console.log('Encounter saved:', response);
-        },
-        (error) => {
-          console.error('Error saving encounter:', error);
+  saveEnc() {
+    // Check if filteredEncounters is valid and there are any edited encounters
+    if (this.filteredEncounters && this.filteredEncounters.enc) {
+      this.filteredEncounters.enc.forEach((enc: any) => {
+        if (enc.isEditing) {
+          // Call the service to save the encounter
+          this.eservice
+            .saveEnc(this.filteredEncounters._id, enc._id, enc)
+            .subscribe(
+              (response) => {
+                console.log('Encounter updated:', response);
+                enc.isEditing = false; // Exit editing mode for this encounter
+              },
+              (error) => {
+                console.error('Error saving encounter:', error);
+              }
+            );
         }
-      );
+      });
+    }
   }
+
   // Delete the encounter
   deleteEnc(biomeId: string, encounterId: string): void {
     console.log('Filtered Encounters:', this.filteredEncounters);
