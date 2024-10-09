@@ -15,7 +15,8 @@
     <span class="item-name" *ngIf="!enc.isEditing" (click)="openEncounterModal(enc)">{{ enc.name }}</span>
     <input class="item-name-edit" *ngIf="enc.isEditing" [(ngModel)]="enc.name" />
 
-    <!-- Avaa tekstikentän kuvauksen muokkaukselle -->
+    <!-- Avaa teksti kentän kuvauksen muokkaukselle -->
+
     <textarea class="item-description-edit" *ngIf="enc.isEditing" [(ngModel)]="enc.description"></textarea>
 
     <div *ngIf="isEditing" class="item-weight-container">
@@ -40,15 +41,17 @@
     <button [disabled]="isEditing" class="roll" (click)="rollTable()"></button>
   </div>
 
-  <!-- Painike jolla modaali avataan -->
-  <button (click)="openAddEncounterModal()">Add New Encounter</button>
+  <!-- Button to open the modal -->
+  <button [disabled]="isEditing" (click)="openAddEncounterModal()">Add New Encounter</button>
 
-  <!-- Muokkaus modaali -->
+  <!-- The Modal -->
   <div class="modal" *ngIf="showAddEncounterModal">
     <div class="modal-content">
       <span class="close" (click)="closeAddEncounterModal()">&times;</span>
 
       <h4>Add New Encounter</h4>
+
+      <!-- Modal form to add encounter -->
       <label for="name">Name</label>
       <input id="name" [(ngModel)]="newEncounter.name" type="text" placeholder="Encounter Name" />
 
