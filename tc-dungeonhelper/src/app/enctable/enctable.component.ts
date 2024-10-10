@@ -131,7 +131,6 @@ export class EnctableComponent implements OnInit {
   public goBack(): void {
     this.location.back();
   }
-
   /**
    * Avaa EncounterModal -komponentin valitulla encounterilla.
    * Eli kun sivulla on lista esim. "Highwaymen" ja painat siitä, se valitsee kyseisen esimerkin
