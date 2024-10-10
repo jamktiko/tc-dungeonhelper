@@ -218,7 +218,10 @@
 .noppa {
 
   background-size: contain;
-
+  transition: transform 0.5s ease;
+}
+.noppa:hover{
+  transform: scale(1.2);
 }
 
 p {
