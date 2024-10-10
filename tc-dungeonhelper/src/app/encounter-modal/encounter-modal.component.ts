@@ -6,6 +6,7 @@ import {
 } from '@angular/material/dialog';
 
 import { MatButtonModule } from '@angular/material/button';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-encounter-modal',
@@ -17,6 +18,11 @@ import { MatButtonModule } from '@angular/material/button';
 export class EncounterModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<EncounterModalComponent>
+    public dialogRef: MatDialogRef<EncounterModalComponent>,
+    private location: Location
   ) {}
+
+  backClicked() {
+    this.location.back();
+  }
 }

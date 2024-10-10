@@ -1,6 +1,15 @@
+p {
+  color: #fff;
+}
+
 mat-dialog-container {
   background-color: #333;
   color: #fff;
+  margin: 30px;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto;
 }
 
 h1[mat-dialog-title] {
@@ -9,6 +18,8 @@ h1[mat-dialog-title] {
 
 mat-dialog-content {
   color: #fff;
+
+  padding: 30px;
 }
 
 mat-dialog-actions {
@@ -29,4 +40,11 @@ mat-dialog-actions button {
 
 mat-dialog-actions button:hover {
   background-color: #555;
+}
+
+.enc-img {
+  max-width: 50% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
 }

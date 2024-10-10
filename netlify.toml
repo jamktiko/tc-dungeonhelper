@@ -1,0 +1,4 @@
+[build]
+  base = "tc-dungeonhelper/tc-dungeonhelper/"
+  command = "ng build --prod"
+  publish = "dist/dungeonhelper"

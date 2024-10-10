@@ -4,6 +4,7 @@ import { EserviceService } from '../eservice.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-retables',
@@ -25,7 +26,11 @@ export class RetablesComponent implements OnInit {
   // rolledEncounter: any | null = null;
   // currentEncounterType: string = 'highway'; // Default encounter type
 
-  constructor(private eservice: EserviceService) {}
+  constructor(private eservice: EserviceService, private location: Location) {}
+
+  backClicked() {
+    this.location.back();
+  }
 
   /**
    * OnInit lifecycle hook. Subscribes to the encounter service, logging

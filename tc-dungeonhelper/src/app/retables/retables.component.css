@@ -1,8 +1,6 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 
-
-
-a{
+a {
   border: solid white 2px;
   align-items: center;
   gap: 5px;
@@ -28,14 +26,31 @@ a{
   cursor: pointer;
 }
 
-div {
+.grid-container {
   color: white;
   background-color: black;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto;
+
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.grid-item {
   display: flex;
-  display: grid; /* Tee div:stä grid-kontaineri */
-  place-items: center;
-  margin-left: 30%;
-  margin-right: 30%;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.biome-img {
+  width: 100px;
+  height: 100px;
 }
 a {
   color: white;
