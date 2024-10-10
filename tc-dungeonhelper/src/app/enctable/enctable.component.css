@@ -81,11 +81,11 @@
 .weight-buttons button {
   background-color: transparent;
   border: none;
-  color: #C5231D;
+  color: #c5231d;
   cursor: pointer;
 }
 .weight-buttons button:hover {
-  background-color: #C5231D;
+  background-color: #c5231d;
   color: black;
 }
 .button-container {
@@ -98,20 +98,20 @@
 .dice-container {
   display: flex;
   flex-direction: column; /* Arrange button and text vertically */
-  align-items: center;    /* Center the button and text */
+  align-items: center; /* Center the button and text */
 }
 
 .noppa {
-  background: url(../../../public/assets/noppa-ikoni-tyhja.png) no-repeat center center;
+  background: url(../../../public/assets/noppa-ikoni-tyhja.png) no-repeat center
+    center;
   background-size: contain;
-  border: none;
-  width: 70px;
-  height: 70px;
+  transition: transform 0.5s ease;
+}
+.noppa:hover {
+  transform: scale(1.2);
 }
 
 p {
-  
-
   font-size: 20px;
   text-align: center;
 }
