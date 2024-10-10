@@ -23,7 +23,7 @@ export class EncounterModalComponent {
     private location: Location
   ) {}
 
-  backClicked() {
+  closeClicked() {
     this.dialogRef.close();
   }
 }
