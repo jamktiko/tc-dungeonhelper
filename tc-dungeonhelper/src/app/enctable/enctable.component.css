@@ -6,7 +6,15 @@
   height: 120px;
   cursor: pointer;
 }
-
+.edit {
+  background: url("/assets/noppa-ikoni-tyhja.png") no-repeat center center;
+  color: #aaa;
+  background-size: contain;
+  border: none;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+}
 .encounter-container {
   display: grid;
   margin-left: 30%;
@@ -17,7 +25,7 @@
 .encounter-item {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 12px;
 }
 
 .item-weight-container {
@@ -49,7 +57,7 @@
 }
 .item-wight,
 .item-percent {
-  color: aquamarine;
+  color: aquamarine; /* Mahtavan värinen 5/5! */
   flex: 1;
   padding: 10px;
   text-align: right;
@@ -84,7 +92,7 @@
 
 /* Modal Content Box */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #030303;
   padding: 20px;
   border: 1px solid #888;
   width: 40%;
