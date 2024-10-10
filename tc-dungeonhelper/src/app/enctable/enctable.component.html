@@ -39,8 +39,8 @@
 
   <div class="button-container">
     <div class="dice-container">
-      <button class="noppa" (click)="toggleEditMode()"></button>
-      <p>{{ isEditing ? 'Quit editing' : 'edit' }}</p>
+      <button class="noppa" mat-flat-button style="background-color: #C5231D; color: white;" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing' : 'edit' }}</button>
+
     </div>
   
     <div class="dice-container">
@@ -48,8 +48,8 @@
     </div>
   
     <div class="dice-container">
-      <button class="noppa" [disabled]="isEditing" (click)="openAddEncounterModal()"></button>
-      <p>Add New</p>
+      <button class="noppa" mat-flat-button style="background-color: #C5231D; color: white;" [disabled]="isEditing" (click)="openAddEncounterModal()">Add new</button>
+
     </div>
   </div>
 

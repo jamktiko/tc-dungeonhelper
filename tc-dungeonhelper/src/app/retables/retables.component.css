@@ -47,7 +47,9 @@ a {
   padding: 10px;
   margin-bottom: 10px;
 }
-
+.grid-item:hover{
+  color: #C5231D;
+}
 .biome-img {
   width: 100px;
   height: 100px;
