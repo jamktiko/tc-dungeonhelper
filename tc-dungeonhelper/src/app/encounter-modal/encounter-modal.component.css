@@ -1,48 +1,19 @@
+#paska{
+  background-color: #222222;
 
-
-mat-dialog-container {
-  background-color: #333;
-  color: #fff;
-  margin: 30px;
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  height: 400px;
-  margin: 0 auto;
 }
-
 h1[mat-dialog-title] {
-  color: #ff0000;
-}
-
-mat-dialog-content {
-  
-
-  padding: 30px;
-}
-
-mat-dialog-actions {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  border-top: 1px solid #555;
-}
-
-mat-dialog-actions button {
-  background-color: #444;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-mat-dialog-actions button:hover {
-  background-color: #555;
+  color: #C5231D;
 }
 
 .enc-img {
-  max-width: 50% !important;
-  height: auto !important;
-  display: block !important;
+  max-width: 30% !important;
+  border-radius: 15px;
   margin: 0 auto !important;
+}
+.grid-container{
+  margin: 20px;
+  display: inline-flex;
+  gap: 20px;
+  color: white;
 }
