@@ -4,6 +4,7 @@ import {
   MatDialogRef,
   MatDialogModule,
 } from '@angular/material/dialog';
+import { EnctableComponent } from '../enctable/enctable.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { Location } from '@angular/common';
@@ -23,6 +24,6 @@ export class EncounterModalComponent {
   ) {}
 
   backClicked() {
-    this.location.back();
+    this.dialogRef.close();
   }
 }
