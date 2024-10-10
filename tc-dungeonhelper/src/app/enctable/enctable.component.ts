@@ -16,10 +16,12 @@ import { EncounterModalComponent } from '../encounter-modal/encounter-modal.comp
 import { filter, sample } from 'lodash';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+
 @Component({
   selector: 'app-enctable',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterModule, FormsModule],
+  imports: [NgFor, CommonModule, RouterModule, FormsModule, MatButton],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })

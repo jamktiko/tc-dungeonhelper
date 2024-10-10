@@ -1,6 +1,4 @@
-p {
-  color: #fff;
-}
+
 
 mat-dialog-container {
   background-color: #333;
@@ -17,7 +15,7 @@ h1[mat-dialog-title] {
 }
 
 mat-dialog-content {
-  color: #fff;
+  
 
   padding: 30px;
 }
