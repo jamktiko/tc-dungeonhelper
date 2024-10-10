@@ -6,7 +6,7 @@
 <h3>{{ filteredEncounters.biome }}</h3>
 <div class="encounter-container">
   <!--Käydään läpi kaikki encounterit forEachillä filteredencounters taulukosta-->
-  <div class="encounter-item" *ngFor="let enc of filteredEncounters.enc; let i = index"
+  <div class="encounter-item" *ngFor="let enc of filteredEncounters?.enc; let i = index"
     [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}">
 
     <span class="item-number">{{ i + 1 }}.</span>
@@ -42,11 +42,11 @@
       <button class="noppa" (click)="toggleEditMode()"></button>
       <p>{{ isEditing ? 'Quit editing' : 'edit' }}</p>
     </div>
-  
+
     <div class="dice-container">
       <button [disabled]="isEditing" class="roll" (click)="rollTable()"></button>
     </div>
-  
+
     <div class="dice-container">
       <button class="noppa" [disabled]="isEditing" (click)="openAddEncounterModal()"></button>
       <p>Add New</p>

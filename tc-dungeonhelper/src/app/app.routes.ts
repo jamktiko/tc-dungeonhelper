@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 
-
-
 import { EnctableComponent } from './enctable/enctable.component';
 import { RetablesComponent } from './retables/retables.component';
 
