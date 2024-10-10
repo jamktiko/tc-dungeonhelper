@@ -4,16 +4,13 @@ nav {
     background-color: rgb(0, 0, 0);
     padding: 10px;
     position: static;
-    width: 100%;
     top: 0;
     left: 0;
     display: flex;
     justify-content: center;
     z-index: 1000;
   }
-  .tausta{
-    background:url(../../../public/assets/background_dungeon.png)
-  }
+
   .nav-container {
     display: flex;
     align-items: center;

@@ -1,9 +1,11 @@
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
+
 .roll {
   background: url("/assets/Roll_dungeon.png") no-repeat center center;
   background-size: contain;
   border: none;
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   cursor: pointer;
 }
 
@@ -69,40 +71,47 @@
 
 /* Modal styles */
 .modal {
+  background-color: #c5231d;
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+}
+
+.weight-buttons button {
+  background-color: transparent;
+  border: none;
+  color: #C5231D;
+  cursor: pointer;
+}
+.weight-buttons button:hover {
+  background-color: #C5231D;
+  color: black;
+}
+.button-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  gap: 50px;
 }
 
-/* Modal Content Box */
-.modal-content {
-  background-color: #fefefe;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 40%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+.dice-container {
+  display: flex;
+  flex-direction: column; /* Arrange button and text vertically */
+  align-items: center;    /* Center the button and text */
 }
 
-/* Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.noppa {
+  background: url(../../../public/assets/noppa-ikoni-tyhja.png) no-repeat center center;
+  background-size: contain;
+  border: none;
+  width: 70px;
+  height: 70px;
 }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+p {
+  
+
+  font-size: 20px;
+  text-align: center;
 }

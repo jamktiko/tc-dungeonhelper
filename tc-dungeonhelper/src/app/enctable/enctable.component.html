@@ -1,7 +1,7 @@
 <!--Näytetään encounterit jos filteredEncounters onnistuu-->
 <div *ngIf="filteredEncounters"></div>
 <!--Muokkaus painike, sitä kun painetaan pystyy muokkaamaan nimeä, kuvausta, painoarvoja. Kun painiketta ei ole vielä painettu, näyttää "Edit", painaessa muuttuu "Quit editing"iksi-->
-<button class="edit" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing' : 'Edit' }}</button>
+
 <!--Näytetään biomekohtaiset encounterit-->
 <h3>{{ filteredEncounters.biome }}</h3>
 <div class="encounter-container">
@@ -37,12 +37,24 @@
 
   </div>
 
-  <div>
-    <button [disabled]="isEditing" class="roll" (click)="rollTable()"></button>
+  <div class="button-container">
+    <div class="dice-container">
+      <button class="noppa" (click)="toggleEditMode()"></button>
+      <p>{{ isEditing ? 'Quit editing' : 'edit' }}</p>
+    </div>
+  
+    <div class="dice-container">
+      <button [disabled]="isEditing" class="roll" (click)="rollTable()"></button>
+    </div>
+  
+    <div class="dice-container">
+      <button class="noppa" [disabled]="isEditing" (click)="openAddEncounterModal()"></button>
+      <p>Add New</p>
+    </div>
   </div>
 
   <!-- Button to open the modal -->
-  <button [disabled]="isEditing" (click)="openAddEncounterModal()">Add New Encounter</button>
+
 
   <!-- The Modal -->
   <div class="modal" *ngIf="showAddEncounterModal">
