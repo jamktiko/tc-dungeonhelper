@@ -22,7 +22,7 @@ export class EncounterModalComponent {
     private location: Location
   ) {}
 
-  backClicked() {
-    this.location.back();
+  closeClicked() {
+    this.dialogRef.close(console.log('Sulki'));
   }
 }
