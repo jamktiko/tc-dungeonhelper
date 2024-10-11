@@ -1,8 +1,10 @@
-<h1 mat-dialog-title>Encounter: {{ data.encounter.name }}</h1>
-<div>
-  <p>{{ data.encounter.description }}</p>
-  <img class="enc-img" [src]="data.encounter.img" />
-</div>
-<div mat-dialog-actions>
-  <button class="back" img (click)="closeClicked()"></button>
+<div id="paska">
+  <div mat-dialog-actions>
+    <button class="back" img (click)="closeClicked()"></button>
+  </div>
+  <h1 mat-dialog-title>{{ data.encounter.name }}</h1>
+  <div class="grid-container">
+    <img class="enc-img" [src]="data.encounter.img" />
+    <p>{{ data.encounter.description }}</p>
+  </div>
 </div>

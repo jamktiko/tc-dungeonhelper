@@ -8,23 +8,19 @@ a {
 
 .back {
   background: url("/assets/Back_dungeon.png") no-repeat center center;
-  display: flex;
   background-size: contain;
-  justify-content: flex-start;
   border: none;
-  width: 40px;
-  height: 30px;
+  width: 50px;
+  height: 40px;
   cursor: pointer;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
 }
 
-.roll {
-  background: url("/assets/Roll_dungeon.png") no-repeat center center;
-  background-size: contain;
-  border: none;
-  width: 120px;
-  height: 120px;
-  cursor: pointer;
-}
+
 
 .grid-container {
   color: white;
@@ -32,11 +28,11 @@ a {
   max-width: 800px;
   height: 400px;
   margin: 0 auto;
-
   padding-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  position: relative; /* This is crucial for absolute positioning inside */
 }
 
 .grid-item {
@@ -47,10 +43,17 @@ a {
   padding: 10px;
   margin-bottom: 10px;
 }
-
+.grid-item:hover{
+  color: #C5231D;
+}
 .biome-img {
   width: 100px;
   height: 100px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.biome-img:hover{
+  transform: scale(1.2);
 }
 a {
   color: white;
