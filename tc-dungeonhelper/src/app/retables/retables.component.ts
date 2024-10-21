@@ -5,6 +5,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-retables',
@@ -16,12 +18,14 @@ import { Location } from '@angular/common';
     NgIf,
     RouterModule,
     MatButtonModule,
+    FormsModule,
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
 })
 export class RetablesComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
+  newTableName: any;
 
   // rolledEncounter: any | null = null;
   // currentEncounterType: string = 'highway'; // Default encounter type
@@ -43,5 +47,24 @@ export class RetablesComponent implements OnInit {
       console.log('täsä ollaan', re);
       console.log(re[re.length - 1].biome);
     });
+  }
+
+  public addTable(newTable: any) {
+    this.newTableName = {
+      table: {
+        biome: '',
+        img: 'assets/wilderness.png',
+        enc: [],
+      },
+    };
+
+    this.eservice.addTable(newTable).subscribe(
+      (response: any) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

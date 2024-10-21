@@ -1,4 +1,3 @@
-
 <div class="grid-container">
 
   <div class="grid-item flex-container" *ngFor="let encounter of randomEncounters"
@@ -6,11 +5,12 @@
     <div class="grid-item">
       <span>{{ encounter.biome }}</span>
       <img class="biome-img" [src]="encounter.img" />
-
-
-
     </div>
 
+    <button class="back" (click)="backClicked()"></button>
   </div>
-  <button class="back" (click)="backClicked()"></button>
+
+  <!-- Add a button to trigger the addTable method -->
+  <button (click)="addTable(newTableName)">Add Table</button>
+
 </div>

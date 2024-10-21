@@ -20,10 +20,28 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-enctable',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterModule, FormsModule, MatButton],
+  imports: [
+    NgFor,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatButton,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    EncounterModalComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
+  ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
@@ -198,6 +216,10 @@ export class EnctableComponent implements OnInit {
   public addEnc(): void {
     if (!this.newEncounter.name) {
       console.error('Encounter name is required');
+      this.snackBar.open('Encounter name is required', 'Close', {
+        duration: 3000,
+        panelClass: ['mat-snackbar-error'],
+      });
     } else {
       if (this.filteredEncounters && this.filteredEncounters._id) {
         this.eservice
@@ -209,13 +231,31 @@ export class EnctableComponent implements OnInit {
               );
               this.resetForm();
               this.closeAddEncounterModal();
+              this.snackBar.open('Encounter added successfully!', 'Close', {
+                duration: 3000,
+                panelClass: ['mat-snackbar-success'],
+              });
             },
-            (error) => console.error('Error adding encounter:', error)
+            (error) => {
+              console.error('Error adding encounter:', error);
+              this.snackBar.open(
+                'Error adding encounter: ' + error.message,
+                'Close',
+                {
+                  duration: 3000,
+                  panelClass: ['mat-snackbar-error'],
+                }
+              );
+            }
           );
       } else {
         console.warn(
           'No valid encounter to add. Please select a valid encounter first.'
         );
+        this.snackBar.open('Please select a valid encounter first', 'Close', {
+          duration: 3000,
+          panelClass: ['mat-snackbar-warning'],
+        });
       }
     }
   }
@@ -240,9 +280,23 @@ export class EnctableComponent implements OnInit {
             .subscribe(
               (response) => {
                 console.log('Encounter updated:', response);
+                // Display a snackbar notification
+                this.snackBar.open('Encounter saved successfully!', 'Close', {
+                  duration: 3000,
+                  panelClass: ['mat-snackbar-success'],
+                });
               },
               (error) => {
                 console.error('Error saving encounter:', error);
+                // Display a snackbar notification with an error message
+                this.snackBar.open(
+                  'Error saving encounter: ' + error.message,
+                  'Close',
+                  {
+                    duration: 3000,
+                    panelClass: ['mat-snackbar-error'],
+                  }
+                );
               }
             );
         }

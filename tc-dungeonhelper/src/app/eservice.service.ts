@@ -44,10 +44,9 @@ export class EserviceService {
           'Content-Type': 'application/json',
         }),
       })
-      .pipe(catchError(this.handleError)); // Handles errors
+      .pipe(catchError(this.handleError));
   }
 
-  // Inside eservice.service.ts
   saveEnc(biomeId: string, encId: string, updatedData: any): Observable<any> {
     return this.http.put(
       `${this.apiUrl}/saveEnc/${biomeId}/${encId}`,
@@ -59,6 +58,16 @@ export class EserviceService {
     const url = `${this.apiUrl}/${biomeId}/addEnc`;
     return this.http
       .put<any>(url, newEncounter, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
+  public addTable(newTable: any): Observable<any> {
+    const url = `${this.apiUrl}/addTable`;
+    return this.http
+      .put<any>(url, newTable, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
