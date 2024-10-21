@@ -1,14 +1,37 @@
-<nav>
-  <div class="nav-container">
-    <img class="menu" src="../assets/menu.png" alt="menu" (click)="toggleMenu()">
-    <img class="logo" src="../assets/logo.png">
-    <div class="nav-links" [ngClass]="{ 'show': menuOpen }">
-      <div class="nav-item" routerLink="/retables">Resources</div>
-      <div class="nav-item" routerLink="/merchants">Merchant</div>
-      <div class="nav-item" routerLink="/Notes">Notes</div>
-      <button mat-flat-button style="background-color: #C5231D; color: white;">Import PDF</button>
-    </div>
-    <img src="../assets/account_circle.png" alt="">
-    
-  </div>
-</nav>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="side-nav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/retables">Resources</a>
+      <a mat-list-item routerLink="/merchants">Merchant</a>
+      <a mat-list-item routerLink="/notes">Notes</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="toolbar">
+      <!-- Hampurilaisvalikko mobiilissa -->
+      <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Logo vasemmalla -->
+      <img class="logo" src="../assets/logo.png" alt="logo">
+
+      <!-- Navigointilinkit keskellä -->
+      <div class="nav-links">
+        <a mat-button routerLink="/retables" color="basic">Resources</a>
+        <a mat-button routerLink="/merchants" color="basic">Merchant</a>
+        <a mat-button routerLink="/notes" color="basic">Notes</a>
+      </div>
+
+      <!-- Oikealla PDF-painike ja käyttäjäikoni -->
+      <div class="right-side">
+        <button mat-flat-button color="warn">Import PDF</button>
+        <button mat-icon-button>
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

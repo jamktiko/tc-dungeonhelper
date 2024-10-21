@@ -1,97 +1,100 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 
-nav {
-    background-color: rgb(0, 0, 0);
-    padding: 10px;
-    position: static;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    z-index: 1000;
-  }
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 0 10px;
+}
 
-  .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 100%;
-    color: white;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  
-  .nav-item{
-    margin: 0 15px;
-    color: white;
-
-  }
-  .nav-item:hover{
-    cursor: pointer;
-    color: #C5231D;
-  }
-  
-  .logo {
-    height: 100px;
-    width: 150px;
-  }
-  img{
-    height: 30px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: white;
-    color: black;
-    border: none;
-    cursor: pointer;
-  }
-  
-
-.menu {
+.menu-button {
   display: none;
 }
 
-/* Hampurilaisvalikko ja navigointilinkit */
-.nav-links {
-  display: flex;
-  gap: 40px;
+.logo {
+  height: 70px;
+  cursor: pointer;
 }
 
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  color: white;
+  text-decoration: none;
+  gap: 20px;
+}
+
+::ng-deep .nav-links a.mat-button .mat-button-wrapper {
+  color: white !important;
+}
+
+::ng-deep .nav-links a.mat-button:hover .mat-button-wrapper {
+  color: #C5231D !important; /* Hover-väri */
+}
+
+.nav-links a:hover {
+  color: #C5231D !important;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+.side-nav {
+  width: 250px; /* Sidenavin leveys */
+  background-color: #fff; /* Taustaväri */
+  color: black; /* Tekstiväri */
+  height: 100%; /* Kattaa koko korkeuden */
+}
+
+mat-nav-list {
+  padding: 0; /* Poista mahdollinen ylä- ja alareunan tyhjä tila */
+}
+
+mat-list-item {
+  display: block; /* Varmista, että listaelementit näkyvät pystysuunnassa */
+  padding: 10px 20px; /* Mukautettu tyylitys */
+  text-decoration: none; /* Poista alleviivaus */
+  color: black; /* Varmista, että teksti on musta */
+}
+
+/* Muuta väriä hiirellä hoveroitaessa */
+mat-list-item:hover {
+  background-color: #C5231D; /* Taustaväri hoveroinnin aikana */
+  color: white; /* Tekstin väri hoveroinnin aikana */
+}
+
+/* Muu sisältö */
+.main-content {
+  padding: 20px; /* Tai haluamasi marginaali */
+}
+
+/* Mobiilivalikko */
 @media only screen and (max-width: 600px) {
-  .nav-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-
   .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 200px;
-    background-color: #000;
-    padding: 10px;
-    z-index: 10;
-    border-radius: 5px;
+    display: none; /* Piilotetaan navigointilinkit pienillä näytöillä */
   }
 
-  
-  .nav-links.show {
-    display: flex;
-    background-color: black;
-  }
-
-  .nav-item, .nav-container button {
+  .menu-button {
+    display: inline-block; /* Näytetään hampurilaisvalikko */
     color: white;
   }
 
-  .menu {
-    display: block;
-    cursor: pointer;
+  .right-side {
+    flex: none; /* Estetään asettelun venyminen pienissä ruuduissa */
   }
 
+  .side-nav {
+    height: 100%; /* Varmista, että sidenav kattaa koko korkeuden */
+  }
+
+  .mat-sidenav-open {
+    overflow: hidden; /* Estää skrollauksen avattaessa sidenav */
+  }
 }
