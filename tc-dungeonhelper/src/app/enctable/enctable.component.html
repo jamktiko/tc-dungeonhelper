@@ -29,7 +29,7 @@
 
       <div class="edit-buttons">
         <button (click)="saveEnc()">Save</button>
-        <button (click)="deleteEnc(filteredEncounters._id, enc._id)">Delete</button>
+        <button (click)="confirmDelete(filteredEncounters._id, enc._id)">Delete</button>
       </div>
     </div>
 
@@ -39,16 +39,18 @@
 
   <div class="button-container">
     <div class="dice-container">
-      <button class="noppa" mat-flat-button style="background-color: #C5231D; color: white;" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing' : 'Edit' }}</button>
+      <button class="noppa" mat-flat-button style="background-color: #C5231D; color: white;"
+        (click)="toggleEditMode()">{{ isEditing ? 'Quit editing' : 'Edit' }}</button>
 
     </div>
 
     <div class="dice-container">
       <button [disabled]="isEditing" class="roll" (click)="rollTable()"></button>
     </div>
-
+    <!--Add New-->
     <div class="dice-container">
-      <button class="noppa" mat-flat-button style="background-color: #C5231D; color: white;" [disabled]="isEditing" (click)="openAddEncounterModal()">Add new</button>
+      <button class="noppa" mat-flat-button style="background-color: #C5231D; color: white;"
+        [class.mat-disabled]="isEditing" [disabled]="isEditing" (click)="openAddEncounterModal()">Add new</button>
 
     </div>
   </div>

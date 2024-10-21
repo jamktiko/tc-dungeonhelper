@@ -7,9 +7,6 @@ import { MerchantsComponent } from './merchants/merchants.component';
 import { AppComponent } from './app.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/app', pathMatch: 'full' },
-
-
   { path: 'retables', component: RetablesComponent },
 
   { path: 'biome/:biome', component: EnctableComponent },
