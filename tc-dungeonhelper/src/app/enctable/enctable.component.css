@@ -228,3 +228,20 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+@media only screen and (max-width: 600px){
+  .encounter-container{
+    color: white;
+    margin: 5%;
+
+  }
+
+  .button-container{
+    padding-top: 5%;
+  }
+  div.encounter-item.even-item{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+}

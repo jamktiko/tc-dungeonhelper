@@ -3,12 +3,20 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { RetablesComponent } from '../retables/retables.component';
 import { MerchantsComponent } from '../merchants/merchants.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterOutlet, RetablesComponent, RouterModule,MerchantsComponent, MatButtonModule],
+  imports: [RouterOutlet, RetablesComponent, RouterModule,MerchantsComponent, MatButtonModule, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  menuOpen = false;
+
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+}
