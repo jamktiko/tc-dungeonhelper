@@ -17,11 +17,31 @@ import { filter, sample } from 'lodash';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-enctable',
   standalone: true,
-  imports: [NgFor, CommonModule, RouterModule, FormsModule, MatButton],
+  imports: [
+    NgFor,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatButton,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    EncounterModalComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
+  ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
 })
@@ -44,8 +64,12 @@ export class EnctableComponent implements OnInit {
     private eservice: EserviceService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar
   ) {}
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 
   backClicked() {
     this.location.back();
@@ -131,7 +155,6 @@ export class EnctableComponent implements OnInit {
   public goBack(): void {
     this.location.back();
   }
-
   /**
    * Avaa EncounterModal -komponentin valitulla encounterilla.
    * Eli kun sivulla on lista esim. "Highwaymen" ja painat siitä, se valitsee kyseisen esimerkin
@@ -184,30 +207,58 @@ export class EnctableComponent implements OnInit {
   }
 
   /**
-   * Adds a new encounter to the selected biome.
-   * @param newEncounter The new encounter to add.
+   * Ensiksi tarkistaa onko encounterille annettu nimi.
+   * Jos on, niin tarkistetaan filteredEncountersin olemassaolo ja ettei se ole null.
+   * Jos se on olemassa, niin tarkistetaan seuraavaksi filteredEncounters._id;n olemassa olo ja ettei se ole null.
+   * Tarkistaa kohtaamisen ja lisää uuden encounterin
+   * @param
    */
   public addEnc(): void {
-    if (this.filteredEncounters && this.filteredEncounters._id) {
-      this.eservice
-        .addEnc(this.filteredEncounters._id, this.newEncounter)
-        .subscribe(
-          (response) => {
-            this.filteredEncounters.enc.push(
-              response.enc[response.enc.length - 1]
-            );
-            this.resetForm();
-            this.closeAddEncounterModal();
-          },
-          (error) => console.error('Error adding encounter:', error)
-        );
+    if (!this.newEncounter.name) {
+      console.error('Encounter name is required');
+      this.snackBar.open('Encounter name is required', 'Close', {
+        duration: 3000,
+        panelClass: ['mat-snackbar-error'],
+      });
     } else {
-      console.warn(
-        'No valid encounter to add. Please select a valid encounter first.'
-      );
+      if (this.filteredEncounters && this.filteredEncounters._id) {
+        this.eservice
+          .addEnc(this.filteredEncounters._id, this.newEncounter)
+          .subscribe(
+            (response) => {
+              this.filteredEncounters.enc.push(
+                response.enc[response.enc.length - 1]
+              );
+              this.resetForm();
+              this.closeAddEncounterModal();
+              this.snackBar.open('Encounter added successfully!', 'Close', {
+                duration: 3000,
+                panelClass: ['mat-snackbar-success'],
+              });
+            },
+            (error) => {
+              console.error('Error adding encounter:', error);
+              this.snackBar.open(
+                'Error adding encounter: ' + error.message,
+                'Close',
+                {
+                  duration: 3000,
+                  panelClass: ['mat-snackbar-error'],
+                }
+              );
+            }
+          );
+      } else {
+        console.warn(
+          'No valid encounter to add. Please select a valid encounter first.'
+        );
+        this.snackBar.open('Please select a valid encounter first', 'Close', {
+          duration: 3000,
+          panelClass: ['mat-snackbar-warning'],
+        });
+      }
     }
   }
-  /******  7c5fd62e-ddbd-4b7d-a780-3699d09101ff  *******/
   // Reset the form after adding
   resetForm() {
     this.newEncounter = {
@@ -229,10 +280,23 @@ export class EnctableComponent implements OnInit {
             .subscribe(
               (response) => {
                 console.log('Encounter updated:', response);
-                enc.isEditing = false; // Exit editing mode for this encounter
+                // Display a snackbar notification
+                this.snackBar.open('Encounter saved successfully!', 'Close', {
+                  duration: 3000,
+                  panelClass: ['mat-snackbar-success'],
+                });
               },
               (error) => {
                 console.error('Error saving encounter:', error);
+                // Display a snackbar notification with an error message
+                this.snackBar.open(
+                  'Error saving encounter: ' + error.message,
+                  'Close',
+                  {
+                    duration: 3000,
+                    panelClass: ['mat-snackbar-error'],
+                  }
+                );
               }
             );
         }
@@ -256,5 +320,11 @@ export class EnctableComponent implements OnInit {
         console.error('Error deleting encounter:', error);
       }
     );
+  }
+
+  confirmDelete(biomeId: string, encounterId: string): void {
+    if (confirm('Are you sure you want to delete this encounter?')) {
+      this.deleteEnc(biomeId, encounterId);
+    }
   }
 }
