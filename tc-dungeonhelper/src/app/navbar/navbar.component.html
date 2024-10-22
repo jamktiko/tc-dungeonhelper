@@ -9,24 +9,21 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="toolbar">
-      <!-- Hampurilaisvalikko mobiilissa -->
+
       <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <!-- Logo vasemmalla -->
       <img class="logo" src="../assets/logo.png" alt="logo">
 
-      <!-- Navigointilinkit keskellä -->
       <div class="nav-links">
         <a mat-button routerLink="/retables" color="basic">Resources</a>
-        <a mat-button routerLink="/merchants" color="basic">Merchant</a>
-        <a mat-button routerLink="/notes" color="basic">Notes</a>
+        <a mat-button routerLink="/merchants">Merchant</a>
+        <a mat-button routerLink="/notes" >Notes</a>
       </div>
 
-      <!-- Oikealla PDF-painike ja käyttäjäikoni -->
       <div class="right-side">
-        <button mat-flat-button color="warn">Import PDF</button>
+        <button mat-flat-button >Import PDF</button>
         <button mat-icon-button>
           <mat-icon>account_circle</mat-icon>
         </button>
