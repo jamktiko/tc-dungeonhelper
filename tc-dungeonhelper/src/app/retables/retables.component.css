@@ -20,11 +20,7 @@ a {
   z-index: 10;
 }
 
-
-
 .grid-container {
-  color: white;
-  background-color: black;
   max-width: 800px;
   height: 400px;
   margin: 0 auto;
@@ -43,8 +39,8 @@ a {
   padding: 10px;
   margin-bottom: 10px;
 }
-.grid-item:hover{
-  color: #C5231D;
+.grid-item:hover {
+  color: #c5231d;
 }
 .biome-img {
   width: 100px;
@@ -52,11 +48,15 @@ a {
   cursor: pointer;
   transition: transform 0.5s ease;
 }
-.biome-img:hover{
+.biome-img:hover {
   transform: scale(1.2);
 }
 a {
   color: white;
+}
+
+.card-color {
+  background-color: #000000;
 }
 
 @media only screen and (max-width: 600px) {

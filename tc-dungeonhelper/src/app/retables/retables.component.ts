@@ -4,11 +4,11 @@ import { EserviceService } from '../eservice.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-retables',
@@ -22,6 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatButtonModule,
     MatCardModule,
     FormsModule,
+    MatDialogModule,
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
@@ -33,7 +34,7 @@ export class RetablesComponent implements OnInit {
 
   constructor(
     private eservice: EserviceService,
-    private location: Location,
+    private cdr: ChangeDetectorRef,
     private snackBar: MatSnackBar
   ) {}
 
@@ -48,14 +49,36 @@ export class RetablesComponent implements OnInit {
     this.editMode = !this.editMode;
   }
 
+  /**
+   * Luo uuden taulukon taulukkolistaan, jolle voidaan antaa nimi.
+   * Jos syötekenttä on tyhjä, snackbari näyttää virheilmoituksen.
+   * Jos syötekenttä ei ole tyhjä, se luo uuden taulukko objektin ja lisää sen taulukkolistaan.
+   * Näyttää snackbar ilmoituksen käyttäjälle sekä tyhjentää syötekentän.
+   * Jos on virheitä, kirjataan ne konsoliin.
+   */
   public addTable(): void {
     console.log('addTable() called');
+    console.log('Before detectChanges:', this.newTableName);
+    this.cdr.detectChanges();
+    console.log('After detectChanges:', this.newTableName);
     if (this.newTableName.trim() === '') {
       console.log('Table name is required');
       this.snackBar.open('Table name is required', 'Close', {
         duration: 3000,
         panelClass: ['mat-snackbar-error'],
       });
+      return;
+    } else if (
+      this.randomEncounters.some(
+        (encounter) => encounter.biome === this.newTableName.trim()
+      )
+    ) {
+      console.log('Table name already exists');
+      this.snackBar.open('Table name already exists', 'Close', {
+        duration: 3000,
+        panelClass: ['mat-snackbar-error'],
+      });
+      return;
     }
 
     const newTable = {
@@ -67,6 +90,7 @@ export class RetablesComponent implements OnInit {
     console.log('Adding new table:', newTable);
     // Show snackbar notification on success
     console.log('Showing snackbar notification');
+
     this.snackBar.open('Table successfully added!', 'Close', {
       duration: 3000, // 3 seconds
       panelClass: ['mat-snackbar-success'],

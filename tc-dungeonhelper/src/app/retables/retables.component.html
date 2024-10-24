@@ -1,14 +1,20 @@
+<!-- Edit mode toggle button -->
+<button mat-raised-button (click)="toggleEditMode()">
+  {{ editMode ? 'Exit Edit Mode' : 'Enter Edit Mode' }}
+</button>
+<!-- Add table form -->
+
+<button mat-raised-button (click)="addTable()">Add Table</button>
+<input [(ngModel)]="newTableName" placeholder="New Table Name" />
+
 <div class="grid-container">
-  <!-- Edit mode toggle button -->
-  <button mat-raised-button (click)="toggleEditMode()">
-    {{ editMode ? 'Exit Edit Mode' : 'Enter Edit Mode' }}
-  </button>
+
 
   <div class="grid-item" *ngFor="let encounter of randomEncounters; let i = index">
-    <mat-card routerLink="/biome/{{ encounter.biome }}">
+    <mat-card style="background-color: #000000;" routerLink="/biome/{{ encounter.biome }}">
       <mat-card-title>{{ encounter.biome }}</mat-card-title>
       <mat-card-content>
-        <img mat-card-image src="assets/addBiome.png" [src]="encounter.img" />
+        <img mat-card-image alt="Encounter Image" src="assets/addBiome.png" [src]="encounter.img" />
       </mat-card-content>
 
       <!-- Show delete button only if edit mode is active -->
@@ -18,7 +24,5 @@
     </mat-card>
   </div>
 
-  <!-- Add table form -->
-  <input [(ngModel)]="newTableName" placeholder="New Table Name" />
-  <button mat-raised-button (click)="addTable()">Add Table</button>
+
 </div>
