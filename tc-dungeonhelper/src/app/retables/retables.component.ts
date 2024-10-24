@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-retables',
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     NgIf,
     RouterModule,
     MatButtonModule,
+    MatCardModule,
     FormsModule,
   ],
   templateUrl: './retables.component.html',

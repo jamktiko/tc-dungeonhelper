@@ -1,16 +1,12 @@
 <div class="grid-container">
-
-  <div class="grid-item flex-container" *ngFor="let encounter of randomEncounters"
-    routerLink="/biome/{{ encounter.biome }}">
-    <div class="grid-item">
-      <span>{{ encounter.biome }}</span>
-      <img class="biome-img" [src]="encounter.img" />
-    </div>
-
-    <button class="back" (click)="backClicked()"></button>
+  <div class="grid-item" *ngFor="let encounter of randomEncounters">
+    <mat-card routerLink="/biome/{{ encounter.biome }}">
+      <mat-card-title>{{ encounter.biome }}</mat-card-title>
+      <mat-card-content>
+        <img mat-card-image src="assets/addBiome.png" [src]="encounter.img" />
+      </mat-card-content>
+    </mat-card>
   </div>
 
-  <!-- Add a button to trigger the addTable method -->
-  <button (click)="addTable(newTableName)">Add Table</button>
-
+  <button mat-raised-button (click)="addTable(newTableName)">Add Table</button>
 </div>
