@@ -74,4 +74,15 @@ export class EserviceService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  public deleteTable(biomeId: string): Observable<any> {
+    const url = `${this.apiUrl}/${biomeId}/deleteTable`; // biome is passed as the 'id'
+    return this.http
+      .delete<any>(url, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
 }
