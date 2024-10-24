@@ -1,18 +1,41 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+
+  
+  .mat-grid-container {
+    display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 100%;
+    max-width: 300px;
+    margin: auto;
+    padding-top: 40px;
+    gap: 40px;
   }
   
-  .grid-item {
+  mat-grid-list {
+    width: 100%;
+  }
+  
+  mat-grid-tile {
+    background: rgb(0, 0, 0);
     background: url(../../../public/assets/Retausta.png) no-repeat center center;
-    height: 190px;
-    width: 300px;
-    border: solid black 2px;
-    border-radius: 20px;
-    gap: 10px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;      
+    margin: 0 auto;   
     text-align: center;
+    border-radius: 20px;
+    gap: 20px;
+    font-size: 1.6em;
+    font-weight: 500;
+    border: solid black 2px;
+  }
+  .tile2{
+    background: rgb(0, 0, 0);
+    background: url(../../../public/assets/locationTausta.png) no-repeat center center;
+    
+
+  }
+  .tile3{
+    background: rgb(0, 0, 0);
+    background: url(../../../public/assets/treasure\ 2.png) no-repeat center center;
   }

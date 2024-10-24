@@ -7,6 +7,9 @@
     background: url('/assets/background_dungeon.png') no-repeat center center;
     background-size: 100% 100%;
     
+    background-size: cover; /* Adjusts the image size to cover the element */
+    background-attachment: fixed; /* Keeps the background fixed */
+    background-position: center; /* Center the background */
   }
 @media only screen and (max-width: 600px){
   .main-content{

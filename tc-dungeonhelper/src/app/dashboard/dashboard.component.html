@@ -1,5 +1,8 @@
-  <div id="grid-container">
-    <div class="grid-item" routerLink="/retables">Random encounters</div>
-    <div class="grid-item">Locations</div>
-    <div class="grid-item">Treasure</div>
+
+  <div class="mat-grid-container">
+    <mat-grid-list cols="1" rowHeight="200px"> <!-- Fixed row height -->
+      <mat-grid-tile class="tile1" routerLink="/retables">Random encounters</mat-grid-tile>
+      <mat-grid-tile class="tile2">Location</mat-grid-tile>
+      <mat-grid-tile class="tile3">Treasure</mat-grid-tile>
+    </mat-grid-list>
   </div>
