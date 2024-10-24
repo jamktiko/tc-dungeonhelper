@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-retables',
@@ -23,6 +25,8 @@ import { ChangeDetectorRef } from '@angular/core';
     MatCardModule,
     FormsModule,
     MatDialogModule,
+    MatSlideToggleModule,
+    MatTableModule,
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
