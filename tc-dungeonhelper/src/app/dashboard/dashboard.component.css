@@ -1,0 +1,18 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+  
+  .grid-item {
+    background: url(../../../public/assets/Retausta.png) no-repeat center center;
+    height: 190px;
+    width: 300px;
+    border: solid black 2px;
+    border-radius: 20px;
+    gap: 10px;
+    text-align: center;
+  }
