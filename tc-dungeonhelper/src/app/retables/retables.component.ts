@@ -27,45 +27,40 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class RetablesComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
-  newTableName: any;
-
-  // rolledEncounter: any | null = null;
-  // currentEncounterType: string = 'highway'; // Default encounter type
+  newTableName: string = ''; // Initialize as an empty string
 
   constructor(private eservice: EserviceService, private location: Location) {}
 
-  backClicked() {
-    this.location.back();
-  }
-
-  /**
-   * OnInit lifecycle hook. Subscribes to the encounter service, logging
-   * the result to the console. The result is an array of REL objects,
-   * where each object has a biome and an array of encounter objects.
-   */
   ngOnInit(): void {
     this.eservice.getEncounters().subscribe((re) => {
       this.randomEncounters = re;
-      console.log('täsä ollaan', re);
-      console.log(re[re.length - 1].biome);
+      console.log('Encounters fetched:', re);
     });
   }
 
-  public addTable(newTable: any) {
-    this.newTableName = {
-      table: {
-        biome: '',
-        img: 'assets/wilderness.png',
-        enc: [],
-      },
+  public addTable(): void {
+    console.log('addTable() called with newTableName:', this.newTableName);
+
+    if (this.newTableName.trim() === '') {
+      console.log('Table name is required');
+      return;
+    }
+
+    const newTable = {
+      biome: this.newTableName,
+      img: 'assets/addBiome.png',
+      enc: [],
     };
 
+    console.log('Prepared newTable object:', newTable);
+
     this.eservice.addTable(newTable).subscribe(
-      (response: any) => {
-        console.log(response);
+      (response) => {
+        console.log('New table added successfully:', response);
+        this.randomEncounters.push(response);
       },
       (error) => {
-        console.error(error);
+        console.error('Error adding table:', error);
       }
     );
   }

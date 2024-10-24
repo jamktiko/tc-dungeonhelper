@@ -8,5 +8,8 @@
     </mat-card>
   </div>
 
-  <button mat-raised-button (click)="addTable(newTableName)">Add Table</button>
+  <!-- Input for adding new table name -->
+  <input [(ngModel)]="newTableName" placeholder="New Table Name" />
+
+  <button mat-raised-button (click)="addTable()">Add Table</button>
 </div>

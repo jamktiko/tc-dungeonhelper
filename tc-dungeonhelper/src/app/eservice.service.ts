@@ -67,7 +67,7 @@ export class EserviceService {
   public addTable(newTable: any): Observable<any> {
     const url = `${this.apiUrl}/addTable`;
     return this.http
-      .put<any>(url, newTable, {
+      .post<any>(url, newTable, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
