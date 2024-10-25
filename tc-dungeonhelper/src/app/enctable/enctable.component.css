@@ -325,10 +325,17 @@
   display: none;
 }
 .encounter-container {
-  display: grid;
-  margin-left: 10%;
-  margin-right: 10%;
+
+  margin-left: 20%;
+  margin-right: 20%;
   cursor: default;
+  padding-top: 3%;
+}
+mat-card-title{
+  color: #c5231d;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding-bottom: 1.2em;
 }
 
 .encounter-item {
@@ -428,6 +435,9 @@
 p {
   font-size: 20px;
   text-align: center;
+}
+mat-button{
+  background-color: aqua;
 }
 
 @media only screen and (max-width: 600px) {
