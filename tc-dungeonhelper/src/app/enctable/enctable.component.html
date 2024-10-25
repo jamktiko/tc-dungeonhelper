@@ -21,14 +21,20 @@
     </mat-form-field>
 
     <div *ngIf="isEditing" class="item-weight-container">
-      <span class="item-weight">{{ enc.weight }}</span>
-
-      <!-- Material buttons for weight control -->
-      <div class="weight-buttons">
-        <button mat-icon-button (click)="increaseWeight(enc); $event.stopPropagation()">&#9650;</button>
-        <button mat-icon-button (click)="decreaseWeight(enc); $event.stopPropagation()">&#9660;</button>
+      <div class="weight-percent-container">
+        <span class="item-weight">{{ enc.weight }}</span>
+    
+        <!-- Weight-painikkeet -->
+        <div class="weight-buttons">
+          <button mat-icon-button (click)="increaseWeight(enc); $event.stopPropagation()">&#9650;</button>
+          <button mat-icon-button (click)="decreaseWeight(enc); $event.stopPropagation()">&#9660;</button>
+        </div>
+    
+        <!-- Prosentti -->
+        <span class="item-percent1">{{ percentCalc(enc.weight, w) }} %</span>
       </div>
-
+    
+      <!-- Save ja Delete-painikkeet -->
       <div class="edit-buttons">
         <button mat-button (click)="saveEnc()">Save</button>
         <button mat-button (click)="confirmDelete(filteredEncounters._id, enc._id)">Delete</button>

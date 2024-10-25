@@ -1,36 +1,37 @@
 <!-- Edit mode toggle button -->
-<mat-card>
-  <mat-card-header class="sticky">
-    <mat-card-actions>
-      <mat-slide-toggle (change)="toggleEditMode()">
-        {{ editMode ? 'Exit Edit Mode' : 'Enter Edit Mode' }}
-      </mat-slide-toggle>
-    </mat-card-actions>
+<div></div> 
+  <mat-card class="sticky">
+    <mat-card-header>
+      <mat-card-actions>
+        <mat-slide-toggle (change)="toggleEditMode()">
+          {{ editMode ? 'Exit Edit Mode' : 'Enter Edit Mode' }}
+        </mat-slide-toggle>
+      </mat-card-actions>
 
-    <!-- Add table form -->
-    <mat-card-content *ngIf="editMode">
-      <button mat-raised-button (click)="addTable()">Add Table</button>
-      <input [(ngModel)]="newTableName" placeholder="New Table Name" /></mat-card-content>
-  </mat-card-header>
+      <!-- Add table form -->
+      <mat-card-content *ngIf="editMode">
+        <button mat-raised-button (click)="addTable()">Add Table</button>
+        <input [(ngModel)]="newTableName" placeholder="New Table Name" /></mat-card-content>
+    </mat-card-header>
 
-</mat-card>
-<mat-card-title class="title">Random Encounters</mat-card-title>
-<div class="grid-container">
+  </mat-card>
+  <mat-card-title class="title">Random Encounters</mat-card-title>
+  <div class="grid-container">
 
 
-  <div class="grid-item" *ngFor="let encounter of randomEncounters; let i = index">
-    <mat-card style="background-color: #000000;" routerLink="/biome/{{ encounter.biome }}">
-      <mat-card-title>{{ encounter.biome }}</mat-card-title>
-      <mat-card-content>
-        <img mat-card-image src="assets/addBiome.png" [src]="encounter.img" />
-      </mat-card-content>
+    <div class="grid-item" *ngFor="let encounter of randomEncounters; let i = index">
+      <mat-card style="background-color: black" routerLink="/biome/{{ encounter.biome }}">
+        <mat-card-title>{{ encounter.biome }}</mat-card-title>
+        <mat-card-content>
+          <img mat-card-image src="assets/addBiome.png" [src]="encounter.img" />
+        </mat-card-content>
 
-      <!-- Show delete button only if edit mode is active -->
-      <button *ngIf="editMode" mat-raised-button color="warn" (click)="deleteTable(encounter._id, i, $event)">
-        Delete Table
-      </button>
-    </mat-card>
+        <!-- Show delete button only if edit mode is active -->
+        <button *ngIf="editMode" mat-raised-button color="warn" (click)="deleteTable(encounter._id, i, $event)">
+          Delete Table
+        </button>
+      </mat-card>
+    </div>
+
+
   </div>
-
-
-</div>
