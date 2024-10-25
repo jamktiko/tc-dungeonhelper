@@ -12,3 +12,13 @@ export interface Enc {
   weight: number;
   img: string;
 }
+
+export interface Merchants {
+  name: string;
+  type: string;
+  location: string;
+  items: {
+    itemType: string;
+    quantity: number;
+  }[];
+}

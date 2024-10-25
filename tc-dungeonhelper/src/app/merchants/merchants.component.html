@@ -1,11 +1,8 @@
-<div id="head">
-    <div class="grid-container">
-        <div class="grid-item">Back</div>
-        <div class="grid-item">Black smith's shop</div>
-        <div class="grid-item">Cart</div>
-    </div>
-    <br>
-    <div id="category">
-        Category
-    </div>
-</div>
+<mat-card>
+    <mat-card-title>Merchants</mat-card-title>
+    <mat-card-content>
+        <div *ngFor="let merchant of merchants">
+            <p>{{ merchant.name }}</p>
+        </div>
+    </mat-card-content>
+</mat-card>
