@@ -5,10 +5,11 @@
   justify-content: space-between;
   align-items: center;
   background-color: black;
-  position: sticky;
+  overflow: hidden;
 }
 .sidenav-container{
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
 }
 .menu-button {
@@ -34,8 +35,6 @@
   align-items: center;
   gap: 20px;
 }
-
-
 
 .side-nav {
   width: 250px; /* Sidenavin leveys */
@@ -74,9 +73,7 @@ mat-list-item {
     flex: none; /* Estetään asettelun venyminen pienissä ruuduissa */
   }
 
-  .side-nav {
-    height: 100%; /* Varmista, että sidenav kattaa koko korkeuden */
-  }
+
 
   .mat-sidenav-open {
     overflow: hidden; /* Estää skrollauksen avattaessa sidenav */

@@ -1,16 +1,14 @@
 .main-content {
-    background-color: black;
-    color: white;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-    background: url('/assets/background_dungeon.png') no-repeat center center;
-    background-size: 100% 100%;
-    
-    background-size: cover; /* Adjusts the image size to cover the element */
-    background-attachment: fixed; /* Keeps the background fixed */
-    background-position: center; /* Center the background */
-  }
+  min-height: 100vh; /* Määrittää vähimmäiskorkeudeksi koko näytön korkeuden */
+
+  color: white;
+  align-items: center;
+  text-align: center;
+  background: url('/assets/background_dungeon.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
 @media only screen and (max-width: 600px){
   .main-content{
     background:none;

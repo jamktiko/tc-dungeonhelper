@@ -321,12 +321,21 @@
     transform: translate(1px, 1px) rotate(360deg);
   }
 }
-
+.item-percent1{
+  display: none;
+}
 .encounter-container {
-  display: grid;
-  margin-left: 30%;
-  margin-right: 30%;
+
+  margin-left: 20%;
+  margin-right: 20%;
   cursor: default;
+  padding-top: 3%;
+}
+mat-card-title{
+  color: #c5231d;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding-bottom: 1.2em;
 }
 
 .encounter-item {
@@ -427,20 +436,53 @@ p {
   font-size: 20px;
   text-align: center;
 }
+mat-button{
+  background-color: aqua;
+}
 
-@media only screen and (max-width: 600px){
-  .encounter-container{
+@media only screen and (max-width: 600px) {
+  .encounter-container {
     color: white;
-    margin: 5%;
-
-  }
-
-  .button-container{
-    padding-top: 5%;
-  }
-  div.encounter-item.even-item{
+    max-width: 100%;
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+    margin-right: 0;
   }
-  
+
+  .encounter-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .encounter-item mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Painikkeiden asetukset */
+  .item-weight-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Järjestää weight- ja prosenttipainikkeet vierekkäin keskitettynä */
+  .weight-percent-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Lisää väli painikkeiden ja prosenttiarvon väliin */
+    margin-bottom: 10px;
+  }
+
+  /* Save ja Delete painikkeet keskelle */
+  .edit-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
 }
