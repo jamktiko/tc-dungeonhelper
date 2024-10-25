@@ -27,7 +27,7 @@ export class MerchantsComponent implements OnInit {
   constructor(private merchantService: MerchantService) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getMerchants();
   }
 
   public getMerchants(): void {
