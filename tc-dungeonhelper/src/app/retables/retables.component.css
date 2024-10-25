@@ -1,28 +1,10 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 
-a {
-  border: solid white 2px;
-  align-items: center;
-  gap: 5px;
-}
 
-.back {
-  background: url("/assets/Back_dungeon.png") no-repeat center center;
-  background-size: contain;
-  border: none;
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
-
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-}
 
 .grid-container {
   max-width: 800px;
-  height: 400px;
+  max-height: auto;
   margin: 0 auto;
   padding-top: 20px;
   display: grid;
