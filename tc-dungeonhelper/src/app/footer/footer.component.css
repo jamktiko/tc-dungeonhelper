@@ -1,4 +1,93 @@
-div{
-    height: 70px;
-    background-color: rgb(7, 134, 92);
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #222222;
+  padding: 20px;
 }
+
+.footer-column {
+  flex: 1 1 200px;
+}
+
+.footer-column img {
+  max-width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+.footer-column h3 {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-column ul li a:hover {
+  color: #c5231d;
+}
+
+.social-media-icons {
+  display: flex;
+  gap: 25px;
+}
+
+.social-media-icons a {
+  font-size: 1.5em;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.social-media-icons a:hover {
+  color: #c5231d;
+}
+
+
+.footer-term {
+  text-align: center;
+  padding: 10px;
+  background-color: #222222;
+  color: white;
+}
+
+.term-links {
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.term-links a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.term-links a:hover {
+  color: #c5231d;
+}
+
+/* Footer Bottom Section (Copyright) */
+.footer-bottom {
+  background-color: black;
+  color: #ffffff;
+  font-size: 0.9em;
+  padding: 10px 20px;
+  text-align: left;
+}
+

@@ -45,9 +45,9 @@ a {
 
 .sticky {
   position: fixed; /* Keep the sticky positioning */
-  top: 60px; /* Adjust this value based on your navbar height */
+  top: 20px; /* Adjust this value based on your navbar height */
   left: 0; /* Align to the left */
-  width: 100%; /* Full width */
+  width: 30%; /* Full width */
   max-width: 400px; /* Maintain max width */
   padding: 20px; /* Padding for spacing */
   background-color: transparent; /* Optional: add some transparency */
@@ -79,10 +79,10 @@ a {
     height: 100%;
   }
   .sticky {
-    
+
     background-color: #000000b2;
     
-    top: 80%;
+    top: 15%;
     
   }
   
