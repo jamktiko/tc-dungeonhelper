@@ -1,8 +1,12 @@
-<mat-card>
+<mat-card class="custom-card">
+
     <mat-card-title>Merchants</mat-card-title>
-    <mat-card-content>
-        <div *ngFor="let merchant of merchants">
-            <p>{{ merchant.name }}</p>
-        </div>
-    </mat-card-content>
+
+    <div *ngFor="let merchant of merchants">
+        <mat-card routerLink="/merchants/{{ merchant.name }}">
+            <p class="custom-text">{{ merchant.name }}</p>
+
+        </mat-card>
+    </div>
+
 </mat-card>
