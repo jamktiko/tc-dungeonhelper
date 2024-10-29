@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
+  WritableSignal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
@@ -14,7 +15,7 @@ import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
-import { filter, sample } from 'lodash';
+import { filter, get, sample } from 'lodash';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
@@ -51,7 +52,7 @@ import { MatCardModule } from '@angular/material/card';
 export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
 
-  w: number = 0;
+  w: WritableSignal<number> = signal(0);
   filteredEncounters: RandomEncounters | any;
   newEncounter: any = {
     name: '',
@@ -99,7 +100,7 @@ export class EnctableComponent implements OnInit {
           enc: biomeEncounters.enc.flatMap((enc) => enc),
         };
 
-        this.w = this.totalWeight(this.filteredEncounters.enc); // Lasketaan taulukon kokonaispaino
+        this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Lasketaan taulukon kokonaispaino
       } else {
         console.warn(`No encounters found for biome: ${biome}`);
       }
@@ -177,13 +178,13 @@ export class EnctableComponent implements OnInit {
 
   public increaseWeight(enc: any): void {
     enc.weight += 1;
-    this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
+    this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Päivitetään kokonaispaino
   }
 
   public decreaseWeight(enc: any): void {
     if (enc.weight > 0) {
       enc.weight -= 1;
-      this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
+      this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Päivitetään kokonaispaino
     }
   }
 
@@ -199,6 +200,9 @@ export class EnctableComponent implements OnInit {
     });
   }
 
+  /**
+   * Hakee encounterit servicesta ja laittaa ne getEncounters -muuttujaan.
+   */
   public getEncounters() {
     this.eservice.getEncounters().subscribe((data: any) => {
       this.getEncounters = data;
@@ -214,7 +218,6 @@ export class EnctableComponent implements OnInit {
    */
   public addEnc(): void {
     if (!this.newEncounter.name) {
-      console.error('Encounter name is required');
       this.snackBar.open('Encounter name is required', 'Close', {
         duration: 3000,
         panelClass: ['mat-snackbar-error'],
@@ -225,6 +228,8 @@ export class EnctableComponent implements OnInit {
           .addEnc(this.filteredEncounters._id, this.newEncounter)
           .subscribe(
             (response) => {
+              //Tässä voi kokeilla hakea kannasta dataa
+              this.getEncounters();
               this.filteredEncounters.enc.push(
                 response.enc[response.enc.length - 1]
               );
@@ -248,9 +253,6 @@ export class EnctableComponent implements OnInit {
             }
           );
       } else {
-        console.warn(
-          'No valid encounter to add. Please select a valid encounter first.'
-        );
         this.snackBar.open('Please select a valid encounter first', 'Close', {
           duration: 3000,
           panelClass: ['mat-snackbar-warning'],

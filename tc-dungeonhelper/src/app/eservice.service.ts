@@ -26,6 +26,8 @@ export class EserviceService {
     console.error('An error occurred', error);
     return error.message || error;
   }
+
+  // Hakee kannasta tiedot
   public getEncounters(): Observable<any> {
     return this.http.get<any>(this.apiUrl).pipe(catchError(this.handleError));
   }
