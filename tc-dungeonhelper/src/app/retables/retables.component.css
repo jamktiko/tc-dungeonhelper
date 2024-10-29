@@ -1,28 +1,10 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 
-a {
-  border: solid white 2px;
-  align-items: center;
-  gap: 5px;
-}
 
-.back {
-  background: url("/assets/Back_dungeon.png") no-repeat center center;
-  background-size: contain;
-  border: none;
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
-
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-}
 
 .grid-container {
   max-width: 800px;
-  height: 400px;
+  max-height: auto;
   margin: 0 auto;
   padding-top: 20px;
   display: grid;
@@ -63,9 +45,9 @@ a {
 
 .sticky {
   position: fixed; /* Keep the sticky positioning */
-  top: 60px; /* Adjust this value based on your navbar height */
+  top: 20px; /* Adjust this value based on your navbar height */
   left: 0; /* Align to the left */
-  width: 100%; /* Full width */
+  width: 30%; /* Full width */
   max-width: 400px; /* Maintain max width */
   padding: 20px; /* Padding for spacing */
   background-color: transparent; /* Optional: add some transparency */
@@ -97,10 +79,10 @@ a {
     height: 100%;
   }
   .sticky {
-    
+
     background-color: #000000b2;
     
-    top: 80%;
+    top: 15%;
     
   }
   
