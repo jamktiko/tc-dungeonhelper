@@ -64,14 +64,10 @@ export class EnctableComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eservice: EserviceService,
-    private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     private location: Location,
     private snackBar: MatSnackBar
   ) {}
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
 
   backClicked() {
     this.location.back();
@@ -179,14 +175,12 @@ export class EnctableComponent implements OnInit {
   public increaseWeight(enc: any): void {
     enc.weight += 1;
     this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
-    this.cdr.detectChanges();
   }
 
   public decreaseWeight(enc: any): void {
     if (enc.weight > 0) {
       enc.weight -= 1;
       this.w = this.totalWeight(this.filteredEncounters.enc); // Päivitetään kokonaispaino
-      this.cdr.detectChanges();
     }
   }
 
