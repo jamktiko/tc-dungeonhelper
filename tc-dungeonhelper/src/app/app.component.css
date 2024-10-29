@@ -1,3 +1,4 @@
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
 .main-content {
   min-height: 100vh; /* Määrittää vähimmäiskorkeudeksi koko näytön korkeuden */
 

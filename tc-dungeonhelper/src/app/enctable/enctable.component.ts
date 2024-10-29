@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
-import { filter, sample } from 'lodash';
+import { filter, sample } from 'lodash-es';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
