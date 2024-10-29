@@ -4,6 +4,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  signal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EserviceService } from '../eservice.service';
@@ -49,6 +50,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
+
   w: number = 0;
   filteredEncounters: RandomEncounters | any;
   newEncounter: any = {
@@ -58,6 +60,7 @@ export class EnctableComponent implements OnInit {
     img: '',
     _id: '',
   };
+
   isEditing: boolean = false;
   showAddEncounterModal: boolean = false; // Boolean to control modal visibility
 
@@ -93,10 +96,10 @@ export class EnctableComponent implements OnInit {
         // FlatMap eli liiskataan nestattu 'enc' taulukko
         this.filteredEncounters = {
           ...biomeEncounters,
-          enc: biomeEncounters.enc.flatMap((enc) => enc), // Flatten nested arrays
+          enc: biomeEncounters.enc.flatMap((enc) => enc),
         };
 
-        this.w = this.totalWeight(this.filteredEncounters.enc); // Calculate total weight for flattened array
+        this.w = this.totalWeight(this.filteredEncounters.enc); // Lasketaan taulukon kokonaispaino
       } else {
         console.warn(`No encounters found for biome: ${biome}`);
       }
