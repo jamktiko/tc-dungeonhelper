@@ -15,8 +15,7 @@ import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
-<<<<<<< HEAD
-import { filter, get, sample } from 'lodash';
+import { sample } from 'lodash-es';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
@@ -29,12 +28,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 
-=======
-
-import { Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { sample } from 'lodash-es';
->>>>>>> 0ff1b282e8acedda0352a3b7f906349d4d9e383c
 @Component({
   selector: 'app-enctable',
   standalone: true,
