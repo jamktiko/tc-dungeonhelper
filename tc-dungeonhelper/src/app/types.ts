@@ -10,7 +10,7 @@ export interface Enc {
   name: string;
   description: string;
   description2: string;
-  roll: number;
+  roll: string;
   weight: number;
   img: string;
 }

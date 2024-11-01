@@ -6,10 +6,19 @@
   <div class="grid-container">
     <img class="enc-img" [src]="data.encounter.img" />
     <p>{{ data.encounter.description }}</p>
-    <mat-form-field>
-      <mat-label>Roll</mat-label>
-      <input matInput [(ngModel)]="data.encounter.roll" placeholder="Enter roll value">
-    </mat-form-field>
+
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Select Die Type</mat-label>
+        <mat-select [(ngModel)]="selectedDie">
+          <mat-option *ngFor="let die of availableDice" [value]="die">{{ die }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-button (click)="rollCharacters()">Roll</button>
+    <div *ngIf="numberOfCharacters !== null">{{ numberOfCharacters }}</div>
+
     <p>{{ data.encounter.description2 }}</p>
   </div>
 </div>
