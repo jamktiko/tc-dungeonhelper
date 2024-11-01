@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { AddModalComponent } from '../add-modal/add-modal.component';
 
 @Component({
   selector: 'app-enctable',
@@ -45,6 +46,7 @@ import { MatCardModule } from '@angular/material/card';
     MatIconModule,
     MatDialogModule,
     MatCardModule,
+    AddModalComponent,
   ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
@@ -106,6 +108,8 @@ export class EnctableComponent implements OnInit {
       }
     });
   }
+
+  // 🔣🔣🔣 Painoarvojen laskentaa 🔣🔣🔣
   public totalWeight(x: Enc[] | undefined) {
     if (x == undefined) {
       return 0;
@@ -129,7 +133,7 @@ export class EnctableComponent implements OnInit {
     }
     return wX;
   }
-  /**
+  /** 🎲🎲🎲 Arpoo Encounterin 🎲🎲🎲
    * Arpoo satunnaiskohtaamisen ja palauttaa valitun Encounterin.
    * Käytää Loashin sample -metodia joka satunnaisesti valitsee alkion taulukosta
 
@@ -150,15 +154,11 @@ export class EnctableComponent implements OnInit {
     }
   }
 
-  public openAddEncounterModal() {
-    this.showAddEncounterModal = true;
-  }
-
   public goBack(): void {
     this.location.back();
   }
   /**
-   * Avaa EncounterModal -komponentin valitulla encounterilla.
+   * 🔓🔓🔓 Avaa EncounterModal -komponentin valitulla encounterilla. 🔓🔓🔓
    * Eli kun sivulla on lista esim. "Highwaymen" ja painat siitä, se valitsee kyseisen esimerkin
    * ja avaa siitä modaalin
    * @param encounter valittu encounter data
@@ -171,7 +171,22 @@ export class EnctableComponent implements OnInit {
     });
   }
 
-  // Method to close the modal
+  public addEncounterModalOpen(): void {
+    const dialogRef = this.dialog.open(AddModalComponent, {
+      data: this.newEncounter,
+      width: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.filteredEncounters.enc.push(result);
+        this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Päivitetään kokonaispaino
+        this.addEnc(result);
+      }
+    });
+  }
+
+  // 🔒🔒🔒 Modaalin sulku 🔒🔒🔒
   public closeAddEncounterModal() {
     this.showAddEncounterModal = false;
   }
@@ -200,7 +215,7 @@ export class EnctableComponent implements OnInit {
     });
   }
 
-  /**
+  /** 🔍🔍🔍🔍🔍🔍
    * Hakee encounterit servicesta ja laittaa ne getEncounters -muuttujaan.
    */
   public getEncounters() {
@@ -209,49 +224,45 @@ export class EnctableComponent implements OnInit {
     });
   }
 
-  /**
+  /** ➕➕➕ Encounterin lisäys ➕➕➕
    * Ensiksi tarkistaa onko encounterille annettu nimi.
    * Jos on, niin tarkistetaan filteredEncountersin olemassaolo ja ettei se ole null.
    * Jos se on olemassa, niin tarkistetaan seuraavaksi filteredEncounters._id;n olemassa olo ja ettei se ole null.
    * Tarkistaa kohtaamisen ja lisää uuden encounterin
    * @param
    */
-  public addEnc(): void {
-    if (!this.newEncounter.name) {
+  public addEnc(result: any): void {
+    if (!result.name) {
       this.snackBar.open('Encounter name is required', 'Close', {
         duration: 3000,
         panelClass: ['mat-snackbar-error'],
       });
     } else {
       if (this.filteredEncounters && this.filteredEncounters._id) {
-        this.eservice
-          .addEnc(this.filteredEncounters._id, this.newEncounter)
-          .subscribe(
-            (response) => {
-              //Tässä voi kokeilla hakea kannasta dataa
-              this.getEncounters();
-              this.filteredEncounters.enc.push(
-                response.enc[response.enc.length - 1]
-              );
-              this.resetForm();
-              this.closeAddEncounterModal();
-              this.snackBar.open('Encounter added successfully!', 'Close', {
+        this.eservice.addEnc(this.filteredEncounters._id, result).subscribe(
+          (response) => {
+            //Tässä voi kokeilla hakea kannasta dataa
+            this.getEncounters();
+            this.filteredEncounters.enc.push(
+              response.enc[response.enc.length - 1]
+            );
+            this.snackBar.open('Encounter added successfully!', 'Close', {
+              duration: 3000,
+              panelClass: ['mat-snackbar-success'],
+            });
+          },
+          (error) => {
+            console.error('Error adding encounter:', error);
+            this.snackBar.open(
+              'Error adding encounter: ' + error.message,
+              'Close',
+              {
                 duration: 3000,
-                panelClass: ['mat-snackbar-success'],
-              });
-            },
-            (error) => {
-              console.error('Error adding encounter:', error);
-              this.snackBar.open(
-                'Error adding encounter: ' + error.message,
-                'Close',
-                {
-                  duration: 3000,
-                  panelClass: ['mat-snackbar-error'],
-                }
-              );
-            }
-          );
+                panelClass: ['mat-snackbar-error'],
+              }
+            );
+          }
+        );
       } else {
         this.snackBar.open('Please select a valid encounter first', 'Close', {
           duration: 3000,
@@ -270,6 +281,7 @@ export class EnctableComponent implements OnInit {
     };
   }
 
+  // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
     // Check if filteredEncounters is valid and there are any edited encounters
     if (this.filteredEncounters && this.filteredEncounters.enc) {
@@ -305,7 +317,7 @@ export class EnctableComponent implements OnInit {
     }
   }
 
-  // Delete the encounter
+  // ❌❌❌ Encounterin poisto ❌❌❌
   deleteEnc(biomeId: string, encounterId: string): void {
     console.log('Filtered Encounters:', this.filteredEncounters);
     console.log(`Deleting encounter ${encounterId} from biome ${biomeId}`);
