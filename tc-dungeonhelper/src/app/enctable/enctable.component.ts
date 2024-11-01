@@ -59,6 +59,8 @@ export class EnctableComponent implements OnInit {
   newEncounter: any = {
     name: '',
     description: '',
+    description2: '',
+    roll: 0,
     weight: 1,
     img: '',
     _id: '',
@@ -154,9 +156,6 @@ export class EnctableComponent implements OnInit {
     }
   }
 
-  public goBack(): void {
-    this.location.back();
-  }
   /**
    * 🔓🔓🔓 Avaa EncounterModal -komponentin valitulla encounterilla. 🔓🔓🔓
    * Eli kun sivulla on lista esim. "Highwaymen" ja painat siitä, se valitsee kyseisen esimerkin
@@ -339,5 +338,9 @@ export class EnctableComponent implements OnInit {
     if (confirm('Are you sure you want to delete this encounter?')) {
       this.deleteEnc(biomeId, encounterId);
     }
+  }
+
+  public goBack(): void {
+    this.location.back();
   }
 }

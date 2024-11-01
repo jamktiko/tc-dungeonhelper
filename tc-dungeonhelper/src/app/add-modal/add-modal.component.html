@@ -11,6 +11,11 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-label>Secondary Description</mat-label>
+    <textarea matInput [(ngModel)]="newEncounter.description2"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Weight</mat-label>
     <input type="number" matInput [(ngModel)]="newEncounter.weight" />
   </mat-form-field>

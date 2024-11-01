@@ -9,6 +9,8 @@ export interface Enc {
   id: number;
   name: string;
   description: string;
+  description2: string;
+  roll: number;
   weight: number;
   img: string;
 }

@@ -6,5 +6,10 @@
   <div class="grid-container">
     <img class="enc-img" [src]="data.encounter.img" />
     <p>{{ data.encounter.description }}</p>
+    <mat-form-field>
+      <mat-label>Roll</mat-label>
+      <input matInput [(ngModel)]="data.encounter.roll" placeholder="Enter roll value">
+    </mat-form-field>
+    <p>{{ data.encounter.description2 }}</p>
   </div>
 </div>

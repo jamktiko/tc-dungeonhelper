@@ -4,6 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-add-modal',
   standalone: true,
@@ -15,6 +16,8 @@ export class AddModalComponent {
   newEncounter = {
     name: '',
     description: '',
+    description2: '',
+    roll: 0,
     weight: 1,
     img: '',
     _id: '',
