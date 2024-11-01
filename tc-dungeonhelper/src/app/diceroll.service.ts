@@ -11,7 +11,7 @@ export class DicerollService {
 
   roll(diceNotation: string): any {
     const dice = new DiceRoll(diceNotation);
-    return dice;
+    return dice.total;
   }
 
   // Updated to return Enc object

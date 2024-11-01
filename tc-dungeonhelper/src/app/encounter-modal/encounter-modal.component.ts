@@ -14,6 +14,9 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatOptionModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-encounter-modal',
@@ -28,6 +31,9 @@ import { MatOptionModule } from '@angular/material/core';
     MatIconModule,
     MatGridListModule,
     MatOptionModule,
+    MatCardModule,
+    MatDividerModule,
+    MatSelectModule,
   ],
   templateUrl: './encounter-modal.component.html',
   styleUrls: ['./encounter-modal.component.css'],
@@ -77,7 +83,7 @@ export class EncounterModalComponent {
   public onRoll() {
     const result = this.drs.roll(this.selectedDie); // Call your dice roll service
     console.log(`Rolled ${this.selectedDie}: ${result}`);
-    alert(`You rolled ${this.selectedDie} and got: ${result}`);
+    this.data.result = result;
   }
 
   closeClicked() {
