@@ -14,11 +14,17 @@ export interface Enc {
 }
 
 export interface Merchants {
+  _id: string;
   name: string;
+  type: string | [];
+  inventory: [];
+}
+
+export interface Items {
+  _id: string;
+  ware: string;
   type: string;
-  location: string;
-  items: {
-    itemType: string;
-    quantity: number;
-  }[];
+  cost: number;
+  weight: number;
+  quantity: number;
 }

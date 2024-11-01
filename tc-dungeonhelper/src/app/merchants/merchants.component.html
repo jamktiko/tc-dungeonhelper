@@ -1,12 +1,36 @@
-<mat-card class="custom-card">
+<form [formGroup]="merchantForm" (ngSubmit)="createMerchant()">
+    <mat-form-field>
+        <mat-label>Merchant Name</mat-label>
+        <input matInput formControlName="name" />
+    </mat-form-field>
 
-    <mat-card-title>Merchants</mat-card-title>
+    <mat-form-field>
+        <mat-label>Select Item Types</mat-label>
+        <mat-select formControlName="itemTypes" multiple>
+            <mat-option value="Weapon">Weapon</mat-option>
+            <mat-option value="Armor">Armor</mat-option>
+            <mat-option value="Gear">Gear</mat-option>
+            <mat-option value="Consumable">Consumable</mat-option>
+            <mat-option value="Magic">Magic</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <div *ngFor="let merchant of merchants">
-        <mat-card routerLink="/merchants/{{ merchant.name }}">
-            <p class="custom-text">{{ merchant.name }}</p>
+    <button mat-raised-button color="primary" type="submit">Create Merchant</button>
+</form>
+
+<mat-list>
+    <mat-list-item *ngFor="let m of merchants">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{ m.name }}</mat-card-title>
+                <button mat-icon-button routerLink="/merchants/{{ m._id }}">
+                    <mat-icon>open_in_new</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteMerchant(m._id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-header>
 
         </mat-card>
-    </div>
-
-</mat-card>
+    </mat-list-item>
+</mat-list>
