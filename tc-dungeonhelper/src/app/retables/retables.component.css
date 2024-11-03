@@ -18,18 +18,15 @@
   padding: 10px;
   margin-bottom: 10px;
 }
-.grid-item:hover {
-  color: #c5231d;
-}
-.biome-img {
-  width: 100px;
-  height: 100px;
+
+img {
+
   cursor: pointer;
   transition: transform 0.5s ease;
 }
 
-.biome-img:hover {
-  transform: scale(1.2);
+img:hover {
+  transform: scale(1.1);
 }
 a {
   color: white;
@@ -41,7 +38,7 @@ a {
 
 .sticky {
   position: fixed; /* Keep the sticky positioning */
-  top: 20px; /* Adjust this value based on your navbar height */
+  top: 40px; /* Adjust this value based on your navbar height */
   left: 0; /* Align to the left */
   width: 30%; /* Full width */
   max-width: 400px; /* Maintain max width */

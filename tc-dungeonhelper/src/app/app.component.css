@@ -1,7 +1,6 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 .main-content {
   min-height: 100vh; /* Määrittää vähimmäiskorkeudeksi koko näytön korkeuden */
-
   color: white;
   align-items: center;
   text-align: center;
@@ -10,6 +9,8 @@
   background-attachment: fixed;
   background-position: center;
 }
+
+
 @media only screen and (max-width: 600px){
   .main-content{
     background:none;
@@ -21,4 +22,5 @@
   .button-container{
     display: none;
   }
+  
 }
