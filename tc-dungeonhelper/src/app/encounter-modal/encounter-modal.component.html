@@ -1,10 +1,27 @@
-<div id="paska">
-  <div mat-dialog-actions>
-    <button class="back" img (click)="closeClicked()"></button>
+<mat-card>
+  <h1 mat-dialog-title>Encounter Details</h1>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content>
+    <p><strong>Name:</strong> {{ data.encounter.name }}</p>
+    <p><strong>Description:</strong> {{ data.encounter.description }}</p>
+    <p><strong>Roll result: </strong> {{ data.result }}</p>
+    <h2 mat-dialog-title>Roll the Dice</h2>
+
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Select Die Type</mat-label>
+        <mat-select [(ngModel)]="selectedDie">
+          <mat-option *ngFor="let die of availableDice" [value]="die">{{ die }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onRoll()">Roll</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+
+
   </div>
-  <h1 mat-dialog-title>{{ data.encounter.name }}</h1>
-  <div class="grid-container">
-    <img class="enc-img" [src]="data.encounter.img" />
-    <p>{{ data.encounter.description }}</p>
-  </div>
-</div>
+
+</mat-card>

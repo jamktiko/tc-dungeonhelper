@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RandomEncounters } from './types';
 import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 const headers = {
   headers: new HttpHeaders({
@@ -13,7 +14,7 @@ const headers = {
   providedIn: 'root',
 })
 export class EserviceService {
-  private apiUrl = 'http://localhost:3000/randomEncounters';
+  private apiUrl = environment.url;
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +27,8 @@ export class EserviceService {
     console.error('An error occurred', error);
     return error.message || error;
   }
+
+  // Hakee kannasta tiedot
   public getEncounters(): Observable<any> {
     return this.http.get<any>(this.apiUrl).pipe(catchError(this.handleError));
   }
