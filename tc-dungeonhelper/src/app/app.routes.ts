@@ -7,6 +7,7 @@ import { MerchantsComponent } from './merchants/merchants.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { AppComponent } from './app.component';
 import { MerchantDetailComponent } from './merchant-detail/merchant-detail.component';
+import { KaruselliComponent } from './karuselli/karuselli.component';
 
 export const routes: Routes = [
   { path: 'retables', component: RetablesComponent },
@@ -14,7 +15,7 @@ export const routes: Routes = [
   { path: 'biome/:biome', component: EnctableComponent },
   { path: 'merchant/', component: InventoryComponent },
   { path: 'merchants/:id', component: MerchantDetailComponent },
-
+  { path: '', component: KaruselliComponent},
   { path: 'merchants', component: MerchantsComponent },
   { path: 'dashboard', component: DashboardComponent },
 ];

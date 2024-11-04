@@ -1,0 +1,16 @@
+<div class="karuselli">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="carousel-slide"
+      [class.active]="i === currentSlide"
+      [style.backgroundImage]="'url(' + slide.image + ')'"
+    >
+      <div class="karuselli-kontsa">
+        <h2>{{ slide.title }}</h2>
+        <p>{{ slide.text }}</p>
+        <button mat-flat-button color="accent" style="background-color: #C5231D; color: white;">Subscription types</button>
+      </div>
+    </div>
+    <button class="carousel-control prev" (click)="prevSlide()" style="color: white;">&#10094;</button>
+    <button class="carousel-control next" (click)="nextSlide()" style="color: white;">&#10095;</button>
+  </div>

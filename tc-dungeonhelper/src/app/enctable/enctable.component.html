@@ -48,18 +48,16 @@
   <!-- Button container with Material buttons -->
   <div class="button-container">
     <div class="dice-container">
-      <button mat-flat-button style="background-color:#C5231D;" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing'
+      <button mat-flat-button style="background-color:#C5231D; color:white" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing'
         : 'Edit' }}</button>
     </div>
     <div class="dice-container">
-      <button mat-flat-button style="background-color:#C5231D;" [disabled]="isEditing"
+      <button mat-flat-button style="background-color:#C5231D; color:white" [disabled]="isEditing"
         (click)="rollTable()">Roll</button>
     </div>
     <div class="dice-container">
       <button mat-flat-button style="background-color:#C5231D;" [disabled]="isEditing"
-        (click)="addEncounterModalOpen()">
-        <!--Avaa uuden modaalin ja lisää uuden encounterin-->
-        Add new</button>
+        (click)="addEncounterModalOpen()">Add new</button>
     </div>
   </div>
 
