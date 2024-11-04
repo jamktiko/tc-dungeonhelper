@@ -1,20 +1,20 @@
 .merchant-container {
   background-color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding-top: 3%;
+  cursor: default;
 }
 
 .merchant-card {
-  background-color: #444;
+  background: transparent;
+
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .merchant-info-container {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 .merchant-info {
@@ -25,7 +25,7 @@
 }
 
 .even-item {
-  background-color: #666;
+  background-color: black;
 }
 
 .odd-item {
@@ -34,8 +34,8 @@
 
 .item-details {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  padding: 10px;
 }
 
 .item-metadata {
@@ -57,5 +57,5 @@
 .item-weight,
 .item-cost {
   font-size: 14px;
-  color: #999;
+  color: white;
 }

@@ -14,6 +14,10 @@
           <span class="item-quantity">Quantity: {{ items.quantity }}</span>
           <span class="item-weight">Item Weight: {{ items.weight }}</span>
           <span class="item-cost">Cost: {{ items.cost }}</span>
+          <span *ngIf="items.dmg" class="item-hd">Damage: {{ items.dmg }}</span>
+          <span *ngIf="items.rng" class="item-rng">Range: {{ items.rng}} </span>
+
+          <span *ngIf="items.ac" class="item-ac">Armor Class: {{ items.ac}} </span>
 
         </div>
       </div>

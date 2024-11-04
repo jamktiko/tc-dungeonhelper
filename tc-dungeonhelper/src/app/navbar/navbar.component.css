@@ -6,14 +6,17 @@
   align-items: center;
   background-color: black;
   overflow: hidden;
+  z-index: 1; /* Add this line */
 }
-.sidenav-container{
+.sidenav-container {
   position: sticky;
   top: 0;
   width: 100%;
+  z-index: 0;
 }
 .menu-button {
   display: none;
+  position: relative; /* Add this line */
 }
 
 .logo {
@@ -40,10 +43,7 @@
   width: 250px; /* Sidenavin leveys */
   background-color: #fff; /* Taustaväri */
   color: black; /* Tekstiväri */
-
 }
-
-
 
 mat-list-item {
   display: block; /* Varmista, että listaelementit näkyvät pystysuunnassa */
@@ -51,8 +51,6 @@ mat-list-item {
   text-decoration: none; /* Poista alleviivaus */
   color: black; /* Varmista, että teksti on musta */
 }
-
-
 
 .main-content {
   padding: 20px; /* Tai haluamasi marginaali */
@@ -73,11 +71,8 @@ mat-list-item {
     flex: none; /* Estetään asettelun venyminen pienissä ruuduissa */
   }
 
-
-
   .mat-sidenav-open {
-    overflow: hidden; /* Estää skrollauksen avattaessa sidenav */
-
-
+    overflow: visible; /* Estää skrollauksen avattaessa sidenav */
+    position: relative;
   }
 }
