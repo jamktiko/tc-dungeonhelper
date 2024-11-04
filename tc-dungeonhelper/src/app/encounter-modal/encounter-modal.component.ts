@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { RandomEncounters } from '../types';
 
 @Component({
   selector: 'app-encounter-modal',
@@ -40,36 +41,26 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   templateUrl: './encounter-modal.component.html',
   styleUrls: ['./encounter-modal.component.css'],
 })
-export class EncounterModalComponent {
+export class EncounterModalComponent implements OnInit {
   rollResult: number | null = null;
   numberOfCharacters: number | null = null;
+  filteredEncounters: RandomEncounters | any;
+  selectedDie: string;
+  availableDice: string[];
 
-  availableDice: string[] = [
-    '1d4',
-    '2d4',
-    '1d6',
-    '2d6',
-    '3d6',
-    '1d8',
-    '2d8',
-    '3d8',
-    '1d10',
-    '2d10',
-    '3d10',
-    '1d12',
-    '2d12',
-    '3d12',
-    '1d20',
-    '2d20',
-    '3d20',
-  ];
-  selectedDie: string = '1d6'; // Default to D6 or any preferred default
+  // Default to D6 or any preferred default
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<EncounterModalComponent>,
-    private location: Location,
     private drs: DicerollService
-  ) {}
+  ) {
+    this.filteredEncounters = this.data.encounter;
+    this.selectedDie = this.data.encounter.roll;
+    this.availableDice = this.drs.getAvailableDice();
+  }
+  ngOnInit() {
+    this.onRoll();
+  }
 
   // 🎲🎲🎲 arpoo encounterin, esim. maantierosvojen lukumäärän 🎲🎲🎲
   public rollEncounter() {
@@ -83,9 +74,12 @@ export class EncounterModalComponent {
   }
 
   public onRoll() {
-    const result = this.drs.roll(this.selectedDie); // Call your dice roll service
-    console.log(`Rolled ${this.selectedDie}: ${result}`);
-    this.data.result = result;
+    // Iffitys tähän, jotta ei tule erroria jos roll arvo on tyhjä
+    if (this.selectedDie) {
+      const result = this.drs.roll(this.selectedDie);
+      console.log(`Rolled ${this.selectedDie}: ${result}`);
+      this.data.result = result;
+    }
   }
 
   closeClicked() {

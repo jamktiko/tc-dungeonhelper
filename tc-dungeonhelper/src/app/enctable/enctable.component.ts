@@ -61,7 +61,7 @@ export class EnctableComponent implements OnInit {
     name: '',
     description: '',
     description2: '',
-    roll: 0,
+    roll: '',
     weight: 1,
     img: '',
     _id: '',
