@@ -1,10 +1,11 @@
-<mat-card>
+<mat-card class="modal-content">
   <h1 mat-dialog-title>Encounter Details</h1>
   <mat-divider></mat-divider>
   <div mat-dialog-content>
     <p><strong>Name:</strong> {{ data.encounter.name }}</p>
     <p><strong>Description:</strong> {{ data.encounter.description }}</p>
-    <p><strong>Roll result: </strong> {{ data.result }}</p>
+    <p *ngIf="data.encounter.roll"><strong>Roll result: </strong> {{ data.result }}</p>
+    <img *ngIf="data.encounter.img" mat-card-md-image [src]="data.encounter.img" />
     <h2 mat-dialog-title>Roll the Dice</h2>
 
     <div mat-dialog-content>
@@ -16,7 +17,7 @@
       </mat-form-field>
     </div>
 
-    <div mat-dialog-actions>
+    <div *ngIf="data.encounter.roll" mat-dialog-actions>
       <button mat-button (click)="onRoll()">Roll</button>
       <button mat-button mat-dialog-close>Cancel</button>
     </div>

@@ -48,7 +48,8 @@
   <!-- Button container with Material buttons -->
   <div class="button-container">
     <div class="dice-container">
-      <button mat-flat-button style="background-color:#C5231D; color:white" (click)="toggleEditMode()">{{ isEditing ? 'Quit editing'
+      <button mat-flat-button style="background-color:#C5231D; color:white" (click)="toggleEditMode()">{{ isEditing ?
+        'Quit editing'
         : 'Edit' }}</button>
     </div>
     <div class="dice-container">
@@ -60,32 +61,3 @@
         (click)="addEncounterModalOpen()">Add new</button>
     </div>
   </div>
-
-  <!-- Modal for adding a new encounter 
-  <ng-container *ngIf="showAddEncounterModal">
-    <div class="modal">
-      <div class="modal-content">
-        <span class="close" (click)="closeAddEncounterModal()">&times;</span>
-        <h4>Add New Encounter</h4>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="newEncounter.name" placeholder="Encounter Name" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-          <textarea matInput [(ngModel)]="newEncounter.description" placeholder="Encounter Description"></textarea>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Weight</mat-label>
-          <input matInput [(ngModel)]="newEncounter.weight" type="number" min="1" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Image</mat-label>
-          <input matInput [(ngModel)]="newEncounter.img" placeholder="Image URL" />
-        </mat-form-field>
-        <button mat-button color="primary" (click)="addEnc()">Add Encounter</button>
-      </div>
-    </div>
-  </ng-container>
-</div>
--->

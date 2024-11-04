@@ -13,7 +13,7 @@ import { Enc, RandomEncounters } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
 import { sample } from 'lodash-es';
 import { Location } from '@angular/common';
@@ -56,6 +56,7 @@ export class EnctableComponent implements OnInit {
 
   w: WritableSignal<number> = signal(0);
   filteredEncounters: RandomEncounters | any;
+  dialogConfig = new MatDialogConfig();
   newEncounter: any = {
     name: '',
     description: '',

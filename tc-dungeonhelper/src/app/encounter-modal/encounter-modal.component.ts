@@ -17,6 +17,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-encounter-modal',
@@ -34,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatDividerModule,
     MatSelectModule,
+    MatSlideToggleModule,
   ],
   templateUrl: './encounter-modal.component.html',
   styleUrls: ['./encounter-modal.component.css'],

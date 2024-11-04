@@ -7,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
 import { MatCardImage } from '@angular/material/card';
 import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-add-modal',
@@ -19,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
     MatGridListModule,
     MatCardImage,
     MatCardModule,
+    MatSlideToggleModule,
   ],
   templateUrl: './add-modal.component.html',
   styleUrl: './add-modal.component.css',

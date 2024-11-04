@@ -1,19 +1,8 @@
-#paska{
-  background-color: #222222;
-
-}
 h1[mat-dialog-title] {
-  color: #C5231D;
+  color: #c5231d;
 }
 
-.enc-img {
-  max-width: 30% !important;
-  border-radius: 15px;
-  margin: 0 auto !important;
-}
-.grid-container{
-  margin: 20px;
-  display: inline-flex;
-  gap: 20px;
-  color: white;
+.modal-content {
+  overflow-y: auto;
+  max-height: 90vh; /* adjust this value to your liking */
 }

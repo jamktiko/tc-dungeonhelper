@@ -13,7 +13,6 @@
   animation-iteration-count: infinite;
 }
 
-
 @keyframes shake {
   0% {
     transform: translate(1px, 1px) rotate(0deg);
@@ -319,17 +318,16 @@
     transform: translate(1px, 1px) rotate(360deg);
   }
 }
-.item-percent1{
+.item-percent1 {
   display: none;
 }
 .encounter-container {
-
   margin-left: 20%;
   margin-right: 20%;
   cursor: default;
   padding-top: 3%;
 }
-mat-card-title{
+mat-card-title {
   color: #c5231d;
   font-size: 1.6rem;
   font-weight: 500;
@@ -434,7 +432,7 @@ p {
   font-size: 20px;
   text-align: center;
 }
-mat-button{
+mat-button {
   background-color: aqua;
 }
 

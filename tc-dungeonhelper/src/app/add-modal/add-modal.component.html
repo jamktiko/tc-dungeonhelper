@@ -9,11 +9,10 @@
     <mat-label>Description</mat-label>
     <textarea matInput [(ngModel)]="newEncounter.description"></textarea>
   </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Secondary Description</mat-label>
-    <textarea matInput [(ngModel)]="newEncounter.description2"></textarea>
-  </mat-form-field>
+  <!--Slide toggle sitä varten jos haluaa lisätä mahdollisuuden rollata-->
+  <mat-slide-toggle [(ngModel)]="newEncounter.roll">
+    <mat-label>Include Roll</mat-label>
+  </mat-slide-toggle>
 
   <mat-form-field>
     <mat-label>Weight</mat-label>
