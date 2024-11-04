@@ -1,12 +1,16 @@
 .merchant-container {
-  background-color: #333;
   padding-top: 3%;
   cursor: default;
+  margin-left: 20%;
+  margin-right: 20%;
 }
-
+mat-card-title{
+  color: #C5231D;
+  font-size: 25px;
+  font-weight: 600;
+}
 .merchant-card {
   background: transparent;
-
   padding: 20px;
   border-radius: 10px;
 }
@@ -29,7 +33,7 @@
 }
 
 .odd-item {
-  background-color: #777;
+  background-color: #222222;
 }
 
 .item-details {
@@ -41,21 +45,50 @@
 .item-metadata {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding-left: 14%;
+  position: relative;
 }
+
 
 .item-number {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 28px;
+  margin-right: 10px;
 }
 
 .item-name {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .item-type,
 .item-quantity,
 .item-weight,
+.item-hd,
+.item-rng,
+.item-ac {
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 4px;
+}
 .item-cost {
+  position: absolute;
+  right: 10px;
+  top: 0;
   font-size: 14px;
+  padding: 4px 8px;
+  background-color: red;
   color: white;
+  font-weight: bold;
+}
+@media only screen and (max-width: 600px) {
+  .item-metadata{
+    padding-left: 0;
+  }
+  .item-cost{
+    position: static;
+    align-self: center;
+    margin-top: 8px;
+  }
 }
