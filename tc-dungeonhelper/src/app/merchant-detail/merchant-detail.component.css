@@ -1,0 +1,61 @@
+.merchant-container {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.merchant-card {
+  background-color: #444;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.merchant-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.merchant-info {
+  background-color: #555;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.even-item {
+  background-color: #666;
+}
+
+.odd-item {
+  background-color: #777;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.item-metadata {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-number {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.item-name {
+  font-size: 16px;
+}
+
+.item-type,
+.item-quantity,
+.item-weight,
+.item-cost {
+  font-size: 14px;
+  color: #999;
+}

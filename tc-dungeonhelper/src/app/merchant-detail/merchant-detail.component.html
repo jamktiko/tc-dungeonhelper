@@ -1,24 +1,22 @@
 <div class="merchant-container">
-  <mat-card-title> {{ specificMerchant?.name }}</mat-card-title>
+  <mat-card-title>{{ specificMerchant?.name }}</mat-card-title>
 
-  <mat-card>
-    <div class="merchant-info" *ngFor="let items of specificMerchant?.inventory; let i = index"
-      [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}">
-      <span class="item-number">{{ i + 1 }} </span>
-      <span class="item-name"> Item: {{ items.ware }}</span>
+  <mat-card class="merchant-card">
+    <div class="merchant-info-container">
+      <div class="merchant-info" *ngFor="let items of specificMerchant?.inventory; let i = index"
+        [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}">
+        <div class="item-details">
+          <span class="item-number">{{ i + 1 }}</span>
+          <span class="item-name">Item: {{ items.ware }}</span>
+        </div>
+        <div class="item-metadata">
+          <span class="item-type">Type: {{ items.type }}</span>
+          <span class="item-quantity">Quantity: {{ items.quantity }}</span>
+          <span class="item-weight">Item Weight: {{ items.weight }}</span>
+          <span class="item-cost">Cost: {{ items.cost }}</span>
 
-      <span class="item-type"> Type: {{ items.type }}</span>
-
-      <span class="item-quantity"> Quantity: {{ items.quantity }}</span>
-
-      <span class="item-weight"> Item Weight: {{ items.weight }}</span>
-
-      <span class="item-cost"> Cost: {{ items.cost }}</span>
-
-
-
-
-
+        </div>
+      </div>
     </div>
   </mat-card>
 </div>
