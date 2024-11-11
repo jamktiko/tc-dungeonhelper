@@ -283,6 +283,7 @@ export class EnctableComponent implements OnInit {
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
+    localStorage.setItem('encounters', JSON.stringify(this.filteredEncounters));
     // Check if filteredEncounters is valid and there are any edited encounters
     if (this.filteredEncounters && this.filteredEncounters.enc) {
       this.filteredEncounters.enc.forEach((enc: any) => {
