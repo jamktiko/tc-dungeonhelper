@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  position: relative; /* This is crucial for absolute positioning inside */
+  position: relative; 
 }
 
 .grid-item {
@@ -38,13 +38,13 @@ a {
 
 .sticky {
   position: fixed; /* Keep the sticky positioning */
-  top: 40px; /* Adjust this value based on your navbar height */
+  top: 100px; /* Adjust this value based on your navbar height */
   left: 0; /* Align to the left */
   width: 30%; /* Full width */
-  max-width: 400px; /* Maintain max width */
-  padding: 20px; /* Padding for spacing */
+  max-width: 400px;
+  
   background-color: transparent; /* Optional: add some transparency */
-  z-index: 100; /* Ensure it appears above other content */
+  z-index: 100; 
 }
 
 .title {
@@ -75,7 +75,7 @@ a {
 
     background-color: #000000b2;
     
-    top: 15%;
+    top: 30%;
     
   }
   

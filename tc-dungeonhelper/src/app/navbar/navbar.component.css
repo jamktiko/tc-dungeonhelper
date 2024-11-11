@@ -6,17 +6,12 @@
   align-items: center;
   background-color: black;
   overflow: hidden;
-  z-index: 1; /* Add this line */
+  z-index: 1;
 }
-.sidenav-container {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
+
 .menu-button {
   display: none;
-  position: relative; /* Add this line */
+  position: relative;
 }
 
 .logo {
@@ -40,9 +35,12 @@
 }
 
 .side-nav {
-  width: 250px; /* Sidenavin leveys */
-  background-color: #fff; /* Taustaväri */
-  color: black; /* Tekstiväri */
+  width: 250px; 
+  height: 200px;
+  background-color: #ffffff;
+  color: black; 
+  position: fixed;
+  z-index: 1000;
 }
 
 mat-list-item {
@@ -74,5 +72,8 @@ mat-list-item {
   .mat-sidenav-open {
     overflow: visible; /* Estää skrollauksen avattaessa sidenav */
     position: relative;
+  }
+  #pdf{
+    display: none;
   }
 }
