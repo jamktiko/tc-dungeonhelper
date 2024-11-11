@@ -4,6 +4,7 @@ html,
 body {
   min-height: 100vh;
   background-color: #000000;
+  font-family: 'Faculty';
 }
 body {
   margin: 0;
@@ -23,4 +24,10 @@ body {
 
 .mat-card {
   background-color: #000000;
+}
+@font-face {
+  font-family: 'Faculty';
+  src:  url('../public/assets/font/FacultyGlyphic-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
 }

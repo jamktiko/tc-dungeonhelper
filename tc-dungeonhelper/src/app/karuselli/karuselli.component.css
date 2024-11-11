@@ -50,3 +50,18 @@
     right: 10px; /* oikealle */
   }
   
+  @media only screen and (max-width: 600px) {
+    .karuselli-kontsa{
+      text-align: left;
+      left: 30px;
+      font-size: 15px;
+      margin-left: 30px;
+      margin-right: 30px;
+      top: 40%;
+      max-width: 300px;
+
+    }
+    h2{
+      font-size: 26px;
+    }
+  }

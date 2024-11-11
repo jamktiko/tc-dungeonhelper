@@ -7,6 +7,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   position: relative; 
+
+
 }
 
 .grid-item {
@@ -17,6 +19,8 @@
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
+
+
 }
 
 img {

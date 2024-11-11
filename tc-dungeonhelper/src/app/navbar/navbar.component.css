@@ -6,7 +6,13 @@
   align-items: center;
   background-color: black;
   overflow: hidden;
-  z-index: 1;
+  z-index: 1000;
+}
+.sidenav-container{
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .menu-button {
@@ -37,22 +43,21 @@
 .side-nav {
   width: 250px; 
   height: 200px;
-  background-color: #ffffff;
-  color: black; 
+
+  background-color: #000000;
+  color: rgb(255, 255, 255); 
   position: fixed;
   z-index: 1000;
 }
 
 mat-list-item {
   display: block; /* Varmista, että listaelementit näkyvät pystysuunnassa */
-  padding: 10px 20px; /* Mukautettu tyylitys */
+  
   text-decoration: none; /* Poista alleviivaus */
   color: black; /* Varmista, että teksti on musta */
 }
 
-.main-content {
-  padding: 20px; /* Tai haluamasi marginaali */
-}
+
 
 /* Mobiilivalikko */
 @media only screen and (max-width: 600px) {
@@ -73,7 +78,5 @@ mat-list-item {
     overflow: visible; /* Estää skrollauksen avattaessa sidenav */
     position: relative;
   }
-  #pdf{
-    display: none;
-  }
+
 }
