@@ -2,7 +2,7 @@
 
 
   <div class="palkki">
-    <button mat-flat-button>Back</button>
+    <button mat-flat-button routerLink="/retables">Back</button>
     <mat-card-title>{{ filteredEncounters.biome }}</mat-card-title>
     <button mat-flat-button style="background-color:#C5231D; color:white" (click)="toggleEditMode()">{{ isEditing ?
       'Quit editing'

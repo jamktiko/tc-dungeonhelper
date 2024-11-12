@@ -28,6 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { AddModalComponent } from '../add-modal/add-modal.component';
+import { RetablesComponent } from '../retables/retables.component';
+
 
 @Component({
   selector: 'app-enctable',
@@ -40,13 +42,13 @@ import { AddModalComponent } from '../add-modal/add-modal.component';
     MatButton,
     MatButtonModule,
     MatProgressSpinnerModule,
-    EncounterModalComponent,
+
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatDialogModule,
     MatCardModule,
-    AddModalComponent,
+
   ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',

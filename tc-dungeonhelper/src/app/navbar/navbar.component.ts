@@ -13,10 +13,9 @@ import { MatListModule } from '@angular/material/list';
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    RouterOutlet,
-    RetablesComponent,
+
     RouterModule,
-    MerchantsComponent,
+
     MatButtonModule,
     CommonModule,
     MatToolbarModule,
