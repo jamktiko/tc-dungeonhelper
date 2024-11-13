@@ -5,7 +5,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavbarComponent,RetablesComponent, MatGridListModule],
+  imports: [MatGridListModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

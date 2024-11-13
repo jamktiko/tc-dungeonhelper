@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
   selector: 'app-retables',
   standalone: true,
   imports: [
-    RouterOutlet,
+
     CommonModule,
     NgFor,
     NgIf,

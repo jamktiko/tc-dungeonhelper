@@ -24,7 +24,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatInputModule,
     FormsModule,
     MatGridListModule,
-    MatCardImage,
+
     MatCardModule,
     MatSlideToggleModule,
     MatRadioModule,
