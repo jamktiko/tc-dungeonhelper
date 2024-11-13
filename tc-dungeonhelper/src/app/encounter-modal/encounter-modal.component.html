@@ -6,21 +6,6 @@
     <p><strong>Description:</strong> {{ data.encounter.description }}</p>
     <p *ngIf="data.encounter.roll"><strong>Roll result: </strong> {{ data.result }}</p>
     <img *ngIf="data.encounter.img" mat-card-md-image [src]="data.encounter.img" />
-    <h2 mat-dialog-title>Roll the Dice</h2>
-
-    <div mat-dialog-content>
-      <mat-form-field>
-        <mat-label>Select Die Type</mat-label>
-        <mat-select [(ngModel)]="selectedDie">
-          <mat-option *ngFor="let die of availableDice" [value]="die">{{ die }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div *ngIf="data.encounter.roll" mat-dialog-actions>
-      <button mat-button (click)="onRoll()">Roll</button>
-      <button mat-button mat-dialog-close>Cancel</button>
-    </div>
 
 
   </div>

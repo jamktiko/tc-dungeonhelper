@@ -33,6 +33,11 @@
       <textarea matInput [(ngModel)]="enc.description"></textarea>
     </mat-form-field>
 
+    <mat-form-field *ngIf="enc.isEditing">
+      <mat-label>Roll</mat-label>
+      <input matInput [(ngModel)]="enc.roll" />
+    </mat-form-field>
+
     <div *ngIf="isEditing" class="item-weight-container">
       <div class="weight-percent-container">
         <span class="item-weight">{{ enc.weight }}</span>
