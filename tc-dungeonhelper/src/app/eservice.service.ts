@@ -50,6 +50,10 @@ export class EserviceService {
       .pipe(catchError(this.handleError));
   }
 
+  allSave(biomeId: string, encounters: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${biomeId}/saveAll`, { encounters });
+  }
+
   saveEnc(biomeId: string, encId: string, updatedData: any): Observable<any> {
     return this.http.put(
       `${this.apiUrl}/saveEnc/${biomeId}/${encId}`,

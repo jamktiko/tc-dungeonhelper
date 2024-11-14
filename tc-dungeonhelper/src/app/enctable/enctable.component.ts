@@ -31,8 +31,6 @@ import { AddModalComponent } from '../add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-
-
 @Component({
   selector: 'app-enctable',
   standalone: true,
@@ -50,7 +48,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatIconModule,
     MatDialogModule,
     MatCardModule,
-
   ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
@@ -85,7 +82,7 @@ export class EnctableComponent implements OnInit {
   backClicked() {
     this.location.back();
   }
-  
+
   /**
    * Fetchaa satunnaiskohtaamistiedot Eservicestä ja suodattaa ne
    *
@@ -176,6 +173,7 @@ export class EnctableComponent implements OnInit {
   }
 
   public addEncounterModalOpen(): void {
+    this.isEditing = true;
     const dialogRef = this.dialog.open(AddModalComponent, {
       data: this.newEncounter,
       width: '300px',
@@ -287,6 +285,7 @@ export class EnctableComponent implements OnInit {
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
+    this.isEditing = false;
     localStorage.setItem('encounters', JSON.stringify(this.filteredEncounters));
     // Check if filteredEncounters is valid and there are any edited encounters
     if (this.filteredEncounters && this.filteredEncounters.enc) {
@@ -321,6 +320,37 @@ export class EnctableComponent implements OnInit {
       });
     }
   }
+
+  allSave() {
+    this.isEditing = false;
+    localStorage.setItem('encounters', JSON.stringify(this.filteredEncounters));
+    this.eservice
+      .allSave(this.filteredEncounters._id, this.filteredEncounters.enc)
+      .subscribe(
+        (response) => {
+          console.log('All encounters saved:', response);
+          // Display a snackbar notification
+          this.snackBar.open('All encounters saved successfully!', 'Close', {
+            duration: 3000,
+            panelClass: ['mat-snackbar-success'],
+          });
+        },
+        (error) => {
+          console.error('Error saving all encounters:', error);
+          // Display a snackbar notification with an error message
+          this.snackBar.open(
+            'Error saving all encounters: ' + error.message,
+            'Close',
+            {
+              duration: 3000,
+              panelClass: ['mat-snackbar-error'],
+            }
+          );
+        }
+      );
+  }
+
+  // ���️���️���️ Encounterin muokkaus ���️���️���️
 
   // ❌❌❌ Encounterin poisto ❌❌❌
   deleteEnc(biomeId: string, encounterId: string): void {
