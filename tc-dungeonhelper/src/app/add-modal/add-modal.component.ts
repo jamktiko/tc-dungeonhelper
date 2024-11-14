@@ -51,6 +51,10 @@ export class AddModalComponent implements OnInit {
   selectedDie: string | undefined;
   isDisabled = true; // or false
 
+  displayDie(die: any): string {
+    return die;
+  }
+
   newEncounter = {
     name: '',
     description: '',

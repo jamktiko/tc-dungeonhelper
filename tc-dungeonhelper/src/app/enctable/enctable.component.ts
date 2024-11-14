@@ -70,6 +70,8 @@ export class EnctableComponent implements OnInit {
 
   isEditing: boolean = false;
   showAddEncounterModal: boolean = false; // Boolean to control modal visibility
+  encountersData: any;
+  selectedDie: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -173,7 +175,6 @@ export class EnctableComponent implements OnInit {
   }
 
   public addEncounterModalOpen(): void {
-    this.isEditing = true;
     const dialogRef = this.dialog.open(AddModalComponent, {
       data: this.newEncounter,
       width: '300px',
@@ -222,7 +223,7 @@ export class EnctableComponent implements OnInit {
    */
   public getEncounters() {
     this.eservice.getEncounters().subscribe((data: any) => {
-      this.getEncounters = data;
+      this.encountersData = data;
     });
   }
 
@@ -234,38 +235,47 @@ export class EnctableComponent implements OnInit {
    * @param
    */
   public addEnc(result: any): void {
+    console.log('addEnc() called with result:', result);
     if (!result.name) {
+      console.log('Encounter name is required');
       this.snackBar.open('Encounter name is required', 'Close', {
         duration: 3000,
         panelClass: ['mat-snackbar-error'],
       });
     } else {
       if (this.filteredEncounters && this.filteredEncounters._id) {
-        this.eservice.addEnc(this.filteredEncounters._id, result).subscribe(
-          (response) => {
-            //Tässä voi kokeilla hakea kannasta dataa
-            this.getEncounters();
-            this.filteredEncounters.enc.push(
-              response.enc[response.enc.length - 1]
-            );
-            this.snackBar.open('Encounter added successfully!', 'Close', {
-              duration: 3000,
-              panelClass: ['mat-snackbar-success'],
-            });
-          },
-          (error) => {
-            console.error('Error adding encounter:', error);
-            this.snackBar.open(
-              'Error adding encounter: ' + error.message,
-              'Close',
-              {
+        console.log('Filtered encounters and ID exist');
+        this.eservice
+          .addEnc(this.filteredEncounters._id, {
+            ...result,
+            die: this.selectedDie,
+          })
+          .subscribe(
+            (response) => {
+              console.log('Encounter added:', response);
+              this.getEncounters();
+              this.filteredEncounters.enc.push(
+                response.enc[response.enc.length - 1]
+              );
+              this.snackBar.open('Encounter added successfully!', 'Close', {
                 duration: 3000,
-                panelClass: ['mat-snackbar-error'],
-              }
-            );
-          }
-        );
+                panelClass: ['mat-snackbar-success'],
+              });
+            },
+            (error) => {
+              console.error('Error adding encounter:', error);
+              this.snackBar.open(
+                'Error adding encounter: ' + error.message,
+                'Close',
+                {
+                  duration: 3000,
+                  panelClass: ['mat-snackbar-error'],
+                }
+              );
+            }
+          );
       } else {
+        console.log('Valid encounter not selected');
         this.snackBar.open('Please select a valid encounter first', 'Close', {
           duration: 3000,
           panelClass: ['mat-snackbar-warning'],
@@ -285,10 +295,14 @@ export class EnctableComponent implements OnInit {
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
+    console.log('saveEnc() called');
     // Check if filteredEncounters is valid and there are any edited encounters
     if (this.filteredEncounters && this.filteredEncounters.enc) {
+      console.log('Encounters to save:', this.filteredEncounters.enc);
       this.filteredEncounters.enc.forEach((enc: any) => {
+        console.log('Encounter to save:', enc);
         if (enc.isEditing) {
+          console.log('Encounter to save is being edited');
           // Call the service to save the encounter
           this.eservice
             .saveEnc(this.filteredEncounters._id, enc._id, enc)
@@ -316,6 +330,8 @@ export class EnctableComponent implements OnInit {
             );
         }
       });
+    } else {
+      console.log('No edited encounters found');
     }
   }
 

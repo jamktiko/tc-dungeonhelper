@@ -14,9 +14,8 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label *ngIf="!selectedDie">Select Die</mat-label>
-      <mat-label *ngIf="selectedDie">{{ selectedDie }}</mat-label>
-      <mat-select [(ngModel)]="selectedDie">
+      <mat-label>Choose a die</mat-label>
+      <mat-select [(ngModel)]="selectedDie" name="selectedDie">
         <mat-option *ngFor="let die of availableDice">
           {{ die }}
         </mat-option>
