@@ -1,11 +1,4 @@
-.roll {
-  background: url("/assets/noppa-ikoni-tyhja.png") no-repeat center center;
-  background-size: contain;
-  border: none;
-  width: 150px;
-  height: 150px;
-  cursor: pointer;
-}
+
 .palkki {
   display: flex;
   justify-content: space-between;
@@ -28,326 +21,74 @@
   left: 50%;                  
   transform: translateX(-50%);
 }
-.roll:hover {
-  animation: shake 1.6s;
-
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px) rotate(0deg);
-  }
-  1% {
-    transform: translate(1px, 1px) rotate(3.6deg);
-  }
-  2% {
-    transform: translate(1px, 1px) rotate(7.2deg);
-  }
-  3% {
-    transform: translate(1px, 1px) rotate(10.8deg);
-  }
-  4% {
-    transform: translate(1px, 1px) rotate(14.4deg);
-  }
-  5% {
-    transform: translate(1px, 1px) rotate(18deg);
-  }
-  6% {
-    transform: translate(1px, 1px) rotate(21.6deg);
-  }
-  7% {
-    transform: translate(1px, 1px) rotate(25.2deg);
-  }
-  8% {
-    transform: translate(1px, 1px) rotate(28.8deg);
-  }
-  9% {
-    transform: translate(1px, 1px) rotate(32.4deg);
-  }
-  10% {
-    transform: translate(1px, 1px) rotate(36deg);
-  }
-  11% {
-    transform: translate(1px, 1px) rotate(39.6deg);
-  }
-  12% {
-    transform: translate(1px, 1px) rotate(43.2deg);
-  }
-  13% {
-    transform: translate(1px, 1px) rotate(46.8deg);
-  }
-  14% {
-    transform: translate(1px, 1px) rotate(50.4deg);
-  }
-  15% {
-    transform: translate(1px, 1px) rotate(54deg);
-  }
-  16% {
-    transform: translate(1px, 1px) rotate(57.6deg);
-  }
-  17% {
-    transform: translate(1px, 1px) rotate(61.2deg);
-  }
-  18% {
-    transform: translate(1px, 1px) rotate(64.8deg);
-  }
-  19% {
-    transform: translate(1px, 1px) rotate(68.4deg);
-  }
-  20% {
-    transform: translate(1px, 1px) rotate(72deg);
-  }
-  21% {
-    transform: translate(1px, 1px) rotate(75.6deg);
-  }
-  22% {
-    transform: translate(1px, 1px) rotate(79.2deg);
-  }
-  23% {
-    transform: translate(1px, 1px) rotate(82.8deg);
-  }
-  24% {
-    transform: translate(1px, 1px) rotate(86.4deg);
-  }
-  25% {
-    transform: translate(1px, 1px) rotate(90deg);
-  }
-  26% {
-    transform: translate(1px, 1px) rotate(93.6deg);
-  }
-  27% {
-    transform: translate(1px, 1px) rotate(97.2deg);
-  }
-  28% {
-    transform: translate(1px, 1px) rotate(100.8deg);
-  }
-  29% {
-    transform: translate(1px, 1px) rotate(104.4deg);
-  }
-  30% {
-    transform: translate(1px, 1px) rotate(108deg);
-  }
-  31% {
-    transform: translate(1px, 1px) rotate(111.6deg);
-  }
-  32% {
-    transform: translate(1px, 1px) rotate(115.2deg);
-  }
-  33% {
-    transform: translate(1px, 1px) rotate(118.8deg);
-  }
-  34% {
-    transform: translate(1px, 1px) rotate(122.4deg);
-  }
-  35% {
-    transform: translate(1px, 1px) rotate(126deg);
-  }
-  36% {
-    transform: translate(1px, 1px) rotate(129.6deg);
-  }
-  37% {
-    transform: translate(1px, 1px) rotate(133.2deg);
-  }
-  38% {
-    transform: translate(1px, 1px) rotate(136.8deg);
-  }
-  39% {
-    transform: translate(1px, 1px) rotate(140.4deg);
-  }
-  40% {
-    transform: translate(1px, 1px) rotate(144deg);
-  }
-  41% {
-    transform: translate(1px, 1px) rotate(147.6deg);
-  }
-  42% {
-    transform: translate(1px, 1px) rotate(151.2deg);
-  }
-  43% {
-    transform: translate(1px, 1px) rotate(154.8deg);
-  }
-  44% {
-    transform: translate(1px, 1px) rotate(158.4deg);
-  }
-  45% {
-    transform: translate(1px, 1px) rotate(162deg);
-  }
-  46% {
-    transform: translate(1px, 1px) rotate(165.6deg);
-  }
-  47% {
-    transform: translate(1px, 1px) rotate(169.2deg);
-  }
-  48% {
-    transform: translate(1px, 1px) rotate(172.8deg);
-  }
-  49% {
-    transform: translate(1px, 1px) rotate(176.4deg);
-  }
-  50% {
-    transform: translate(1px, 1px) rotate(180deg);
-  }
-  51% {
-    transform: translate(1px, 1px) rotate(183.6deg);
-  }
-  52% {
-    transform: translate(1px, 1px) rotate(187.2deg);
-  }
-  53% {
-    transform: translate(1px, 1px) rotate(190.8deg);
-  }
-  54% {
-    transform: translate(1px, 1px) rotate(194.4deg);
-  }
-  55% {
-    transform: translate(1px, 1px) rotate(198deg);
-  }
-  56% {
-    transform: translate(1px, 1px) rotate(201.6deg);
-  }
-  57% {
-    transform: translate(1px, 1px) rotate(205.2deg);
-  }
-  58% {
-    transform: translate(1px, 1px) rotate(208.8deg);
-  }
-  59% {
-    transform: translate(1px, 1px) rotate(212.4deg);
-  }
-  60% {
-    transform: translate(1px, 1px) rotate(216deg);
-  }
-  61% {
-    transform: translate(1px, 1px) rotate(219.6deg);
-  }
-  62% {
-    transform: translate(1px, 1px) rotate(223.2deg);
-  }
-  63% {
-    transform: translate(1px, 1px) rotate(226.8deg);
-  }
-  64% {
-    transform: translate(1px, 1px) rotate(230.4deg);
-  }
-  65% {
-    transform: translate(1px, 1px) rotate(234deg);
-  }
-  66% {
-    transform: translate(1px, 1px) rotate(237.6deg);
-  }
-  67% {
-    transform: translate(1px, 1px) rotate(241.2deg);
-  }
-  68% {
-    transform: translate(1px, 1px) rotate(244.8deg);
-  }
-  69% {
-    transform: translate(1px, 1px) rotate(248.4deg);
-  }
-  70% {
-    transform: translate(1px, 1px) rotate(252deg);
-  }
-  71% {
-    transform: translate(1px, 1px) rotate(255.6deg);
-  }
-  72% {
-    transform: translate(1px, 1px) rotate(259.2deg);
-  }
-  73% {
-    transform: translate(1px, 1px) rotate(262.8deg);
-  }
-  74% {
-    transform: translate(1px, 1px) rotate(266.4deg);
-  }
-  75% {
-    transform: translate(1px, 1px) rotate(270deg);
-  }
-  76% {
-    transform: translate(1px, 1px) rotate(273.6deg);
-  }
-  77% {
-    transform: translate(1px, 1px) rotate(277.2deg);
-  }
-  78% {
-    transform: translate(1px, 1px) rotate(280.8deg);
-  }
-  79% {
-    transform: translate(1px, 1px) rotate(284.4deg);
-  }
-  80% {
-    transform: translate(1px, 1px) rotate(288deg);
-  }
-  81% {
-    transform: translate(1px, 1px) rotate(291.6deg);
-  }
-  82% {
-    transform: translate(1px, 1px) rotate(295.2deg);
-  }
-  83% {
-    transform: translate(1px, 1px) rotate(298.8deg);
-  }
-  84% {
-    transform: translate(1px, 1px) rotate(302.4deg);
-  }
-  85% {
-    transform: translate(1px, 1px) rotate(306deg);
-  }
-  86% {
-    transform: translate(1px, 1px) rotate(309.6deg);
-  }
-  87% {
-    transform: translate(1px, 1px) rotate(313.2deg);
-  }
-  88% {
-    transform: translate(1px, 1px) rotate(316.8deg);
-  }
-  89% {
-    transform: translate(1px, 1px) rotate(320.4deg);
-  }
-  90% {
-    transform: translate(1px, 1px) rotate(324deg);
-  }
-  91% {
-    transform: translate(1px, 1px) rotate(327.6deg);
-  }
-  92% {
-    transform: translate(1px, 1px) rotate(331.2deg);
-  }
-  93% {
-    transform: translate(1px, 1px) rotate(334.8deg);
-  }
-  94% {
-    transform: translate(1px, 1px) rotate(338.4deg);
-  }
-  95% {
-    transform: translate(1px, 1px) rotate(342deg);
-  }
-  96% {
-    transform: translate(1px, 1px) rotate(345.6deg);
-  }
-  97% {
-    transform: translate(1px, 1px) rotate(349.2deg);
-  }
-  98% {
-    transform: translate(1px, 1px) rotate(352.8deg);
-  }
-  99% {
-    transform: translate(1px, 1px) rotate(356.4deg);
-  }
-  100% {
-    transform: translate(1px, 1px) rotate(360deg);
-  }
-}
-.item-percent1 {
+.edit-mode .editti{
   display: none;
 }
+
 .encounter-container {
   margin-left: 20%;
   margin-right: 20%;
   cursor: default;
-  padding-top: 80px;
+  padding-top: 70px;
+}
+.item-percent1{
+  color: darkorange;
+}
+.item-percent{
+  color: darkorange;
+
+}
+.edit-mode .item-percent1{
+  display: none;
+}
+
+.encounter-container.edit-mode .item-percent{
+  flex-direction: column;
+}
+
+.formi-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+mat-label {
+  font-size: 1rem;
+  color: #ffa600;
+}
+
+.formi{
+  height: 160px;
+  overflow: visible;
+  padding-bottom: 0;
+}
+.left-fields {
+  display: flex;
+  max-width: 200px;
+  height: 100px;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 15px;
+  gap: 10px;
+  align-items: center;
+
+}
+
+.right-field {
+  height: 160px;
+  overflow: visible;
+  gap: 10px;
+  height: 170px;
+  flex: 4; /* Description-kenttä on isompi oikealla */
+  max-width: 400px;
+}
+.right-controls{
+  display: flex;
+  align-items: center;
+}
+
+.formi-container .right-field mat-form-field {
+
+  width: 350px; /* Voi säätää korkeutta isommaksi tarvittaessa */
 }
 mat-card-title {
   color: #c5231d;
@@ -358,9 +99,9 @@ mat-card-title {
 
 .encounter-item {
   display: flex;
-
   align-items: center;
-  padding: 10px;
+  padding: 20px;
+
 }
 
 .item-weight-container {
@@ -373,19 +114,16 @@ mat-card-title {
   flex-direction: column;
   margin-left: 10px;
 }
-
+.item-name{
+  margin-left: -70px;
+}
 .item-number,
 .item-name {
+  
   flex: 1;
   text-align: left;
 }
-.item-wight,
-.item-percent {
-  color: aquamarine;
-  flex: 1;
-  padding: 10px;
-  text-align: right;
-}
+
 
 .even-item {
   background-color: #222222;
@@ -401,7 +139,7 @@ mat-card-title {
 
 /* Modal styles */
 .modal {
-  background-color: #000000;
+  background-color: #ff0000;
   display: flex;
   flex-direction: column;
 
@@ -418,23 +156,23 @@ mat-card-title {
   background-color: #c5231d;
   color: black;
 }
-.button-container {
+.dice-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  padding-top: 20px;
-}
-
-.dice-container {
-  display: flex;
-  flex-direction: column; /* Arrange button and text vertically */
-  align-items: center; /* Center the button and text */
+  margin-top: -20px;
+  flex-direction: column;
 }
 
 .noppa {
+  opacity: 2;
+  cursor: pointer;
   background-size: contain;
   transition: transform 0.5s ease;
+  width: 150px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
 }
 .noppa:hover {
   transform: scale(1.2);
@@ -447,10 +185,9 @@ p {
 mat-button {
   background-color: aqua;
 }
-.formi{
-  display: block;
-  flex-direction: column;
-
+mat-form-field textarea {
+  overflow: hidden;
+  height: 160px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -467,37 +204,89 @@ mat-button {
   .palkki{
     width: 100%;
   }
-  .encounter-item {
-    display: flex;
-    flex-direction: column;
+  .item-name{
+    margin-left: -30px;
   }
 
-  .encounter-item mat-form-field {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  /* Painikkeiden asetukset */
   .item-weight-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
   }
 
-  /* Järjestää weight- ja prosenttipainikkeet vierekkäin keskitettynä */
-  .weight-percent-container {
+
+  .right-controls {
     display: flex;
+    flex-direction: row; /* Muutetaan pystysuuntaiseksi pienissä näytöissä */
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
+
+    margin-top: 10px;
   }
 
-  /* Save ja Delete painikkeet keskelle */
-  .edit-buttons {
+  .weight-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .item-percent {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+
+  .roska {
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+  }
+
+  /* Modal styles */
+  .dice-container {
     display: flex;
     justify-content: center;
+    margin-top: 20px; /* Lisää tilaa alempana */
+  }
+
+  /* Varmistetaan, että kaikki kentät näkyvät hyvin pienillä näytöillä */
+  .formi-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .formi {
+    width: 100%;
+    height: auto;
+  }
+
+  .left-fields {
+    width: 100%;
+    flex-direction: column;
+
+  }
+
+  .right-field {
     width: 100%;
     margin-top: 10px;
+  }
+
+  .item-number,
+  .item-name {
+    flex: 1;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .item-name {
+    padding: 0;
+  }
+
+  .item-percent1 {
+    display: block;
+    margin-left: 10px;
   }
 }
