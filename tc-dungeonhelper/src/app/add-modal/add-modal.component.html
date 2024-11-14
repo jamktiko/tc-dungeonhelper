@@ -1,30 +1,41 @@
 <h2 mat-dialog-title>Add a new encounter</h2>
 <mat-dialog-content class="content">
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="newEncounter.name" required />
-  </mat-form-field>
+  <form #newEncounterForm="ngForm">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="newEncounter.name" name="name" required />
+      <mat-error *ngIf="newEncounter.name === ''">Name is required</mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <textarea matInput [(ngModel)]="newEncounter.description"></textarea>
-  </mat-form-field>
-  <!--Slide toggle sitä varten jos haluaa lisätä mahdollisuuden rollata-->
-  <mat-slide-toggle [(ngModel)]="newEncounter.roll">
-    <mat-label>Include Roll</mat-label>
-  </mat-slide-toggle>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="newEncounter.description" name="description" required></textarea>
+      <mat-error *ngIf="newEncounter.description === ''">Description is required</mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Weight</mat-label>
-    <input type="number" matInput [(ngModel)]="newEncounter.weight" />
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label *ngIf="!selectedDie">Select Die</mat-label>
+      <mat-label *ngIf="selectedDie">{{ selectedDie }}</mat-label>
+      <mat-select [(ngModel)]="selectedDie">
+        <mat-option *ngFor="let die of availableDice">
+          {{ die }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Image</mat-label>
-    <input matInput [(ngModel)]="newEncounter.img" />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Weight</mat-label>
+      <input type="number" matInput [(ngModel)]="newEncounter.weight" name="weight" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput [(ngModel)]="newEncounter.img" name="img" />
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onSave()">Save</button>
+
+<mat-dialog-actions class="button-container">
+  <button mat-flat-button style="background-color:#C5231D; color:white" (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="newEncounterForm.invalid" (click)="onSave()">Save</button>
 </mat-dialog-actions>

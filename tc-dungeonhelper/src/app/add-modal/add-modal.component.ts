@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +12,10 @@ import { DicerollService } from '../diceroll.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
 import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-add-modal',
@@ -30,12 +34,23 @@ import { MatOptionModule } from '@angular/material/core';
     MatRadioModule,
     CommonModule,
     MatOptionModule,
+    MatPaginatorModule,
+    MatInput,
+    MatSelectModule,
   ],
   templateUrl: './add-modal.component.html',
   styleUrl: './add-modal.component.css',
 })
-export class AddModalComponent {
+export class AddModalComponent implements OnInit {
+  newEncounterForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+  });
+
   availableDice: string[] = [];
+  selectedDie: string | undefined;
+  isDisabled = true; // or false
+
   newEncounter = {
     name: '',
     description: '',
@@ -52,6 +67,9 @@ export class AddModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.availableDice = this.drs.getAvailableDice();
+  }
+  ngOnInit(): void {
+    console.log(this.newEncounterForm);
   }
 
   onCancel(): void {
