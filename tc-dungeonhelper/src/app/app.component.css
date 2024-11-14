@@ -1,5 +1,7 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
+
 .main-content {
+  font-family: "Faculty Glyphic", serif;
   min-height: 100vh; /* Määrittää vähimmäiskorkeudeksi koko näytön korkeuden */
   color: white;
   align-items: center;
@@ -9,6 +11,7 @@
   background-attachment: fixed;
   background-position: center;
 }
+
 
 
 @media only screen and (max-width: 600px){
