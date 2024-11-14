@@ -30,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AddModalComponent } from '../add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DicerollService } from '../diceroll.service';
 
 @Component({
   selector: 'app-enctable',
@@ -54,7 +55,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 })
 export class EnctableComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
-
+  availableDice: string[] = [];
   w: WritableSignal<number> = signal(0);
   filteredEncounters: RandomEncounters | any;
   dialogConfig = new MatDialogConfig();
@@ -78,7 +79,8 @@ export class EnctableComponent implements OnInit {
     private eservice: EserviceService,
     public dialog: MatDialog,
     private location: Location,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private drs: DicerollService
   ) {}
 
   backClicked() {
@@ -235,6 +237,7 @@ export class EnctableComponent implements OnInit {
    * @param
    */
   public addEnc(result: any): void {
+    result.roll = this.newEncounter.roll;
     console.log('addEnc() called with result:', result);
     if (!result.name) {
       console.log('Encounter name is required');
@@ -248,11 +251,13 @@ export class EnctableComponent implements OnInit {
         this.eservice
           .addEnc(this.filteredEncounters._id, {
             ...result,
-            die: this.selectedDie,
+            die: result.roll,
           })
           .subscribe(
             (response) => {
               console.log('Encounter added:', response);
+              console.log('RULLA', result.roll);
+              console.log('Uusi enkki', this.availableDice);
               this.getEncounters();
               this.filteredEncounters.enc.push(
                 response.enc[response.enc.length - 1]
@@ -368,18 +373,21 @@ export class EnctableComponent implements OnInit {
 
   // ❌❌❌ Encounterin poisto ❌❌❌
   deleteEnc(biomeId: string, encounterId: string): void {
-    console.log('Filtered Encounters:', this.filteredEncounters);
-    console.log(`Deleting encounter ${encounterId} from biome ${biomeId}`);
+    console.log('deleteEnc() called with:', biomeId, encounterId);
+    console.log('Current filteredEncounters:', this.filteredEncounters);
+
     this.eservice.deleteEnc(biomeId, encounterId).subscribe(
       (response) => {
-        console.log('Encounter deleted:', response);
+        console.log('Encounter deleted successfully:', response);
 
         this.filteredEncounters.enc = this.filteredEncounters.enc.filter(
           (enc: any) => enc._id !== encounterId
         );
+
+        console.log('Updated filteredEncounters:', this.filteredEncounters);
       },
       (error) => {
-        console.error('Error deleting encounter:', error);
+        console.error('Error occurred while deleting encounter:', error);
       }
     );
   }
@@ -392,5 +400,9 @@ export class EnctableComponent implements OnInit {
 
   public goBack(): void {
     this.location.back();
+  }
+
+  testButton(): void {
+    console.log('Available dices:', this.drs.getAvailableDice());
   }
 }

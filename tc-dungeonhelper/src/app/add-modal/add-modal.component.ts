@@ -48,7 +48,6 @@ export class AddModalComponent implements OnInit {
   });
 
   availableDice: string[] = [];
-  selectedDie: string | undefined;
   isDisabled = true; // or false
 
   displayDie(die: any): string {
