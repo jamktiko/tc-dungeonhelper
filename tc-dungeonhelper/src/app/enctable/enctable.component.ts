@@ -29,6 +29,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { AddModalComponent } from '../add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 
 @Component({
@@ -42,7 +44,7 @@ import { RetablesComponent } from '../retables/retables.component';
     MatButton,
     MatButtonModule,
     MatProgressSpinnerModule,
-
+    MatSlideToggleModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
@@ -83,7 +85,7 @@ export class EnctableComponent implements OnInit {
   backClicked() {
     this.location.back();
   }
-
+  
   /**
    * Fetchaa satunnaiskohtaamistiedot Eservicestä ja suodattaa ne
    *

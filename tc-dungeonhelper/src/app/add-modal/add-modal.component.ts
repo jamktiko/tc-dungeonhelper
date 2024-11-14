@@ -28,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     FormsModule,
     MatGridListModule,
-    MatCardImage,
+
     MatCardModule,
     MatSlideToggleModule,
     MatRadioModule,
