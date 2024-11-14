@@ -55,7 +55,7 @@ export class EserviceService {
   }
 
   saveEnc(biomeId: string, encId: string, updatedData: any): Observable<any> {
-    return this.http.put(
+    return this.http.patch(
       `${this.apiUrl}/saveEnc/${biomeId}/${encId}`,
       updatedData
     );
