@@ -92,7 +92,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .footer-column .logo{
+  .footer-column1 .logo{
     display: none;
   }
 }

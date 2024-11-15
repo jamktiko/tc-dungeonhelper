@@ -5,11 +5,9 @@ body {
   min-height: 100vh;
   background-color: #000000;
   font-family: 'Faculty';
-}
-body {
   margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
 }
+
 
 .back {
   background: url("/assets/Back_dungeon.png") no-repeat center center;

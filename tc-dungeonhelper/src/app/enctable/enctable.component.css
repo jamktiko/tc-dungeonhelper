@@ -8,7 +8,7 @@
   width: 60%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 100;
   padding: 10px;
   border-radius: 0 0 20px 20px;
 }
@@ -17,7 +17,7 @@
   align-items: center;
   top: 120px;
   position: fixed;
-  z-index: 1000;
+  z-index: 100;
   left: 50%;                  
   transform: translateX(-50%);
 }
@@ -49,7 +49,7 @@
 .formi-container {
   display: flex;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
 }
 mat-label {
   font-size: 1rem;
@@ -116,10 +116,12 @@ mat-card-title {
 }
 .item-name{
   margin-left: -70px;
+
 }
 .item-number,
 .item-name {
-  
+  font-family: 'Faculty';
+  font-weight: 600;
   flex: 1;
   text-align: left;
 }
@@ -162,6 +164,7 @@ mat-card-title {
   align-items: center;
   margin-top: -20px;
   flex-direction: column;
+  position: sticky;
 }
 
 .noppa {
@@ -189,7 +192,96 @@ mat-form-field textarea {
   overflow: hidden;
   height: 160px;
 }
+@media only screen and (max-width: 1200px) {
+  .item-name{
+    margin-left: -30px;
+  }
+  .encounter-item{
+    flex-wrap: wrap;
+  }
+  .item-weight-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
 
+
+  .right-controls {
+    display: flex;
+    flex-direction: row; /* Muutetaan pystysuuntaiseksi pienissä näytöissä */
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+  }
+
+  .weight-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .item-percent {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+
+  .roska {
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+  }
+
+  /* Modal styles */
+  .dice-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Lisää tilaa alempana */
+  }
+
+  .formi-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .formi {
+    width: 100%;
+    height: auto;
+  }
+
+  .left-fields {
+    width: 100%;
+    flex-direction: column;
+
+  }
+
+  .right-field {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .item-number,
+  .item-name {
+    flex: 1;
+    text-align: left;
+    font-size: 1rem;
+  }
+  .item-number{
+    order: -1;
+  }
+  .item-name {
+    padding: 0;
+  }
+
+  .item-percent1 {
+    display: block;
+    margin-left: 10px;
+  }
+}
 @media only screen and (max-width: 600px) {
   .encounter-container {
     color: white;
@@ -200,6 +292,9 @@ mat-form-field textarea {
     align-items: stretch;
     margin-left: 0;
     margin-right: 0;
+  }
+  .encounter-item{
+    flex-wrap: wrap;
   }
   .palkki{
     width: 100%;
@@ -248,10 +343,15 @@ mat-form-field textarea {
   .dice-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Lisää tilaa alempana */
+    top: 70%;
+    left: 50%;
+    align-items: center;
+    position:fixed;
+    transform: translate(-50%, -50%);
+    
   }
 
-  /* Varmistetaan, että kaikki kentät näkyvät hyvin pienillä näytöillä */
+
   .formi-container {
     display: flex;
     flex-direction: column;
@@ -280,7 +380,15 @@ mat-form-field textarea {
     text-align: left;
     font-size: 1rem;
   }
-
+  .item-number{
+    order: -1;
+  }
+  .item-name,
+  .formi-container,
+  .right-controls {
+    order: 0; /* Sijoitetaan normaalijärjestykseen */
+    width: 100%; /* Mukautuu täysleveydelle */
+  }
   .item-name {
     padding: 0;
   }
