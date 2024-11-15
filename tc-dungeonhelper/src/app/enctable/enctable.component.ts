@@ -241,7 +241,6 @@ export class EnctableComponent implements OnInit {
    * @param
    */
   public addEnc(result: any): void {
-    result.roll = this.newEncounter.roll;
     console.log('addEnc() called with result:', result);
     if (!result.name) {
       console.log('Encounter name is required');
