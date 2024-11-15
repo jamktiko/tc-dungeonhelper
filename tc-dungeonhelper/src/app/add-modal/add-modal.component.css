@@ -3,3 +3,21 @@
   margin-bottom: 16px;
   padding: 10px;
 }
+
+.weight-buttons button {
+  background-color: transparent;
+  border: none;
+  color: #c5231d;
+  cursor: pointer;
+}
+.weight-buttons button:hover {
+  background-color: #c5231d;
+  color: black;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding-top: 20px;
+}
