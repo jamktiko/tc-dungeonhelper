@@ -31,6 +31,8 @@ import { AddModalComponent } from '../add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DicerollService } from '../diceroll.service';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-enctable',
@@ -49,6 +51,8 @@ import { DicerollService } from '../diceroll.service';
     MatIconModule,
     MatDialogModule,
     MatCardModule,
+    MatSelectModule,
+    MatOptionModule,
   ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',

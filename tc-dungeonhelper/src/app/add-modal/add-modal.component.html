@@ -13,10 +13,10 @@
       <mat-error *ngIf="newEncounter.description === ''">Description is required</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Choose a die</mat-label>
-      <mat-select [(ngModel)]="newEncounter.roll" name="roll">
-        <mat-option *ngFor="let die of availableDice">
+    <mat-form-field>
+      <mat-select placeholder="Choose a Die" matInput [(ngModel)]="newEncounter.roll" name="roll"
+        (ngModelChange)="onRollChange($event)">
+        <mat-option *ngFor="let die of availableDice" [value]="die">
           {{ die }}
         </mat-option>
       </mat-select>

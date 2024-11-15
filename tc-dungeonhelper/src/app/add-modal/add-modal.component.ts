@@ -62,7 +62,6 @@ export class AddModalComponent implements OnInit {
     img: '',
     _id: '',
   };
-  form: any;
 
   constructor(
     public dialogRef: MatDialogRef<AddModalComponent>,
@@ -77,6 +76,10 @@ export class AddModalComponent implements OnInit {
 
   onCancel(): void {
     this.dialogRef.close();
+  }
+
+  onRollChange(event: any) {
+    console.log('Roll changed:', event);
   }
 
   onSave(): void {
