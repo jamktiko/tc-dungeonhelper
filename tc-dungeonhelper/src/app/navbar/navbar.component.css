@@ -44,7 +44,7 @@
   width: 250px; 
   height: 200px;
   background-color: #000000;
-  color: rgb(255, 255, 255); 
+
   position: fixed;
   z-index: 1000;
 }
@@ -61,12 +61,12 @@ mat-list-item {
 /* Mobiilivalikko */
 @media only screen and (max-width: 600px) {
   .nav-links {
-    display: none; /* Piilotetaan navigointilinkit pienillä näytöillä */
+    display: none;
   }
 
   .menu-button {
     display: inline-block; /* Näytetään hampurilaisvalikko */
-    color: white;
+    color: rgb(255, 255, 255);
   }
 
   .right-side {
@@ -77,5 +77,6 @@ mat-list-item {
     overflow: visible; /* Estää skrollauksen avattaessa sidenav */
     position: relative;
   }
+  
 
 }

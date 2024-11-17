@@ -11,26 +11,34 @@
   padding: 10px;
   border-radius: 0 0 20px 20px;
 }
+h3{
+  color: #EBDB86;
+  font-family: 'Faculty';
+}
 .addmerch{
   padding-top: 100px;
 }
 .merchant-grid {
+  
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
   gap: 10px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
 }
 
 .merchant-item {
   text-decoration: none;
   color: inherit;
   display: flex;
-
-  justify-content: center; /* Keskitä sisältö vaakasuunnassa */
-  align-items: center; /* Keskitä sisältö pystysuunnassa */
-  position: relative; /* Tarvitaan roskakori-kuvakkeen sijoittamiseksi */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+  max-width: 300px;
+  
 }
 
 .merchant-item mat-card {
@@ -39,28 +47,46 @@
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 200px;
-  height: 200px;
+  width: 100%;
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
   overflow: hidden;
+  
+}
+.merchant-item mat-card-title {
+  margin: 20px;
+  padding: 10px; 
+  font-family: 'Faculty';
+  font-size: 1.4rem;
 }
 
 .merchant-item mat-card:hover {
   transform: scale(1.05);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Lisää varjo hoverilla */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
 }
-.merchant-item button {
-  position: fixed;
-  top: 8px; 
-  right: 8px; 
-  color: rgba(209, 35, 35, 0.8);
-  border-radius: 50%; /* Pyöristetty kuvake */
-  z-index: 10; /* Nosta kuvake päälle */
-
+.merchant-item button{
+  position: absolute;
+  top: 1px; 
+  right: 1px; 
+  color: rgb(209, 35, 35);
+  
 }
 
-.merchant-item mat-icon-button:hover {
-  background: rgba(255, 255, 255, 1); /* Kirkasta hoverilla */
+
+
+@media only screen and (max-width: 600px) {
+  .merchant-grid{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Keskittää elementit vaakasuunnassa */
+    justify-content: center; /* Keskittää elementit pystysuunnassa */
+    gap: 16px; /* Välit elementtien välillä */
+    padding: 10px; /* Lisätään vähän sisätilaa */
+  }
+  .palkki{
+
+  width: 90%;
+  }
+
 }

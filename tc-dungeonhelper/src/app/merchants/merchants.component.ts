@@ -30,7 +30,6 @@ import { MatIcon } from '@angular/material/icon';
     CommonModule,
     NgFor,
     RouterModule,
-    RouterOutlet,
     MatButtonModule,
     MatFormFieldModule,
     MatOptionModule,
@@ -130,6 +129,7 @@ export class MerchantsComponent implements OnInit {
         // Kutsutaan getMerchantsi uudelleen jotta merchants taulukko saa uudet tiedot
         this.getMerchants();
         console.log('Merchant deleted successfully:', response);
+        this.router.navigate(['/merchants']);
       },
       (error) => {
         console.error('Error deleting merchant:', error);

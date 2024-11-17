@@ -5,7 +5,8 @@
   margin-right: 20%;
 }
 mat-card-title{
-  color: #C5231D;
+  color: #EBDB86;
+  font-family: 'Faculty';
   font-size: 25px;
   font-weight: 600;
 }
@@ -18,14 +19,12 @@ mat-card-title{
 .merchant-info-container {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+
 }
 
 .merchant-info {
   background-color: #555;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  padding: 8px;
 }
 
 .even-item {
@@ -38,18 +37,25 @@ mat-card-title{
 
 .item-details {
   display: flex;
-  align-items: center;
-  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.item-details1{
+  display: flex;
+  flex-direction: row;
+
 }
 
 .item-metadata {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 14%;
+  align-items: center;
   position: relative;
 }
-
+.item-image{
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
 
 .item-number {
   font-weight: bold;
@@ -60,6 +66,8 @@ mat-card-title{
 .item-name {
   font-size: 18px;
   font-weight: bold;
+  font-family: 'Faculty';
+  color: #EBDB86;
 }
 
 .item-type,
@@ -86,9 +94,18 @@ mat-card-title{
   .item-metadata{
     padding-left: 0;
   }
-  .item-cost{
-    position: static;
-    align-self: center;
-    margin-top: 8px;
+
+  .merchant-container {
+    margin-left: 0; /* Poista marginaalit */
+    margin-right: 0; /* Poista marginaalit */
+  }
+
+  .merchant-card {
+    width: 100%; /* Varmista, että kortti vie koko leveys */
+    margin: 0; /* Poista marginaalit */
+  }
+  button{
+    position: absolute;
+    left: 10px;
   }
 }

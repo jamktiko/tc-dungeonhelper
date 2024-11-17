@@ -32,10 +32,10 @@
   padding-top: 70px;
 }
 .item-percent1{
-  color: darkorange;
+  color: #EBDB86;
 }
 .item-percent{
-  color: darkorange;
+  color: #EBDB86;
 
 }
 .edit-mode .item-percent1{
@@ -53,7 +53,7 @@
 }
 mat-label {
   font-size: 1rem;
-  color: #ffa600;
+  color:#EBDB86;;
 }
 
 .formi{
@@ -91,7 +91,8 @@ mat-label {
   width: 350px; /* Voi säätää korkeutta isommaksi tarvittaessa */
 }
 mat-card-title {
-  color: #c5231d;
+  color: #EBDB86;
+  font-family: 'Faculty';
   font-size: 1.6rem;
   font-weight: 500;
   padding-bottom: 1.2em;
