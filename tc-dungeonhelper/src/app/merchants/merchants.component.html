@@ -1,35 +1,38 @@
-<form [formGroup]="merchantForm" (ngSubmit)="createMerchant()">
+<div class="palkki">
+    <button mat-flat-button routerLink="/retables">Back</button>
+    <h3>Merchants</h3>
+    <button mat-flat-button color="primary" (click)="openAddMerchantDialog()">Add New Merchant</button>
+  </div>
+  
+  <form class="addmerch" [formGroup]="merchantForm" (ngSubmit)="createMerchant()">
     <mat-form-field>
-        <mat-label>Merchant Name</mat-label>
-        <input matInput formControlName="name" />
+      <mat-label>Merchant Name</mat-label>
+      <input matInput formControlName="name" />
     </mat-form-field>
-
+  
     <mat-form-field>
-        <mat-label>Select Item Types</mat-label>
-        <mat-select formControlName="itemTypes" multiple>
-            <mat-option value="Weapon">Weapon</mat-option>
-            <mat-option value="Armor">Armor</mat-option>
-            <mat-option value="Consumable">Consumable</mat-option>
-            <mat-option value="Magic">Magic</mat-option>
-        </mat-select>
+      <mat-label>Select Item Types</mat-label>
+      <mat-select formControlName="itemTypes" multiple>
+        <mat-option value="Weapon">Weapon</mat-option>
+        <mat-option value="Armor">Armor</mat-option>
+        <mat-option value="Consumable">Consumable</mat-option>
+        <mat-option value="Magic">Magic</mat-option>
+      </mat-select>
     </mat-form-field>
-
+  
     <button mat-raised-button color="primary" type="submit">Create Merchant</button>
-</form>
-
-<mat-list>
-    <mat-list-item *ngFor="let m of merchants">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>{{ m.name }}</mat-card-title>
-                <button mat-icon-button routerLink="/merchants/{{ m._id }}">
-                    <mat-icon>open_in_new</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteMerchant(m._id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </mat-card-header>
-
-        </mat-card>
-    </mat-list-item>
-</mat-list>
+  </form>
+  
+  <div class="merchant-grid">
+    <a class="merchant-item" *ngFor="let m of merchants" [routerLink]="'/merchants/' + m._id">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ m.name }}</mat-card-title>
+        </mat-card-header>
+        <button mat-icon-button (click)="deleteMerchant(m._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </mat-card>
+    </a>
+  </div>
+  

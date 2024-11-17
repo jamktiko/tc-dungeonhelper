@@ -1,28 +1,66 @@
-#head {
-  background-color: rgba(177, 8, 8, 0.625);
-  margin-left: 30%;
-  margin-right: 30%;
-  height: 100%;
-}
-.grid-container {
+.palkki {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: #000000;
+  width: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 10px;
+  border-radius: 0 0 20px 20px;
+}
+.addmerch{
+  padding-top: 100px;
+}
+.merchant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
   margin-left: 20%;
   margin-right: 20%;
 }
-.grid-item {
+
+.merchant-item {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+
+  justify-content: center; /* Keskitä sisältö vaakasuunnassa */
+  align-items: center; /* Keskitä sisältö pystysuunnassa */
+  position: relative; /* Tarvitaan roskakori-kuvakkeen sijoittamiseksi */
+}
+
+.merchant-item mat-card {
+  display: flex;
+  justify-content: center;
   align-items: center;
-}
-.category {
-  border: solid white 3px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  overflow: hidden;
 }
 
-.custom-card {
-  background-color: black;
-  border: none;
+.merchant-item mat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Lisää varjo hoverilla */
+}
+.merchant-item button {
+  position: fixed;
+  top: 8px; 
+  right: 8px; 
+  color: rgba(209, 35, 35, 0.8);
+  border-radius: 50%; /* Pyöristetty kuvake */
+  z-index: 10; /* Nosta kuvake päälle */
+
 }
 
-.custom-text {
-  color: white;
-  background-color: black;
+.merchant-item mat-icon-button:hover {
+  background: rgba(255, 255, 255, 1); /* Kirkasta hoverilla */
 }
