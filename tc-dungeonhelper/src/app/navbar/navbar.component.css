@@ -50,10 +50,10 @@
 }
 
 mat-list-item {
-  display: block; /* Varmista, että listaelementit näkyvät pystysuunnassa */
+  display: block;
   
-  text-decoration: none; /* Poista alleviivaus */
-  color: black; /* Varmista, että teksti on musta */
+  text-decoration: none; 
+  color: black; 
 }
 
 
@@ -65,16 +65,16 @@ mat-list-item {
   }
 
   .menu-button {
-    display: inline-block; /* Näytetään hampurilaisvalikko */
+    display: inline-block;
     color: rgb(255, 255, 255);
   }
 
   .right-side {
-    flex: none; /* Estetään asettelun venyminen pienissä ruuduissa */
+    flex: none;
   }
 
   .mat-sidenav-open {
-    overflow: visible; /* Estää skrollauksen avattaessa sidenav */
+    overflow: visible;
     position: relative;
   }
   

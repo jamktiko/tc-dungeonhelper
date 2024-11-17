@@ -33,6 +33,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DicerollService } from '../diceroll.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 @Component({
   selector: 'app-enctable',
@@ -44,6 +46,7 @@ import { MatOptionModule } from '@angular/material/core';
     FormsModule,
     MatButton,
     MatButtonModule,
+    MatExpansionModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatFormFieldModule,

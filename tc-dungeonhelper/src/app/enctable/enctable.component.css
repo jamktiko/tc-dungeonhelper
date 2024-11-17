@@ -12,6 +12,7 @@
   padding: 10px;
   border-radius: 0 0 20px 20px;
 }
+
 .editti{
   justify-items: center;
   align-items: center;
@@ -81,6 +82,7 @@ mat-label {
   flex: 4; /* Description-kenttä on isompi oikealla */
   max-width: 400px;
 }
+
 .right-controls{
   display: flex;
   align-items: center;
@@ -96,6 +98,13 @@ mat-card-title {
   font-size: 1.6rem;
   font-weight: 500;
   padding-bottom: 1.2em;
+}
+.mat-expansion-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+
 }
 
 .encounter-item {
@@ -194,6 +203,8 @@ mat-form-field textarea {
   overflow: hidden;
   height: 160px;
 }
+
+
 @media only screen and (max-width: 1200px) {
   .item-name{
     margin-left: -30px;
@@ -211,11 +222,9 @@ mat-form-field textarea {
 
   .right-controls {
     display: flex;
-    flex-direction: row; /* Muutetaan pystysuuntaiseksi pienissä näytöissä */
-    align-items: center;
-    justify-content: center;
+    flex-direction: row; 
 
-    margin-top: 10px;
+
   }
 
   .weight-buttons {
@@ -230,12 +239,7 @@ mat-form-field textarea {
     font-size: 1rem;
   }
 
-  .roska {
-    margin-top: 10px;
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-  }
+  
 
   /* Modal styles */
   .dice-container {
@@ -328,11 +332,9 @@ mat-form-field textarea {
 
   .right-controls {
     display: flex;
-    flex-direction: row; /* Muutetaan pystysuuntaiseksi pienissä näytöissä */
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 10px;
+    flex-direction: row; 
+    align-items: left;
+    justify-content: start;
   }
 
   .weight-buttons {
@@ -347,12 +349,6 @@ mat-form-field textarea {
     font-size: 1rem;
   }
 
-  .roska {
-    margin-top: 10px;
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-  }
 
   /* Modal styles */
   .dice-container {
@@ -374,12 +370,11 @@ mat-form-field textarea {
     align-items: center;
   }
 
-
-  .formi-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+.edit-mode .left-fields .right-controls{
+  display: flex;
+  flex-direction: column;
+}
+  
 
   .formi {
     width: 100%;
@@ -406,12 +401,7 @@ mat-form-field textarea {
   .item-number{
     order: -1;
   }
-  .item-name,
-  .formi-container,
-  .right-controls {
-    order: 0; /* Sijoitetaan normaalijärjestykseen */
-    width: 100%;
-  }
+  
   .item-name {
     padding: 0;
   }

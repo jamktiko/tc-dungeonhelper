@@ -16,6 +16,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-add-modal',
@@ -28,7 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     FormsModule,
     MatGridListModule,
-
+    MatButtonModule,
     MatCardModule,
     MatSlideToggleModule,
     MatRadioModule,

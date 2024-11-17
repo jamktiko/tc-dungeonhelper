@@ -79,10 +79,10 @@ h3{
   .merchant-grid{
     display: flex;
     flex-direction: column;
-    align-items: center; /* Keskittää elementit vaakasuunnassa */
-    justify-content: center; /* Keskittää elementit pystysuunnassa */
-    gap: 16px; /* Välit elementtien välillä */
-    padding: 10px; /* Lisätään vähän sisätilaa */
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 10px;
   }
   .palkki{
 
