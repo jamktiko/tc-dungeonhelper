@@ -63,15 +63,17 @@ export class EnctableComponent implements OnInit {
   w: WritableSignal<number> = signal(0);
   filteredEncounters: RandomEncounters | any;
   dialogConfig = new MatDialogConfig();
-  newEncounter: any = {
+  newEncounter: WritableSignal<{
+    name: string;
+    description: string;
+    roll: string;
+    weight: number;
+  }> = signal({
     name: '',
     description: '',
-    description2: '',
     roll: '',
-    weight: 1,
-    img: '',
-    _id: '',
-  };
+    weight: 0,
+  });
 
   isEditing: boolean = false;
   showAddEncounterModal: boolean = false; // Boolean to control modal visibility
@@ -292,55 +294,32 @@ export class EnctableComponent implements OnInit {
     }
   }
   // Reset the form after adding
-  resetForm() {
-    this.newEncounter = {
-      name: '',
-      description: '',
-      weight: 1,
-      img: '',
-    };
-  }
+  //resetForm() {
+  //  this.newEncounter = {
+  //    name: '',
+  //    description: '',
+  //    weight: 1,
+  //    img: '',
+  //  };
+  //}
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
-    console.log('saveEnc() called');
-    // Check if filteredEncounters is valid and there are any edited encounters
-    if (this.filteredEncounters && this.filteredEncounters.enc) {
-      console.log('Encounters to save:', this.filteredEncounters.enc);
-      this.filteredEncounters.enc.forEach((enc: any) => {
-        console.log('Encounter to save:', enc);
-        if (enc.isEditing) {
-          console.log('Encounter to save is being edited');
-          // Call the service to save the encounter
-          this.eservice
-            .saveEnc(this.filteredEncounters._id, enc._id, enc)
-            .subscribe(
-              (response) => {
-                console.log('Encounter updated:', response);
-                // Display a snackbar notification
-                this.snackBar.open('Encounter saved successfully!', 'Close', {
-                  duration: 3000,
-                  panelClass: ['mat-snackbar-success'],
-                });
-              },
-              (error) => {
-                console.error('Error saving encounter:', error);
-                // Display a snackbar notification with an error message
-                this.snackBar.open(
-                  'Error saving encounter: ' + error.message,
-                  'Close',
-                  {
-                    duration: 3000,
-                    panelClass: ['mat-snackbar-error'],
-                  }
-                );
-              }
-            );
-        }
-      });
-    } else {
-      console.log('No edited encounters found');
-    }
+    console.log('Lomakkeen tiedot:', this.newEncounter);
+    this.filteredEncounters.enc.forEach((enc: any) => {
+      console.log('Encounter to save:', enc);
+      // Tallennetaan tiedot
+      this.eservice
+        .saveEnc(this.filteredEncounters._id, enc._id, this.newEncounter)
+        .subscribe((response) => {
+          console.log('Encounter saved:', response);
+          // Display a snackbar notification
+          this.snackBar.open('Encounter saved successfully!', 'Close', {
+            duration: 3000,
+            panelClass: ['mat-snackbar-success'],
+          });
+        });
+    }); // <--- This bracket was missing!
   }
 
   allSave() {
