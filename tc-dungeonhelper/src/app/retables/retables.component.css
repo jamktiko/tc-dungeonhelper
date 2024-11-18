@@ -1,8 +1,25 @@
+.palkki {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: #000000;
+  width: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  border-radius: 0 0 20px 20px;
+
+}
+mat-card-content{
+  display: flex;
+  flex-direction: column;
+}
 .grid-container {
   max-width: 800px;
   max-height: auto;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 130px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -38,32 +55,20 @@ a {
   background-color: #000000;
 }
 
-.sticky {
-  position: fixed; /* Keep the sticky positioning */
-  top: 100px; /* Adjust this value based on your navbar height */
-  left: 0; /* Align to the left */
-  width: 30%; /* Full width */
-  max-width: 400px;
-  
-  background-color: transparent; /* Optional: add some transparency */
-  z-index: 100; 
-}
+
 
 .title {
   text-align: center;
-  color: #c5231d;
-  font-size: 48px;
+  color: #fdd300;
+  font-size: 35px;
   padding-top: 40px;
   padding-bottom: 40px;
   font-weight: bold;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
   word-spacing: 5px;
-  font-family: "Faculty", sans-serif;
-  background: linear-gradient(to bottom, #c5231d, #8b0a1a);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: "Faculty";
+
 }
 
 @media only screen and (max-width: 600px) {

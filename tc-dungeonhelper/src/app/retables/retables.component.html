@@ -1,21 +1,21 @@
 <!-- Edit mode toggle button -->
-
-  <mat-card class="sticky">
-    <mat-card-header>
-      <mat-card-actions>
-        <mat-slide-toggle (change)="toggleEditMode()">
-          {{ editMode ? 'Exit Edit Mode' : 'Enter Edit Mode' }}
-        </mat-slide-toggle>
-      </mat-card-actions>
-
-      <!-- Add table form -->
-      <mat-card-content *ngIf="editMode">
-        <button mat-raised-button (click)="addTable()">Add Table</button>
-        <input [(ngModel)]="newTableName" placeholder="New Table Name" /></mat-card-content>
-    </mat-card-header>
-
-  </mat-card>
+<div class="palkki">
+  <button mat-flat-button style="background-color:#C5231D; color:white;" routerLink="/retables">Back</button>
   <mat-card-title class="title">Random Encounters</mat-card-title>
+  <mat-card-actions>
+    <mat-slide-toggle (change)="toggleEditMode()">
+      {{ editMode ? 'Exit Edit Mode' : 'Enter Edit Mode' }}
+    </mat-slide-toggle>
+    <mat-card-content *ngIf="editMode">
+      <button mat-raised-button (click)="addTable()">Add Table</button>
+      <input [(ngModel)]="newTableName" placeholder="New Table Name" /></mat-card-content>
+    
+
+  </mat-card-actions>
+  
+    
+    </div>
+
   <div class="grid-container">
 
 

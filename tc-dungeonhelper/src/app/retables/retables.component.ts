@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
-
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 @Component({
   selector: 'app-retables',
   standalone: true,
@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
+    MatExpansionModule
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
