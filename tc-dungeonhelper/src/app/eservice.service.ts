@@ -54,10 +54,10 @@ export class EserviceService {
     return this.http.post(`${this.apiUrl}/${biomeId}/saveAll`, { encounters });
   }
 
-  saveEnc(biomeId: string, encId: string, updatedData: any): Observable<any> {
+  saveEnc(biomeId: string, encId: string, encData: any): Observable<any> {
     return this.http.patch(
       `${this.apiUrl}/saveEnc/${biomeId}/${encId}`,
-      updatedData
+      encData
     );
   }
 

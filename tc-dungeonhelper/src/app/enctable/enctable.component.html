@@ -6,7 +6,7 @@
     'Quit editing'
     : 'Edit' }}</mat-slide-toggle>
 
-  <button *ngIf="isEditing" mat-flat-button (click)="saveEnc()">Save All</button>
+
 </div>
 
 
@@ -50,6 +50,8 @@
 
         <!-- Prosentti -->
         <span class="item-percent">{{ percentCalc(enc.weight, w()) }} %</span>
+
+        <button mat-icon-button (click)="saveEnc(encounters._id, enc._id)">Save</button>
 
         <!-- Delete button -->
         <button class="roska" mat-icon-button (click)="confirmDelete(encounters._id, enc._id)">

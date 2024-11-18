@@ -62,6 +62,8 @@ export class EnctableComponent implements OnInit {
   w: WritableSignal<number> = signal(0);
   encounters: RandomEncounters | any;
   dialogConfig = new MatDialogConfig();
+
+  // Writable signal on reaktiivinen rakenne, joka säilyttää tilan ja mahdollistaa sen helpon päivittämisen.
   newEncounter: WritableSignal<{
     name: string;
     description: string;
@@ -301,45 +303,27 @@ export class EnctableComponent implements OnInit {
   //}
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
-  saveEnc() {
-    this.encounters.enc.forEach((enc: any) => {
-      console.log('Encounter to save:', enc);
-      // Tallennetaan tiedot
-      this.eservice
-        .saveEnc(this.encounters._id, enc._id, this.newEncounter)
-        .subscribe((response) => {
-          console.log('Encounter saved:', response);
-          // Display a snackbar notification
-          this.snackBar.open('Encounter saved successfully!', 'Close', {
-            duration: 3000,
-            panelClass: ['mat-snackbar-success'],
-          });
-        });
-    });
-  }
-
-  allSave() {
-    this.isEditing = false;
-    localStorage.setItem('encounters', JSON.stringify(this.encounters));
-    this.eservice.allSave(this.encounters._id, this.encounters.enc).subscribe(
+  public saveEnc(biomeId: string, encounterId: string, encData: any): void {
+    // Call the service to save the encounter (make sure to update the relevant details)
+    this.eservice.saveEnc(biomeId, encounterId, encData).subscribe(
       (response) => {
-        console.log('All encounters saved:', response);
-        // Display a snackbar notification
-        this.snackBar.open('All encounters saved successfully!', 'Close', {
+        console.log('Encounter saved successfully:', response);
+
+        // Update the encounter in the local array after successful save
+
+        // Optionally, show a success message
+        this.snackBar.open('Encounter saved successfully!', 'Close', {
           duration: 3000,
           panelClass: ['mat-snackbar-success'],
         });
       },
       (error) => {
-        console.error('Error saving all encounters:', error);
-        // Display a snackbar notification with an error message
+        console.error('Error saving encounter:', error);
+        // Show error message
         this.snackBar.open(
-          'Error saving all encounters: ' + error.message,
+          'Error saving encounter: ' + error.message,
           'Close',
-          {
-            duration: 3000,
-            panelClass: ['mat-snackbar-error'],
-          }
+          { duration: 3000, panelClass: ['mat-snackbar-error'] }
         );
       }
     );
