@@ -302,7 +302,6 @@ export class EnctableComponent implements OnInit {
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
-    console.log('Lomakkeen tiedot:', this.newEncounter);
     this.encounters.enc.forEach((enc: any) => {
       console.log('Encounter to save:', enc);
       // Tallennetaan tiedot
