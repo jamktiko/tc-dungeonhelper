@@ -4,19 +4,24 @@ import { EserviceService } from '../eservice.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { BiomeModalComponent } from '../modals/biome-modal/biome-modal.component';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-retables',
   standalone: true,
   imports: [
-
     CommonModule,
     NgFor,
     NgIf,
@@ -27,6 +32,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
+    MatIcon,
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
@@ -34,23 +40,29 @@ import { MatTableModule } from '@angular/material/table';
 export class RetablesComponent implements OnInit {
   randomEncounters: RandomEncounters[] = [];
   newTableName: string = ''; // Initialize as an empty string
+  dialogConfig = new MatDialogConfig();
   editMode: boolean = false;
 
   constructor(
     private eservice: EserviceService,
     private cdr: ChangeDetectorRef,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.eservice.getEncounters().subscribe((re) => {
-      this.randomEncounters = re;
-      console.log('Encounters fetched:', re);
-    });
+    this.getTables();
   }
 
   toggleEditMode(): void {
     this.editMode = !this.editMode;
+  }
+
+  public getTables(): void {
+    this.eservice.getEncounters().subscribe((re) => {
+      this.randomEncounters = re;
+      console.log('Tables fetched:', re);
+    });
   }
 
   /**
@@ -60,31 +72,40 @@ export class RetablesComponent implements OnInit {
    * Näyttää snackbar ilmoituksen käyttäjälle sekä tyhjentää syötekentän.
    * Jos on virheitä, kirjataan ne konsoliin.
    */
-  public addTable(): void {
+  public addTable(result: any): void {
     console.log('addTable() called');
     console.log('Before detectChanges:', this.newTableName);
-    this.cdr.detectChanges();
     console.log('After detectChanges:', this.newTableName);
-    if (this.newTableName.trim() === '') {
+    if (!result.name) {
       console.log('Table name is required');
       this.snackBar.open('Table name is required', 'Close', {
         duration: 3000,
         panelClass: ['mat-snackbar-error'],
       });
-      return;
-    } else if (
-      this.randomEncounters.some(
-        (encounter) => encounter.biome === this.newTableName.trim()
-      )
-    ) {
-      console.log('Table name already exists');
-      this.snackBar.open('Table name already exists', 'Close', {
-        duration: 3000,
-        panelClass: ['mat-snackbar-error'],
-      });
-      return;
+    } else {
+      // Check if table name already exists
+      this.eservice.addTable({ biome: result.name }).subscribe(
+        (response) => {
+          console.log('New table added:', response);
+          this.randomEncounters.push(response);
+          this.newTableName = ''; // Clear input field
+        },
+        (error) => {}
+      );
     }
 
+    //    const existingTable = this.randomEncounters.find(
+    //      (table) => table.biome === result.name
+    //    );
+    //    if (existingTable) {
+    //      console.log('Table name already exists');
+    //      this.snackBar.open('Table name already exists', 'Close', {
+    //        duration: 3000,
+    //        panelClass: ['mat-snackbar-error'],
+    //      });
+    //    return;
+    //  }
+    //
     const newTable = {
       biome: this.newTableName,
       img: 'assets/addBiome.png',
@@ -129,5 +150,20 @@ export class RetablesComponent implements OnInit {
         }
       );
     }
+  }
+
+  public biomeModalOpen(): void {
+    const dialogRef = this.dialog.open(BiomeModalComponent, {
+      data: this.newTableName,
+      width: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.newTableName = String(result);
+        this.addTable(result);
+        this.getTables();
+      }
+    });
   }
 }

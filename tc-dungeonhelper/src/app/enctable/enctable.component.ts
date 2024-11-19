@@ -14,7 +14,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
+import { EncounterModalComponent } from '../modals/encounter-modal/encounter-modal.component';
 import { sample } from 'lodash-es';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-import { AddModalComponent } from '../add-modal/add-modal.component';
+import { AddModalComponent } from '../modals/add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DicerollService } from '../diceroll.service';
@@ -73,8 +73,10 @@ export class EnctableComponent implements OnInit {
     name: '',
     description: '',
     roll: '',
-    weight: 0,
-  });
+    weight: 1,
+    img: '',
+    //_id: '',
+  };
 
   isEditing: boolean = false;
   showAddEncounterModal: boolean = false; // Boolean to control modal visibility
@@ -185,11 +187,15 @@ export class EnctableComponent implements OnInit {
 
   public addEncounterModalOpen(): void {
     const dialogRef = this.dialog.open(AddModalComponent, {
+      // Modaalille lähetetään data
       data: this.newEncounter,
       width: '300px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      // Sulkiessa, tarkistaa onko result palautettu. Jos on niin se lisää sen filteredEncountersin enc muuttujaan taulukossa.
+      // Päivitetään kokonaispaino ja kutsutaan addEnc metodia
+      // Lopuksi kutsuu addEnc metodin jonka sisällä on luotu tulos (eli se encountteri joka luodaan)
       if (result) {
         this.encounters.enc.push(result);
         this.w.set(this.totalWeight(this.encounters.enc)); // Päivitetään kokonaispaino
@@ -303,30 +309,71 @@ export class EnctableComponent implements OnInit {
   //}
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
-  public saveEnc(biomeId: string, encounterId: string, encData: any): void {
-    // Call the service to save the encounter (make sure to update the relevant details)
-    this.eservice.saveEnc(biomeId, encounterId, encData).subscribe(
-      (response) => {
-        console.log('Encounter saved successfully:', response);
+  saveEnc() {
+    console.log('saveEnc() called');
+    // Check if filteredEncounters is valid and there are any edited encounters
 
-        // Update the encounter in the local array after successful save
-
-        // Optionally, show a success message
-        this.snackBar.open('Encounter saved successfully!', 'Close', {
-          duration: 3000,
-          panelClass: ['mat-snackbar-success'],
-        });
-      },
-      (error) => {
-        console.error('Error saving encounter:', error);
-        // Show error message
-        this.snackBar.open(
-          'Error saving encounter: ' + error.message,
-          'Close',
-          { duration: 3000, panelClass: ['mat-snackbar-error'] }
-        );
+    console.log('Encounters to save:', this.filteredEncounters.enc);
+    this.filteredEncounters.enc.forEach((enc: any) => {
+      console.log('Encounter to save:', enc);
+      if (enc.isEditing) {
+        console.log('Encounter to save is being edited');
+        // Call the service to save the encounter
+        this.eservice
+          .saveEnc(this.filteredEncounters._id, enc._id, enc)
+          .subscribe(
+            (response) => {
+              console.log('Encounter updated:', response);
+              // Display a snackbar notification
+              this.snackBar.open('Encounter saved successfully!', 'Close', {
+                duration: 3000,
+                panelClass: ['mat-snackbar-success'],
+              });
+            },
+            (error) => {
+              console.error('Error saving encounter:', error);
+              // Display a snackbar notification with an error message
+              this.snackBar.open(
+                'Error saving encounter: ' + error.message,
+                'Close',
+                {
+                  duration: 3000,
+                  panelClass: ['mat-snackbar-error'],
+                }
+              );
+            }
+          );
       }
-    );
+    });
+  }
+
+  allSave() {
+    this.isEditing = false;
+    localStorage.setItem('encounters', JSON.stringify(this.filteredEncounters));
+    this.eservice
+      .allSave(this.filteredEncounters._id, this.filteredEncounters.enc)
+      .subscribe(
+        (response) => {
+          console.log('All encounters saved:', response);
+          // Display a snackbar notification
+          this.snackBar.open('All encounters saved successfully!', 'Close', {
+            duration: 3000,
+            panelClass: ['mat-snackbar-success'],
+          });
+        },
+        (error) => {
+          console.error('Error saving all encounters:', error);
+          // Display a snackbar notification with an error message
+          this.snackBar.open(
+            'Error saving all encounters: ' + error.message,
+            'Close',
+            {
+              duration: 3000,
+              panelClass: ['mat-snackbar-error'],
+            }
+          );
+        }
+      );
   }
 
   // ���️���️���️ Encounterin muokkaus ���️���️���️

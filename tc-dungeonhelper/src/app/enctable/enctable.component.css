@@ -1,4 +1,3 @@
-
 .palkki {
   display: flex;
   justify-content: space-between;
@@ -12,16 +11,19 @@
   padding: 10px;
   border-radius: 0 0 20px 20px;
 }
-.editti{
+.right-controlss {
+  display: none;
+}
+.editti {
   justify-items: center;
   align-items: center;
   top: 120px;
   position: fixed;
   z-index: 100;
-  left: 50%;                  
+  left: 50%;
   transform: translateX(-50%);
 }
-.edit-mode .editti{
+.edit-mode .editti {
   display: none;
 }
 
@@ -31,18 +33,17 @@
   cursor: default;
   padding-top: 70px;
 }
-.item-percent1{
-  color: darkorange;
+.item-percent1 {
+  color: #ebdb86;
 }
-.item-percent{
-  color: darkorange;
-
+.item-percent {
+  color: #ebdb86;
 }
-.edit-mode .item-percent1{
+.edit-mode .item-percent1 {
   display: none;
 }
 
-.encounter-container.edit-mode .item-percent{
+.encounter-container.edit-mode .item-percent {
   flex-direction: column;
 }
 
@@ -53,13 +54,12 @@
 }
 mat-label {
   font-size: 1rem;
-  color: #ffa600;
+  color: #ebdb86;
 }
 
-.formi{
+.formi {
   height: 160px;
   overflow: visible;
-  padding-bottom: 0;
 }
 .left-fields {
   display: flex;
@@ -67,10 +67,9 @@ mat-label {
   height: 100px;
   flex-direction: column;
   flex: 1;
-  margin-left: 15px;
+
   gap: 10px;
   align-items: center;
-
 }
 
 .right-field {
@@ -81,27 +80,36 @@ mat-label {
   flex: 4; /* Description-kenttä on isompi oikealla */
   max-width: 400px;
 }
-.right-controls{
+
+.right-controls {
   display: flex;
   align-items: center;
 }
 
 .formi-container .right-field mat-form-field {
-
-  width: 350px; /* Voi säätää korkeutta isommaksi tarvittaessa */
+  width: 340px;
 }
 mat-card-title {
-  color: #c5231d;
+  color: #ebdb86;
+  font-family: "Faculty";
   font-size: 1.6rem;
   font-weight: 500;
   padding-bottom: 1.2em;
+}
+.mat-expansion-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
 }
 
 .encounter-item {
   display: flex;
   align-items: center;
   padding: 20px;
-
+}
+.edit-mode .noppa {
+  display: none;
 }
 
 .item-weight-container {
@@ -114,18 +122,16 @@ mat-card-title {
   flex-direction: column;
   margin-left: 10px;
 }
-.item-name{
+.item-name {
   margin-left: -70px;
-
 }
 .item-number,
 .item-name {
-  font-family: 'Faculty';
+  font-family: "Faculty";
   font-weight: 600;
   flex: 1;
   text-align: left;
 }
-
 
 .even-item {
   background-color: #222222;
@@ -162,19 +168,18 @@ mat-card-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -20px;
-  flex-direction: column;
   position: sticky;
+  bottom: 50px;
+  width: 100%;
 }
 
 .noppa {
-  opacity: 2;
   cursor: pointer;
   background-size: contain;
   transition: transform 0.5s ease;
   width: 150px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
 }
 .noppa:hover {
@@ -192,11 +197,12 @@ mat-form-field textarea {
   overflow: hidden;
   height: 160px;
 }
+
 @media only screen and (max-width: 1200px) {
-  .item-name{
+  .item-name {
     margin-left: -30px;
   }
-  .encounter-item{
+  .encounter-item {
     flex-wrap: wrap;
   }
   .item-weight-container {
@@ -206,14 +212,11 @@ mat-form-field textarea {
     margin-top: 10px;
   }
 
-
   .right-controls {
     display: flex;
-    flex-direction: row; /* Muutetaan pystysuuntaiseksi pienissä näytöissä */
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 10px;
+    flex-direction: row;
+    position: absolute;
+    margin-left: 35%;
   }
 
   .weight-buttons {
@@ -228,18 +231,24 @@ mat-form-field textarea {
     font-size: 1rem;
   }
 
-  .roska {
-    margin-top: 10px;
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-  }
-
   /* Modal styles */
   .dice-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Lisää tilaa alempana */
+    align-items: center;
+    position: sticky;
+    bottom: 50px;
+    width: 100%;
+  }
+
+  .noppa {
+    cursor: pointer;
+    background-size: contain;
+    transition: transform 0.5s ease;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .formi-container {
@@ -256,7 +265,6 @@ mat-form-field textarea {
   .left-fields {
     width: 100%;
     flex-direction: column;
-
   }
 
   .right-field {
@@ -270,7 +278,7 @@ mat-form-field textarea {
     text-align: left;
     font-size: 1rem;
   }
-  .item-number{
+  .item-number {
     order: -1;
   }
   .item-name {
@@ -293,13 +301,13 @@ mat-form-field textarea {
     margin-left: 0;
     margin-right: 0;
   }
-  .encounter-item{
+  .encounter-item {
     flex-wrap: wrap;
   }
-  .palkki{
+  .palkki {
     width: 100%;
   }
-  .item-name{
+  .item-name {
     margin-left: -30px;
   }
 
@@ -310,14 +318,11 @@ mat-form-field textarea {
     margin-top: 10px;
   }
 
-
   .right-controls {
     display: flex;
-    flex-direction: row; /* Muutetaan pystysuuntaiseksi pienissä näytöissä */
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 10px;
+    flex-direction: row;
+    position: absolute;
+    margin-left: 45%;
   }
 
   .weight-buttons {
@@ -332,46 +337,34 @@ mat-form-field textarea {
     font-size: 1rem;
   }
 
-  .roska {
-    margin-top: 10px;
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-  }
-
   /* Modal styles */
   .dice-container {
     display: flex;
     justify-content: center;
-    top: 70%;
-    left: 50%;
     align-items: center;
-    position:fixed;
-    transform: translate(-50%, -50%);
-    
+    position: sticky;
+    bottom: 50px;
+    width: 100%;
   }
 
-
-  .formi-container {
+  .noppa {
+    cursor: pointer;
+    background-size: contain;
+    transition: transform 0.5s ease;
+    width: 150px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
+  }
+
+  .edit-mode .left-fields .right-controls {
+    display: flex;
+    flex-direction: column;
   }
 
   .formi {
-    width: 100%;
+    max-width: 70%;
     height: auto;
-  }
-
-  .left-fields {
-    width: 100%;
-    flex-direction: column;
-
-  }
-
-  .right-field {
-    width: 100%;
-    margin-top: 10px;
   }
 
   .item-number,
@@ -380,15 +373,10 @@ mat-form-field textarea {
     text-align: left;
     font-size: 1rem;
   }
-  .item-number{
+  .item-number {
     order: -1;
   }
-  .item-name,
-  .formi-container,
-  .right-controls {
-    order: 0; /* Sijoitetaan normaalijärjestykseen */
-    width: 100%; /* Mukautuu täysleveydelle */
-  }
+
   .item-name {
     padding: 0;
   }
