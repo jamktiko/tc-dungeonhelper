@@ -1,4 +1,3 @@
-
 .palkki {
   display: flex;
   justify-content: space-between;
@@ -12,19 +11,19 @@
   padding: 10px;
   border-radius: 0 0 20px 20px;
 }
-.right-controlss{
+.right-controlss {
   display: none;
 }
-.editti{
+.editti {
   justify-items: center;
   align-items: center;
   top: 120px;
   position: fixed;
   z-index: 100;
-  left: 50%;                  
+  left: 50%;
   transform: translateX(-50%);
 }
-.edit-mode .editti{
+.edit-mode .editti {
   display: none;
 }
 
@@ -34,18 +33,17 @@
   cursor: default;
   padding-top: 70px;
 }
-.item-percent1{
-  color: #EBDB86;
+.item-percent1 {
+  color: #ebdb86;
 }
-.item-percent{
-  color: #EBDB86;
-
+.item-percent {
+  color: #ebdb86;
 }
-.edit-mode .item-percent1{
+.edit-mode .item-percent1 {
   display: none;
 }
 
-.encounter-container.edit-mode .item-percent{
+.encounter-container.edit-mode .item-percent {
   flex-direction: column;
 }
 
@@ -56,13 +54,12 @@
 }
 mat-label {
   font-size: 1rem;
-  color:#EBDB86;;
+  color: #ebdb86;
 }
 
-.formi{
+.formi {
   height: 160px;
   overflow: visible;
-
 }
 .left-fields {
   display: flex;
@@ -73,7 +70,6 @@ mat-label {
 
   gap: 10px;
   align-items: center;
-
 }
 
 .right-field {
@@ -85,18 +81,17 @@ mat-label {
   max-width: 400px;
 }
 
-.right-controls{
+.right-controls {
   display: flex;
   align-items: center;
 }
 
 .formi-container .right-field mat-form-field {
-
   width: 340px;
 }
 mat-card-title {
-  color: #EBDB86;
-  font-family: 'Faculty';
+  color: #ebdb86;
+  font-family: "Faculty";
   font-size: 1.6rem;
   font-weight: 500;
   padding-bottom: 1.2em;
@@ -106,7 +101,6 @@ mat-card-title {
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-
 }
 
 .encounter-item {
@@ -114,7 +108,7 @@ mat-card-title {
   align-items: center;
   padding: 20px;
 }
-.edit-mode .noppa{
+.edit-mode .noppa {
   display: none;
 }
 
@@ -128,18 +122,16 @@ mat-card-title {
   flex-direction: column;
   margin-left: 10px;
 }
-.item-name{
+.item-name {
   margin-left: -70px;
-
 }
 .item-number,
 .item-name {
-  font-family: 'Faculty';
+  font-family: "Faculty";
   font-weight: 600;
   flex: 1;
   text-align: left;
 }
-
 
 .even-item {
   background-color: #222222;
@@ -187,7 +179,7 @@ mat-card-title {
   transition: transform 0.5s ease;
   width: 150px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
 }
 .noppa:hover {
@@ -206,12 +198,11 @@ mat-form-field textarea {
   height: 160px;
 }
 
-
 @media only screen and (max-width: 1200px) {
-  .item-name{
+  .item-name {
     margin-left: -30px;
   }
-  .encounter-item{
+  .encounter-item {
     flex-wrap: wrap;
   }
   .item-weight-container {
@@ -221,10 +212,9 @@ mat-form-field textarea {
     margin-top: 10px;
   }
 
-
   .right-controls {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     position: absolute;
     margin-left: 35%;
   }
@@ -241,8 +231,6 @@ mat-form-field textarea {
     font-size: 1rem;
   }
 
-  
-
   /* Modal styles */
   .dice-container {
     display: flex;
@@ -252,14 +240,14 @@ mat-form-field textarea {
     bottom: 50px;
     width: 100%;
   }
-  
+
   .noppa {
     cursor: pointer;
     background-size: contain;
     transition: transform 0.5s ease;
     width: 150px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
   }
 
@@ -277,7 +265,6 @@ mat-form-field textarea {
   .left-fields {
     width: 100%;
     flex-direction: column;
-
   }
 
   .right-field {
@@ -291,7 +278,7 @@ mat-form-field textarea {
     text-align: left;
     font-size: 1rem;
   }
-  .item-number{
+  .item-number {
     order: -1;
   }
   .item-name {
@@ -314,13 +301,13 @@ mat-form-field textarea {
     margin-left: 0;
     margin-right: 0;
   }
-  .encounter-item{
+  .encounter-item {
     flex-wrap: wrap;
   }
-  .palkki{
+  .palkki {
     width: 100%;
   }
-  .item-name{
+  .item-name {
     margin-left: -30px;
   }
 
@@ -331,13 +318,11 @@ mat-form-field textarea {
     margin-top: 10px;
   }
 
-
   .right-controls {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     position: absolute;
     margin-left: 45%;
-
   }
 
   .weight-buttons {
@@ -352,7 +337,6 @@ mat-form-field textarea {
     font-size: 1rem;
   }
 
-
   /* Modal styles */
   .dice-container {
     display: flex;
@@ -362,15 +346,20 @@ mat-form-field textarea {
     bottom: 50px;
     width: 100%;
   }
-  
+
   .noppa {
     cursor: pointer;
     background-size: contain;
     transition: transform 0.5s ease;
     width: 150px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
+  }
+
+  .edit-mode .left-fields .right-controls {
+    display: flex;
+    flex-direction: column;
   }
 
 .edit-mode .left-fields .right-controls{
@@ -384,20 +373,16 @@ mat-form-field textarea {
     height: auto;
   }
 
-
-
-
-
   .item-number,
   .item-name {
     flex: 1;
     text-align: left;
     font-size: 1rem;
   }
-  .item-number{
+  .item-number {
     order: -1;
   }
-  
+
   .item-name {
     padding: 0;
   }

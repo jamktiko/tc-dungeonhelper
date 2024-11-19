@@ -1,15 +1,15 @@
-<!--Takaisin nappula / OTSIKKO / Muokkausslideri-->
 <div class="palkki">
-  <button mat-flat-button routerLink="/retables">Back</button>
-  <mat-card-title>{{ filteredEncounters.biome }}</mat-card-title>
-  <mat-slide-toggle (click)="toggleEditMode()">{{ isEditing ?
+  <button mat-flat-button style="background-color:#C5231D; color:white;" routerLink="/retables">Back</button>
+  <mat-card-title>{{ filteredEncounters?.biome }}</mat-card-title>
+  <button mat-flat-button style="background-color:#C5231D; color:white;" (click)="toggleEditMode()">{{ isEditing ?
     'Quit editing'
-    : 'Edit' }}</mat-slide-toggle>
+    : 'Edit' }}</button>
 
+
+  <button *ngIf="isEditing" (click)="saveEnc()" mat-flat-button
+    style="background-color:#C5231D; color:white;">Save</button>
 
 </div>
-
-
 
 <button class="editti" mat-flat-button style="background-color:#C5231D; color: white;" [disabled]="isEditing"
   (click)="addEncounterModalOpen()">Add new</button>
@@ -19,8 +19,8 @@
 
 
   <div class="encounter-item" *ngFor="let enc of filteredEncounters?.enc; let i = index" [ngClass]="{
-'even-item': i % 2 === 0,
-'odd-item': i % 2 !== 0
+  'even-item': i % 2 === 0,
+  'odd-item': i % 2 !== 0
 }">
 
     <span class="item-number">{{ i + 1 }}.</span>
@@ -51,7 +51,7 @@
         <!-- Prosentti -->
         <span class="item-percent">{{ percentCalc(enc.weight, w()) }} %</span>
 
-        <button mat-icon-button (click)="saveEnc()">Save</button>
+
 
         <!-- Delete button -->
         <button class="roska" mat-icon-button (click)="confirmDelete(filteredEncounters._id, enc._id)">

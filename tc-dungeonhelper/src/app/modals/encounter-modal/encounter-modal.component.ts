@@ -7,7 +7,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { DicerollService } from '../diceroll.service';
+import { DicerollService } from '../../diceroll.service';
 import { MatButtonModule } from '@angular/material/button';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { RandomEncounters } from '../types';
+import { RandomEncounters } from '../../types';
 
 @Component({
   selector: 'app-encounter-modal',

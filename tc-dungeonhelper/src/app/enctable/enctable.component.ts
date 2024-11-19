@@ -14,7 +14,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { EncounterModalComponent } from '../encounter-modal/encounter-modal.component';
+import { EncounterModalComponent } from '../modals/encounter-modal/encounter-modal.component';
 import { sample } from 'lodash-es';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-import { AddModalComponent } from '../add-modal/add-modal.component';
+import { AddModalComponent } from '../modals/add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DicerollService } from '../diceroll.service';
@@ -63,7 +63,9 @@ export class EnctableComponent implements OnInit {
   w: WritableSignal<number> = signal(0);
   filteredEncounters: RandomEncounters | any;
   dialogConfig = new MatDialogConfig();
-  newEncounter: any = {
+
+  // Writable signal on reaktiivinen rakenne, joka säilyttää tilan ja mahdollistaa sen helpon päivittämisen.
+  newEncounter = {
     name: '',
     description: '',
     description2: '',
