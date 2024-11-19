@@ -298,14 +298,7 @@ export class EnctableComponent implements OnInit {
     }
   }
   // Reset the form after adding
-  resetForm() {
-    this.newEncounter = {
-      name: '',
-      description: '',
-      weight: 1,
-      img: '',
-    };
-  }
+
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
