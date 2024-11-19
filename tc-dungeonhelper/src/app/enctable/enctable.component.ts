@@ -61,20 +61,23 @@ import {MatExpansionModule} from '@angular/material/expansion';
   styleUrl: './enctable.component.css',
 })
 export class EnctableComponent implements OnInit {
-  randomEncounters: RandomEncounters[] = [];
   availableDice: string[] = [];
   w: WritableSignal<number> = signal(0);
-  filteredEncounters: RandomEncounters | any;
+  encounters: RandomEncounters | any;
   dialogConfig = new MatDialogConfig();
-  newEncounter: any = {
+
+  // Writable signal on reaktiivinen rakenne, joka säilyttää tilan ja mahdollistaa sen helpon päivittämisen.
+  newEncounter: WritableSignal<{
+    name: string;
+    description: string;
+    roll: string;
+    weight: number;
+  }> = signal({
     name: '',
     description: '',
-    description2: '',
     roll: '',
-    weight: 1,
-    img: '',
-    _id: '',
-  };
+    weight: 0,
+  });
 
   isEditing: boolean = false;
   showAddEncounterModal: boolean = false; // Boolean to control modal visibility
@@ -112,12 +115,12 @@ export class EnctableComponent implements OnInit {
 
       if (biomeEncounters) {
         // FlatMap eli liiskataan nestattu 'enc' taulukko
-        this.filteredEncounters = {
+        this.encounters = {
           ...biomeEncounters,
           enc: biomeEncounters.enc.flatMap((enc) => enc),
         };
 
-        this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Lasketaan taulukon kokonaispaino
+        this.w.set(this.totalWeight(this.encounters.enc)); // Lasketaan taulukon kokonaispaino
       } else {
         console.warn(`No encounters found for biome: ${biome}`);
       }
@@ -154,8 +157,8 @@ export class EnctableComponent implements OnInit {
 
    */
   public rollTable(): void {
-    if (this.filteredEncounters) {
-      const encounters = this.encTimesW(this.filteredEncounters.enc); //creates a new variable, which gets a array with encounters based on their weight.
+    if (this.encounters) {
+      const encounters = this.encTimesW(this.encounters.enc); //creates a new variable, which gets a array with encounters based on their weight.
       const randomEncounter = sample(encounters);
       console.log(encounters);
       if (randomEncounter == undefined) {
@@ -191,8 +194,8 @@ export class EnctableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.filteredEncounters.enc.push(result);
-        this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Päivitetään kokonaispaino
+        this.encounters.enc.push(result);
+        this.w.set(this.totalWeight(this.encounters.enc)); // Päivitetään kokonaispaino
         this.addEnc(result);
       }
     });
@@ -205,13 +208,13 @@ export class EnctableComponent implements OnInit {
 
   public increaseWeight(enc: any): void {
     enc.weight += 1;
-    this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Päivitetään kokonaispaino
+    this.w.set(this.totalWeight(this.encounters.enc)); // Päivitetään kokonaispaino
   }
 
   public decreaseWeight(enc: any): void {
     if (enc.weight > 0) {
       enc.weight -= 1;
-      this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Päivitetään kokonaispaino
+      this.w.set(this.totalWeight(this.encounters.enc)); // Päivitetään kokonaispaino
     }
   }
 
@@ -222,7 +225,7 @@ export class EnctableComponent implements OnInit {
 
   public toggleEditMode() {
     this.isEditing = !this.isEditing;
-    this.filteredEncounters.enc.forEach((enc: any) => {
+    this.encounters.enc.forEach((enc: any) => {
       enc.isEditing = this.isEditing;
     });
   }
@@ -244,7 +247,6 @@ export class EnctableComponent implements OnInit {
    * @param
    */
   public addEnc(result: any): void {
-    result.roll = this.newEncounter.roll;
     console.log('addEnc() called with result:', result);
     if (!result.name) {
       console.log('Encounter name is required');
@@ -253,10 +255,10 @@ export class EnctableComponent implements OnInit {
         panelClass: ['mat-snackbar-error'],
       });
     } else {
-      if (this.filteredEncounters && this.filteredEncounters._id) {
+      if (this.encounters && this.encounters._id) {
         console.log('Filtered encounters and ID exist');
         this.eservice
-          .addEnc(this.filteredEncounters._id, {
+          .addEnc(this.encounters._id, {
             ...result,
             die: result.roll,
           })
@@ -266,9 +268,7 @@ export class EnctableComponent implements OnInit {
               console.log('RULLA', result.roll);
               console.log('Uusi enkki', this.availableDice);
               this.getEncounters();
-              this.filteredEncounters.enc.push(
-                response.enc[response.enc.length - 1]
-              );
+              this.encounters.enc.push(response.enc[response.enc.length - 1]);
               this.snackBar.open('Encounter added successfully!', 'Close', {
                 duration: 3000,
                 panelClass: ['mat-snackbar-success'],
@@ -296,84 +296,40 @@ export class EnctableComponent implements OnInit {
     }
   }
   // Reset the form after adding
-  resetForm() {
-    this.newEncounter = {
-      name: '',
-      description: '',
-      weight: 1,
-      img: '',
-    };
-  }
+  //resetForm() {
+  //  this.newEncounter = {
+  //    name: '',
+  //    description: '',
+  //    weight: 1,
+  //    img: '',
+  //  };
+  //}
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
-  saveEnc() {
-    console.log('saveEnc() called');
-    // Check if filteredEncounters is valid and there are any edited encounters
-    if (this.filteredEncounters && this.filteredEncounters.enc) {
-      console.log('Encounters to save:', this.filteredEncounters.enc);
-      this.filteredEncounters.enc.forEach((enc: any) => {
-        console.log('Encounter to save:', enc);
-        if (enc.isEditing) {
-          console.log('Encounter to save is being edited');
-          // Call the service to save the encounter
-          this.eservice
-            .saveEnc(this.filteredEncounters._id, enc._id, enc)
-            .subscribe(
-              (response) => {
-                console.log('Encounter updated:', response);
-                // Display a snackbar notification
-                this.snackBar.open('Encounter saved successfully!', 'Close', {
-                  duration: 3000,
-                  panelClass: ['mat-snackbar-success'],
-                });
-              },
-              (error) => {
-                console.error('Error saving encounter:', error);
-                // Display a snackbar notification with an error message
-                this.snackBar.open(
-                  'Error saving encounter: ' + error.message,
-                  'Close',
-                  {
-                    duration: 3000,
-                    panelClass: ['mat-snackbar-error'],
-                  }
-                );
-              }
-            );
-        }
-      });
-    } else {
-      console.log('No edited encounters found');
-    }
-  }
+  public saveEnc(biomeId: string, encounterId: string, encData: any): void {
+    // Call the service to save the encounter (make sure to update the relevant details)
+    this.eservice.saveEnc(biomeId, encounterId, encData).subscribe(
+      (response) => {
+        console.log('Encounter saved successfully:', response);
 
-  allSave() {
-    this.isEditing = false;
-    localStorage.setItem('encounters', JSON.stringify(this.filteredEncounters));
-    this.eservice
-      .allSave(this.filteredEncounters._id, this.filteredEncounters.enc)
-      .subscribe(
-        (response) => {
-          console.log('All encounters saved:', response);
-          // Display a snackbar notification
-          this.snackBar.open('All encounters saved successfully!', 'Close', {
-            duration: 3000,
-            panelClass: ['mat-snackbar-success'],
-          });
-        },
-        (error) => {
-          console.error('Error saving all encounters:', error);
-          // Display a snackbar notification with an error message
-          this.snackBar.open(
-            'Error saving all encounters: ' + error.message,
-            'Close',
-            {
-              duration: 3000,
-              panelClass: ['mat-snackbar-error'],
-            }
-          );
-        }
-      );
+        // Update the encounter in the local array after successful save
+
+        // Optionally, show a success message
+        this.snackBar.open('Encounter saved successfully!', 'Close', {
+          duration: 3000,
+          panelClass: ['mat-snackbar-success'],
+        });
+      },
+      (error) => {
+        console.error('Error saving encounter:', error);
+        // Show error message
+        this.snackBar.open(
+          'Error saving encounter: ' + error.message,
+          'Close',
+          { duration: 3000, panelClass: ['mat-snackbar-error'] }
+        );
+      }
+    );
   }
 
   // ���️���️���️ Encounterin muokkaus ���️���️���️
@@ -381,17 +337,17 @@ export class EnctableComponent implements OnInit {
   // ❌❌❌ Encounterin poisto ❌❌❌
   deleteEnc(biomeId: string, encounterId: string): void {
     console.log('deleteEnc() called with:', biomeId, encounterId);
-    console.log('Current filteredEncounters:', this.filteredEncounters);
+    console.log('Current filteredEncounters:', this.encounters);
 
     this.eservice.deleteEnc(biomeId, encounterId).subscribe(
       (response) => {
         console.log('Encounter deleted successfully:', response);
 
-        this.filteredEncounters.enc = this.filteredEncounters.enc.filter(
+        this.encounters.enc = this.encounters.enc.filter(
           (enc: any) => enc._id !== encounterId
         );
 
-        console.log('Updated filteredEncounters:', this.filteredEncounters);
+        console.log('Updated filteredEncounters:', this.encounters);
       },
       (error) => {
         console.error('Error occurred while deleting encounter:', error);
