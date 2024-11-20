@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RandomEncounters } from '../types';
 import { EserviceService } from '../eservice.service';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -16,7 +16,6 @@ import { ChangeDetectorRef } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { BiomeModalComponent } from '../modals/biome-modal/biome-modal.component';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-retables',
@@ -32,7 +31,6 @@ import { MatIcon } from '@angular/material/icon';
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatIcon,
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
@@ -62,6 +60,7 @@ export class RetablesComponent implements OnInit {
     this.eservice.getEncounters().subscribe((re) => {
       this.randomEncounters = re;
       console.log('Tables fetched:', re);
+      this.cdr.detectChanges();
     });
   }
 
@@ -90,7 +89,9 @@ export class RetablesComponent implements OnInit {
           this.randomEncounters.push(response);
           this.newTableName = ''; // Clear input field
         },
-        (error) => {}
+        (error) => {
+          console.error('Error adding table:', error);
+        }
       );
     }
 

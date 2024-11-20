@@ -1,0 +1,22 @@
+<mat-card-content>
+  <!-- First form field -->
+  <mat-form-field>
+    <mat-label>Add Merchant</mat-label>
+    <input matInput placeholder="Merchant Name" [(ngModel)]="newMerchant.name" />
+  </mat-form-field>
+
+  <!-- Second form field -->
+  <mat-form-field>
+    <mat-label>Select Item Category</mat-label>
+    <mat-select [(ngModel)]="newMerchant.inventory[0]">
+      <mat-option *ngFor="let t of type" [value]="t">
+        {{ t }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Save button -->
+  <button mat-raised-button color="primary" (click)="onSave()" type="button">
+    Create Merchant
+  </button>
+</mat-card-content>

@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MerchantService } from '../merchant.service';
 import { Merchants } from '../types';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
@@ -20,6 +15,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import {
+  MatDialogModule,
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material/dialog';
+import { MerchantModalComponent } from '../modals/merchant-modal/merchant-modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-merchants',
@@ -30,7 +32,6 @@ import { MatIcon } from '@angular/material/icon';
     CommonModule,
     NgFor,
     RouterModule,
-    RouterOutlet,
     MatButtonModule,
     MatFormFieldModule,
     MatOptionModule,
@@ -39,25 +40,28 @@ import { MatIcon } from '@angular/material/icon';
     MatSelectModule,
     MatListModule,
     MatIcon,
+    MatDialogModule,
+    MatDialogModule,
   ],
   templateUrl: './merchants.component.html',
   styleUrl: './merchants.component.css',
 })
 export class MerchantsComponent implements OnInit {
-  merchants: Merchants[] = [];
-  merchantForm: FormGroup;
-  Array: any;
+  merchants: Merchants | any;
+  newMerchant = {
+    name: '',
+    inventory: [{ type: '' }],
+  };
+
+  dialogConfig = new MatDialogConfig();
+  editMode: boolean = false;
 
   constructor(
     private merchantService: MerchantService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    this.merchantForm = this.fb.group({
-      name: ['', Validators.required],
-      itemTypes: [[], Validators.required],
-    });
-  }
+    private router: Router,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getMerchants();
@@ -81,38 +85,38 @@ export class MerchantsComponent implements OnInit {
    * @remarks
    * Tämä funktio kutsutaan kun käyttäjä painaa "Create Merchant" -painiketta.
    */
-  public createMerchant(): void {
-    // Alustetaan newMerchant joka sisältää tulevan kauppiaan tiedot
-    const newMerchant = {
-      name: this.merchantForm.value.name, // Tarkoittaa, että haetaan merchantForm -nimisen lomakkeen arvot. ? operaattori tarkoittaa että jos merchantForm on null tai undefined, niin koodia ei suoriteta
-      type: this.merchantForm.value.itemTypes, // Tässä asetetaan uuden kauppaain tyyppi.l
-    };
-    console.log('Request body:', {
-      name: newMerchant.name,
-      type: newMerchant.type,
-    });
-
-    // Tässä kutsutaan createMerchant metodia merchantservice palvelusta.
-    // Se lähettää newMerchant objektin palvelimelle ja odottaa, että se palauttaa vastauksen (response).
-    // Subscribe tarkoittaa, että se tilaa vastauksen, jotta voidaan reagoida siihen.
-    this.merchantService.createMerchant(newMerchant).subscribe(
-      (response) => {
-        console.log('Merchant created successfully:', response);
-        this.merchants.push(response); // Push metodi lisää uuden kauppiaan merchants taulukkoon, jolloin se näkyy käyttöliittymässä
-        this.merchantForm.reset(); // Tämä rivi nollaa lomakkeen sen jälkeen kun uusi kauppias on luotu
-      },
-      (error) => {
-        console.error('Error creating merchant:', error);
-        // Voit myös näyttää virheilmoituksen käyttöliittymässä
-      }
-    );
-  }
+  //  public createMerchant(): void {
+  //    // Alustetaan newMerchant joka sisältää tulevan kauppiaan tiedot
+  //    const newMerchant = {
+  //      name: this.merchantForm.value.name, // Tarkoittaa, että haetaan merchantForm -nimisen lomakkeen arvot. ? operaattori tarkoittaa että jos merchantForm on null tai undefined, niin koodia ei suoriteta
+  //      type: this.merchantForm.value.itemTypes, // Tässä asetetaan uuden kauppaain tyyppi.l
+  //    };
+  //    console.log('Request body:', {
+  //      name: newMerchant.name,
+  //      type: newMerchant.type,
+  //    });
+  //
+  //    // Tässä kutsutaan createMerchant metodia merchantservice palvelusta.
+  //    // Se lähettää newMerchant objektin palvelimelle ja odottaa, että se palauttaa vastauksen (response).
+  //    // Subscribe tarkoittaa, että se tilaa vastauksen, jotta voidaan reagoida siihen.
+  //    this.merchantService.createMerchant(newMerchant).subscribe(
+  //      (response) => {
+  //        console.log('Merchant created successfully:', response);
+  //        this.merchants.push(response); // Push metodi lisää uuden kauppiaan merchants taulukkoon, jolloin se näkyy käyttöliittymässä
+  //        this.merchantForm.reset(); // Tämä rivi nollaa lomakkeen sen jälkeen kun uusi kauppias on luotu
+  //      },
+  //      (error) => {
+  //        console.error('Error creating merchant:', error);
+  //        // Voit myös näyttää virheilmoituksen käyttöliittymässä
+  //      }
+  //    );
+  //  }
 
   // Tämän on typeguard, se tarkistaa, onko annettu type- parametri taulukko (string[]) vai yksittäinen merkkijono (string).
-  //Tämä auttaa typescriptiä ymmärtään, minkä tyyppinen arvo sieltä ois tulos...
-  isTypeArray(type: string | string[]): type is string[] {
-    return Array.isArray(type);
-  }
+  //  //Tämä auttaa typescriptiä ymmärtään, minkä tyyppinen arvo sieltä ois tulos...
+  //  isTypeArray(type: string | string[]): type is string[] {
+  //    return Array.isArray(type);
+  //  }
 
   // Tässä pitiäisi olla sellainen funktio josta pääsee tarkastelemaan kauppiasta, eli avaa uuden ikkunan jossa näkyy kaikki kauppiaan tavarat
   // Metodi vastaanottaa merchant-objektin, joka sisältää tietoa valitusta kauppiaasta.
@@ -135,5 +139,56 @@ export class MerchantsComponent implements OnInit {
         console.error('Error deleting merchant:', error);
       }
     );
+  }
+
+  createMerchant(result: any): void {
+    if (!result.name) {
+      console.log('Table name is required');
+      this.snackBar.open('Table name is required', 'Close', {
+        duration: 2000,
+        panelClass: ['mat-snackbar-error'],
+      });
+    } else {
+      this.merchantService.createMerchant(result).subscribe(
+        (response) => {
+          console.log('Merchant created successfully:', response);
+          this.getMerchants();
+        },
+        (error) => {
+          console.error('Error creating merchant:', error);
+        }
+      );
+    }
+
+    console.log('Adding new merchant:', this.newMerchant);
+
+    this.snackBar.open('Merchant created successfully!', 'Close', {
+      duration: 2000,
+      panelClass: ['mat-snackbar-success'],
+    });
+
+    this.merchantService.createMerchant(this.newMerchant).subscribe(
+      (response) => {
+        console.log('Merchant created successfully:', response);
+        this.getMerchants();
+      },
+      (error) => {
+        console.error('Error creating merchant:', error);
+      }
+    );
+  }
+
+  public merchantModalOpen(): void {
+    const dialogRef = this.dialog.open(MerchantModalComponent, {
+      data: this.newMerchant,
+      width: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.createMerchant(result);
+        this.getMerchants();
+      }
+    });
   }
 }
