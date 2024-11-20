@@ -32,7 +32,7 @@ import { MatIcon } from '@angular/material/icon';
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatIcon,
+
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',

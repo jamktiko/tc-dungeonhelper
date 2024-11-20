@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
+  background-color: #222222;
+
   overflow: hidden;
   z-index: 1000;
 }
