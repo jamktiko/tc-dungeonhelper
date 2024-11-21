@@ -297,8 +297,6 @@ export class EnctableComponent implements OnInit {
       }
     }
   }
-  // Reset the form after adding
-
 
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
