@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  url: 'http://dunkku.eu-north-1.elasticbeanstalk.com',
+  url: 'http://localhost:3000/randomEncounters',
   merchantUrl: 'http://localhost:3000/merchants',
 };
