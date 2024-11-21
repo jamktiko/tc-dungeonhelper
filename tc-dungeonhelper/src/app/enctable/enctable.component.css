@@ -87,7 +87,8 @@ mat-label {
   position: absolute;
   right: 25%;
   padding-top: 20px;
-}
+
+  }
 
 .left-controls {
   display: flex;
