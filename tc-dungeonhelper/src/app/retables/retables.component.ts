@@ -16,6 +16,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { BiomeModalComponent } from '../modals/biome-modal/biome-modal.component';
+import { ConfirmDialogComponent } from '../modals/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-retables',
@@ -31,7 +32,7 @@ import { BiomeModalComponent } from '../modals/biome-modal/biome-modal.component
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
-
+    ConfirmDialogComponent
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
@@ -139,19 +140,34 @@ export class RetablesComponent implements OnInit {
     event.stopPropagation();
     console.log(`Attempting to delete table with ID: ${biomeId}`);
 
-    if (confirm('Are you sure you want to delete this table?')) {
-      this.eservice.deleteTable(biomeId).subscribe(
-        (response) => {
-          this.randomEncounters.splice(index, 1);
-          this.snackBar.open('Table successfully deleted!', 'Close', {
-            duration: 3000,
-          });
-        },
-        (error) => {
-          console.error('Error deleting table:', error);
-        }
-      );
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: {
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete this table? This action cannot be undone.'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.eservice.deleteTable(biomeId).subscribe(
+          (response) => {
+            this.randomEncounters.splice(index, 1);
+            this.snackBar.open('Table successfully deleted!', 'Close', {
+              duration: 3000,
+              panelClass: ['mat-snackbar-success']
+            });
+          },
+          (error) => {
+            console.error('Error deleting table:', error);
+            this.snackBar.open('Error deleting table', 'Close', {
+              duration: 3000,
+              panelClass: ['mat-snackbar-error']
+            });
+          }
+        );
+      }
+    });
   }
 
   public biomeModalOpen(): void {
