@@ -36,7 +36,7 @@ export class MerchantModalComponent implements OnInit {
   itemTypes = ['Weapon', 'Armor', 'Magic', 'Consumable'];
 
 
-  itemTypes = ['Weapon', 'Armor', 'Magic', 'Consumable'];
+
   constructor(
     public dialogRef: MatDialogRef<MerchantModalComponent>,
     @Inject(MAT_DIALOG_DATA) public newMerchant: any
