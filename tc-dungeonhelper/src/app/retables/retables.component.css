@@ -19,10 +19,15 @@ mat-card-title{
   font-family: "Faculty";
   font-weight: bold;
 }
+
+mat-card-header{
+  padding: none;
+}
 .palkki mat-slide-toggle{
   display: flex;
   flex-direction: column;
-  background-color: coral;
+  color: aqua;
+  margin-left: 10%;
 }
 .grid-container {
   max-width: 800px;
@@ -69,7 +74,7 @@ a {
   font-size: 2.5rem;
   padding-top: 40px;
   padding-bottom: 10px;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 10px rgba(255, 234, 0, 0.474);
   letter-spacing: 2px;
   word-spacing: 5px;
   font-family: "Faculty";
@@ -86,5 +91,5 @@ a {
   .palkki {
     width: 100%;
   }
-  
+
 }

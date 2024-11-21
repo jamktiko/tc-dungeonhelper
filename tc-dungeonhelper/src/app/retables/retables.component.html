@@ -5,8 +5,8 @@
     </button>
 <mat-card-title class="title">Random Encounters</mat-card-title>
 <mat-card-header>
-      <mat-slide-toggle (change)="toggleEditMode()">
-        {{ editMode ? 'Exit Edit Mode' : 'Delete tables' }}
+      <mat-slide-toggle  (change)="toggleEditMode()">
+        {{ editMode ? 'Exit ' : 'Delete tables' }}
       </mat-slide-toggle>
 </mat-card-header>
 </div>
@@ -25,7 +25,7 @@
       
 
       <!-- Show delete button only if edit mode is active -->
-      <button *ngIf="editMode" mat-raised-button color="warn" (click)="deleteTable(encounter._id, i, $event)">
+      <button *ngIf="editMode" mat-raised-button style="background-color:#C5231D; color:white;" (click)="deleteTable(encounter._id, i, $event)">
         Delete Table
       </button>
     </mat-card>

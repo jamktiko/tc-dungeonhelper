@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #222222;
+    background-color: #000000e2;
+
 
   overflow: hidden;
   z-index: 1000;
@@ -28,13 +29,16 @@
 
 .nav-links {
   display: flex;
-  justify-content: center;
-  flex: 1;
+  justify-content: space-between;
+  font-family: "Faculty";
   color: white;
   text-decoration: none;
   gap: 20px;
 }
+.navlinks a{
+  font-family: "Faculty";
 
+}
 .right-side {
   display: flex;
   align-items: center;
