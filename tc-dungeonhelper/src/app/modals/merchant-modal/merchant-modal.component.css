@@ -1,0 +1,14 @@
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
+
+
+#formi{
+    font-family: "Faculty";
+    background-color: #4F4C4C;
+  
+  }
+  mat-label {
+    color: #ebdb86;
+    font-family: "Faculty";
+    font-weight: 300;
+    padding-bottom: 1.2em;
+  }

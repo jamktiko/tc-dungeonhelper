@@ -1,12 +1,10 @@
 <div class="palkki">
     <button mat-flat-button routerLink="/" style="background-color:#C5231D; color:white;">Back</button>
     <h3>Merchants</h3>
-    <button mat-flat-button style="background-color:#C5231D; color:white;" >Add New</button>
-  </div>
+    <button mat-flat-button style="background-color:#C5231D; color:white;" (click)="merchantModalOpen()">Create</button>
+</div>
   
-  <button mat-raised-button (click)="merchantModalOpen()">
-    Create Merchant
-  </button>
+  
   
   <div class="merchant-grid">
     <a class="merchant-item" *ngFor="let m of merchants" [routerLink]="'/merchants/' + m._id">
