@@ -21,11 +21,9 @@ interface CarouselItem {
     RouterModule,
     CommonModule, // Lisätään CommonModule imports-taulukkoon
     NavbarComponent,
-    DashboardComponent,
     FooterComponent,
     MatButtonModule,
-    MatButton,
-    KaruselliComponent
+
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

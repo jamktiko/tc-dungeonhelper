@@ -35,4 +35,5 @@ export class NavbarComponent {
   closeSidenav(sidenav: any) {
     sidenav.close(); // Suljetaan sidenav
   }
+  
 }

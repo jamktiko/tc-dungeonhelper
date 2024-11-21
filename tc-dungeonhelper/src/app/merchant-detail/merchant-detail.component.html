@@ -1,27 +1,32 @@
 <div class="merchant-container">
+  <button mat-flat-button color="accent" style="background-color:#C5231D; color:white;" routerLink="/merchants">Back</button>
   <mat-card-title>{{ specificMerchant?.name }}</mat-card-title>
 
   <mat-card class="merchant-card">
     <div class="merchant-info-container">
-      <div class="merchant-info" *ngFor="let items of specificMerchant?.inventory; let i = index"
-        [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}">
-        <div class="item-details">
-          <span class="item-number">{{ i + 1 }}</span>
-          <span class="item-name">Item: {{ items.ware }}</span>
-        </div>
+      <mat-expansion-panel *ngFor="let items of specificMerchant?.inventory; let i = index" [ngClass]="{'even-item': i % 2 === 0, 'odd-item': i % 2 !== 0}">
+        <!-- Header of the panel (initial view) -->
+        <mat-expansion-panel-header>
+          <div class="item-details1">
+            <span class="item-number">{{ i + 1 }}.</span>
+            <span class="item-name"> {{ items.ware }}</span>
+          </div>
+        </mat-expansion-panel-header>
+
+        <!-- Content of the panel (details shown when expanded) -->
         <div class="item-metadata">
-          <span class="item-type">Type: {{ items.type }}</span>
-          <span class="item-quantity">Quantity: {{ items.quantity }}</span>
-          <span class="item-weight">Item Weight: {{ items.weight }}</span>
-          <span *ngIf="items.dmg" class="item-hd">Damage: {{ items.dmg }}</span>
-          <span *ngIf="items.rng" class="item-rng">Range: {{ items.rng}} </span>
-
-          <span *ngIf="items.ac" class="item-ac">Armor Class: {{ items.ac}} </span>
-
+          <img class="item-image" src="/assets/shield.png" alt="Item Image" />
+          <div class="item-details">
+            <span class="item-type"><strong>Type:</strong> {{ items.type }}</span>
+            <span class="item-quantity"><strong>Quantity:</strong> {{ items.quantity }}</span>
+            <span class="item-weight"><strong>Item Weight: </strong>{{ items.weight }}</span>
+            <span *ngIf="items.dmg" class="item-hd"><strong>Damage: </strong>{{ items.dmg }}</span>
+            <span *ngIf="items.rng" class="item-rng"><strong>Range: </strong>{{ items.rng}} </span>
+            <span *ngIf="items.ac" class="item-ac"><strong>Armor Class: </strong>{{ items.ac}} </span>
+          </div>
           <a mat-flat-button class="item-cost">Price: {{ items.cost }}</a>
-
         </div>
-      </div>
+      </mat-expansion-panel>
     </div>
   </mat-card>
 </div>

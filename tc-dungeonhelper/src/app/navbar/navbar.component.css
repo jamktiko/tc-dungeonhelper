@@ -4,7 +4,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
+    background-color: #000000e2;
+
+
   overflow: hidden;
   z-index: 1000;
 }
@@ -27,13 +29,16 @@
 
 .nav-links {
   display: flex;
-  justify-content: center;
-  flex: 1;
+  justify-content: space-between;
+  font-family: "Faculty";
   color: white;
   text-decoration: none;
   gap: 20px;
 }
+.navlinks a{
+  font-family: "Faculty";
 
+}
 .right-side {
   display: flex;
   align-items: center;
@@ -44,16 +49,16 @@
   width: 250px; 
   height: 200px;
   background-color: #000000;
-  color: rgb(255, 255, 255); 
+
   position: fixed;
   z-index: 1000;
 }
 
 mat-list-item {
-  display: block; /* Varmista, että listaelementit näkyvät pystysuunnassa */
+  display: block;
   
-  text-decoration: none; /* Poista alleviivaus */
-  color: black; /* Varmista, että teksti on musta */
+  text-decoration: none; 
+  color: black; 
 }
 
 
@@ -61,21 +66,22 @@ mat-list-item {
 /* Mobiilivalikko */
 @media only screen and (max-width: 600px) {
   .nav-links {
-    display: none; /* Piilotetaan navigointilinkit pienillä näytöillä */
+    display: none;
   }
 
   .menu-button {
-    display: inline-block; /* Näytetään hampurilaisvalikko */
-    color: white;
+    display: inline-block;
+    color: rgb(255, 255, 255);
   }
 
   .right-side {
-    flex: none; /* Estetään asettelun venyminen pienissä ruuduissa */
+    flex: none;
   }
 
   .mat-sidenav-open {
-    overflow: visible; /* Estää skrollauksen avattaessa sidenav */
+    overflow: visible;
     position: relative;
   }
+  
 
 }

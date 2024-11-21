@@ -31,6 +31,7 @@ import { BiomeModalComponent } from '../modals/biome-modal/biome-modal.component
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
+
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',

@@ -1,4 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
+  <!-- Side navigation menu -->
   <mat-sidenav #sidenav mode="over" class="side-nav">
     <mat-nav-list>
       <a mat-list-item routerLink="/retables">Random Encounters</a>
@@ -8,26 +9,24 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <!-- Navbar toolbar -->
     <mat-toolbar color="primary" class="toolbar">
-
-      <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+      <!-- Menu button (hamburger) -->
+      <button mat-icon-button (click)="toggleSidenav(sidenav)" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
 
       <img class="logo" src="../assets/logo.png" alt="logo" [routerLink]="['/']">
       <div class="nav-links">
         <a mat-flat-button routerLink="/retables" style="background-color:black; color:white">Random Encounters</a>
-        <a mat-flat-button routerLink="/merchants"  style="background-color:black; color:white">Merchant</a>
-
+        <a mat-flat-button routerLink="/merchants" style="background-color:black; color:white">Merchant</a>
       </div>
 
       <div class="right-side">
-        
         <button mat-icon-button>
           <mat-icon>account_circle</mat-icon>
         </button>
       </div>
     </mat-toolbar>
-
   </mat-sidenav-content>
 </mat-sidenav-container>
