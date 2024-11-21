@@ -299,30 +299,33 @@ export class EnctableComponent implements OnInit {
   // ✅✅✅ Encounterin tallennus ✅✅✅
   saveEnc() {
     console.log('saveEnc() called');
-    // Check if filteredEncounters is valid and there are any edited encounters
+    if (!this.filteredEncounters || !this.filteredEncounters._id) {
+      this.snackBar.open('No encounters to save', 'Close', {
+        duration: 3000,
+        panelClass: ['mat-snackbar-warning'],
+      });
+      return;
+    }
 
     console.log('Encounters to save:', this.filteredEncounters.enc);
     this.filteredEncounters.enc.forEach((enc: any) => {
-      console.log('Encounter to save:', enc);
       if (enc.isEditing) {
-        console.log('Encounter to save is being edited');
-        // Call the service to save the encounter
+        console.log('Saving encounter:', enc);
         this.eservice
           .saveEnc(this.filteredEncounters._id, enc._id, enc)
-          .subscribe(
-            (response) => {
+          .subscribe({
+            next: (response) => {
               console.log('Encounter updated:', response);
-              // Display a snackbar notification
               this.snackBar.open('Encounter saved successfully!', 'Close', {
                 duration: 3000,
                 panelClass: ['mat-snackbar-success'],
               });
+              enc.isEditing = false; // Turn off editing mode after successful save
             },
-            (error) => {
+            error: (error) => {
               console.error('Error saving encounter:', error);
-              // Display a snackbar notification with an error message
               this.snackBar.open(
-                'Error saving encounter: ' + error.message,
+                'Error saving encounter: ' + (error.message || 'Unknown error'),
                 'Close',
                 {
                   duration: 3000,
@@ -330,7 +333,7 @@ export class EnctableComponent implements OnInit {
                 }
               );
             }
-          );
+          });
       }
     });
   }
