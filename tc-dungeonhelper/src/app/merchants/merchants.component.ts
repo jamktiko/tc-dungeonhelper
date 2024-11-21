@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MerchantService } from '../merchant.service';
+import { MerchantService } from '../services/merchant.service';
 import { Merchants } from '../types';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

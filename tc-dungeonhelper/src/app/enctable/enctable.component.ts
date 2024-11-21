@@ -8,7 +8,8 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EserviceService } from '../eservice.service';
+import { EserviceService } from '../services/eservice.service';
+import { EncounterStorageService } from '../services/encounter-storage.service';
 import { Enc, RandomEncounters } from '../types';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -30,7 +31,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AddModalComponent } from '../modals/add-modal/add-modal.component';
 import { RetablesComponent } from '../retables/retables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { DicerollService } from '../diceroll.service';
+import { DicerollService } from '../services/diceroll.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 
@@ -83,6 +84,7 @@ export class EnctableComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eservice: EserviceService,
+    private encounterStorage: EncounterStorageService,
     public dialog: MatDialog,
     private location: Location,
     private snackBar: MatSnackBar,
@@ -101,7 +103,7 @@ export class EnctableComponent implements OnInit {
     // Haetaan biome data routella
     const biome = this.route.snapshot.paramMap.get('biome');
 
-    this.eservice.getTable().subscribe((data: RandomEncounters[]) => {
+    this.encounterStorage.getEncounters().subscribe((data: RandomEncounters[]) => {
       console.log('Raw MongoDB data:', data);
 
       // Etsitään biomekohtaiset encounterit
@@ -234,7 +236,7 @@ export class EnctableComponent implements OnInit {
    * Hakee encounterit servicesta ja laittaa ne getEncounters -muuttujaan.
    */
   public getEncounters() {
-    this.eservice.getEncounters().subscribe((data: any) => {
+    this.encounterStorage.getEncounters().subscribe((data: any) => {
       this.encountersData = data;
     });
   }
@@ -243,7 +245,7 @@ export class EnctableComponent implements OnInit {
    * Ensiksi tarkistaa onko encounterille annettu nimi.
    * Jos on, niin tarkistetaan filteredEncountersin olemassaolo ja ettei se ole null.
    * Jos se on olemassa, niin tarkistetaan seuraavaksi filteredEncounters._id;n olemassa olo ja ettei se ole null.
-   * Tarkistaa kohtaamisen ja lisää uuden encounterin
+   * Tarkistaa kohtaamisen ja lisää uuden encounterin
    * @param
    */
   public addEnc(result: any): void {
@@ -257,8 +259,8 @@ export class EnctableComponent implements OnInit {
     } else {
       if (this.filteredEncounters && this.filteredEncounters._id) {
         console.log('Filtered encounters and ID exist');
-        this.eservice
-          .addEnc(this.filteredEncounters._id, {
+        this.encounterStorage
+          .addEncounter(this.filteredEncounters._id, {
             ...result,
             die: result.roll,
           })
@@ -300,8 +302,8 @@ export class EnctableComponent implements OnInit {
 
   // ✅✅✅ Yhden encounterin tallennus ✅✅✅
   saveEnc(enc: any) {
-    this.eservice
-      .saveEnc(this.filteredEncounters._id, enc._id, {
+    this.encounterStorage
+      .saveEncounter(this.filteredEncounters._id, enc.id.toString(), {
         ...enc,
         die: enc.roll,
       })
@@ -334,12 +336,12 @@ export class EnctableComponent implements OnInit {
     console.log('deleteEnc() called with:', biomeId, encounterId);
     console.log('Current filteredEncounters:', this.filteredEncounters);
 
-    this.eservice.deleteEnc(biomeId, encounterId).subscribe(
+    this.encounterStorage.deleteEncounter(biomeId, encounterId).subscribe(
       (response) => {
         console.log('Encounter deleted successfully:', response);
 
         this.filteredEncounters.enc = this.filteredEncounters.enc.filter(
-          (enc: any) => enc._id !== encounterId
+          (enc: any) => enc.id.toString() !== encounterId
         );
 
         console.log('Updated filteredEncounters:', this.filteredEncounters);

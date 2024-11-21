@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RandomEncounters } from '../types';
-import { EserviceService } from '../eservice.service';
+import { EserviceService } from '../services/eservice.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';

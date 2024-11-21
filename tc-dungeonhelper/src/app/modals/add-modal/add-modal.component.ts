@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { DicerollService } from '../../diceroll.service';
+import { DicerollService } from '../../services/diceroll.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
 import { MatOptionModule } from '@angular/material/core';

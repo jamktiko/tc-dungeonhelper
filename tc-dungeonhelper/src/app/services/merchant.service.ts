@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Merchants } from './types';
+import { Merchants } from '../types';
 import { catchError, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

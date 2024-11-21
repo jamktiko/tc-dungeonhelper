@@ -5,7 +5,7 @@ import { Merchants } from '../types';
 import { NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { MerchantService } from '../merchant.service';
+import { MerchantService } from '../services/merchant.service';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
