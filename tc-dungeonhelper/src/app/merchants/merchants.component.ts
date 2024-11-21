@@ -148,34 +148,26 @@ export class MerchantsComponent implements OnInit {
         duration: 2000,
         panelClass: ['mat-snackbar-error'],
       });
-    } else {
-      this.merchantService.createMerchant(result).subscribe(
-        (response) => {
-          console.log('Merchant created successfully:', response);
-          this.getMerchants();
-        },
-        (error) => {
-          console.error('Error creating merchant:', error);
-        }
-      );
+      return;
     }
 
-    console.log('Adding new merchant:', this.newMerchant);
-
-    this.snackBar.open('Merchant created successfully!', 'Close', {
-      duration: 2000,
-      panelClass: ['mat-snackbar-success'],
-    });
-
-    this.merchantService.createMerchant(this.newMerchant).subscribe(
-      (response) => {
+    this.merchantService.createMerchant(result).subscribe({
+      next: (response) => {
         console.log('Merchant created successfully:', response);
         this.getMerchants();
+        this.snackBar.open('Merchant created successfully!', 'Close', {
+          duration: 2000,
+          panelClass: ['mat-snackbar-success'],
+        });
       },
-      (error) => {
+      error: (error) => {
         console.error('Error creating merchant:', error);
+        this.snackBar.open('Error creating merchant', 'Close', {
+          duration: 2000,
+          panelClass: ['mat-snackbar-error'],
+        });
       }
-    );
+    });
   }
 
   public merchantModalOpen(): void {

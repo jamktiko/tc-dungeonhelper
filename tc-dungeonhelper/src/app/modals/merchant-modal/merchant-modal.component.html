@@ -1,15 +1,17 @@
 <mat-card-content>
   <!-- First form field -->
   <mat-form-field>
-    <mat-label>Add Merchant</mat-label>
+    <mat-label>Merchant Name</mat-label>
     <input matInput placeholder="Merchant Name" [(ngModel)]="newMerchant.name" />
   </mat-form-field>
 
-  <!-- Second form field -->
+  <!-- Item Type -->
   <mat-form-field>
-    <mat-label>Select Item Category</mat-label>
-    <mat-select [(ngModel)]="newMerchant.inventory[0]">
-   
+    <mat-label>Item Category</mat-label>
+    <mat-select [(ngModel)]="newMerchant.type">
+      <mat-option *ngFor="let type of itemTypes" [value]="type">
+        {{type}}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 
