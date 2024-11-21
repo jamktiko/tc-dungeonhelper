@@ -8,7 +8,7 @@
   <!-- Item Type -->
   <mat-form-field>
     <mat-label>Item Category</mat-label>
-    <mat-select [(ngModel)]="newMerchant.type">
+    <mat-select [(ngModel)]="newMerchant.type" multiple="true">
       <mat-option *ngFor="let type of itemTypes" [value]="type">
         {{type}}
       </mat-option>

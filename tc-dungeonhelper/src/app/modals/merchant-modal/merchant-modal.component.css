@@ -1,6 +1,5 @@
 @import "@angular/material/prebuilt-themes/magenta-violet.css";
 
-
 #formi{
     font-family: "Faculty";
     background-color: #4F4C4C;
@@ -12,3 +11,21 @@
     font-weight: 300;
     padding-bottom: 1.2em;
   }
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}

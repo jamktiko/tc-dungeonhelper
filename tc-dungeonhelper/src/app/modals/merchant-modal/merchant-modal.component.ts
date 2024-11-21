@@ -33,28 +33,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './merchant-modal.component.css',
 })
 export class MerchantModalComponent implements OnInit {
-  itemTypes = ['Weapon', 'Armor', 'Magic', 'Consumable'];
 
+  itemTypes = ['Weapon', 'Armor', 'Magic', 'Consumable'];
   constructor(
     public dialogRef: MatDialogRef<MerchantModalComponent>,
     @Inject(MAT_DIALOG_DATA) public newMerchant: any
-  ) {
-    if (!this.newMerchant) {
-      this.newMerchant = {
-        name: '',
-        type: ''
-      };
-    }
-  }
-
+  ) {}
   ngOnInit(): void {
-    console.log('newMerchant', this.newMerchant);
+    console.log('newMerchant', this.newMerchant.inventory?.[0]);
   }
 
   onSave(): void {
-    if (!this.newMerchant.name || !this.newMerchant.type) {
-      return;
-    }
     this.dialogRef.close(this.newMerchant); // Lähetetää data takaisin pääkomponentille
   }
 
