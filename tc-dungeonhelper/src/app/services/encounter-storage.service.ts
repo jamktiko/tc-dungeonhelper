@@ -85,19 +85,19 @@ export class EncounterStorageService {
 
   deleteEncounter(biomeId: string, encounterId: string): Observable<any> {
     return this.eservice.deleteEnc(biomeId, encounterId).pipe(
-      tap(() => {
-        const cached = this.getCache();
-        if (cached) {
-          const updatedData = cached.data.map(biome => {
-            if (biome._id === biomeId) { 
-              return {
-                ...biome,
-                enc: biome.enc.filter(e => e.id.toString() !== encounterId) 
-              };
-            }
-            return biome;
-          });
-          this.updateCache(updatedData);
+      tap((response: any) => {
+        // Update the cache with the new data from the server
+        if (response && response.updatedBiome) {
+          const cached = this.getCache();
+          if (cached) {
+            const updatedData = cached.data.map(biome => {
+              if (biome._id === biomeId) {
+                return response.updatedBiome;
+              }
+              return biome;
+            });
+            this.updateCache(updatedData);
+          }
         }
       })
     );

@@ -302,8 +302,17 @@ export class EnctableComponent implements OnInit {
 
   // ✅✅✅ Yhden encounterin tallennus ✅✅✅
   saveEnc(enc: any) {
+    if (!enc || !enc._id) {
+      console.error('Invalid encounter data:', enc);
+      this.snackBar.open('Error: Invalid encounter data', 'Close', {
+        duration: 3000,
+        panelClass: ['mat-snackbar-error'],
+      });
+      return;
+    }
+
     this.encounterStorage
-      .saveEncounter(this.filteredEncounters._id, enc.id.toString(), {
+      .saveEncounter(this.filteredEncounters._id, enc._id, {
         ...enc,
         die: enc.roll,
       })
@@ -329,10 +338,13 @@ export class EnctableComponent implements OnInit {
       });
   }
 
-  // ���️���️���️ Encounterin muokkaus ���️���️���️
-
   // ❌❌❌ Encounterin poisto ❌❌❌
   deleteEnc(biomeId: string, encounterId: string): void {
+    if (!biomeId || !encounterId) {
+      console.error('Invalid biomeId or encounterId:', { biomeId, encounterId });
+      return;
+    }
+
     console.log('deleteEnc() called with:', biomeId, encounterId);
     console.log('Current filteredEncounters:', this.filteredEncounters);
 
@@ -340,14 +352,29 @@ export class EnctableComponent implements OnInit {
       (response) => {
         console.log('Encounter deleted successfully:', response);
 
+        // Filter out the deleted encounter using _id instead of id
         this.filteredEncounters.enc = this.filteredEncounters.enc.filter(
-          (enc: any) => enc.id.toString() !== encounterId
+          (enc: any) => enc._id !== encounterId
         );
+
+        this.w.set(this.totalWeight(this.filteredEncounters.enc)); // Update total weight
+        this.snackBar.open('Encounter deleted successfully!', 'Close', {
+          duration: 3000,
+          panelClass: ['mat-snackbar-success'],
+        });
 
         console.log('Updated filteredEncounters:', this.filteredEncounters);
       },
       (error) => {
         console.error('Error occurred while deleting encounter:', error);
+        this.snackBar.open(
+          'Error deleting encounter: ' + (error.message || 'Unknown error'),
+          'Close',
+          {
+            duration: 3000,
+            panelClass: ['mat-snackbar-error'],
+          }
+        );
       }
     );
   }
