@@ -14,6 +14,10 @@
 .right-controlss {
   display: none;
 }
+
+.hidden {
+  display: none;
+}
 .editti {
   justify-items: center;
   align-items: center;
@@ -84,10 +88,24 @@ mat-label {
 .right-controls {
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 25%;
+  padding-top: 35px;
+  margin-top: -30px;
+
+  }
+
+
+.left-controls {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  right: 20%;
 }
 
+
 .formi-container .right-field mat-form-field {
-  width: 340px;
+  width: 270px;
 }
 mat-card-title {
   color: #ebdb86;
@@ -205,6 +223,13 @@ mat-form-field textarea {
   .encounter-item {
     flex-wrap: wrap;
   }
+  .left-controls {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    right: 20%;
+    margin-top: -30px;
+  }
   .item-weight-container {
     display: flex;
     flex-direction: column;
@@ -242,6 +267,9 @@ mat-form-field textarea {
     bottom: 50px;
     width: 100%;
   }
+  .isEditing .dice-container {
+    display: none;
+  }
 
   .noppa {
     cursor: pointer;
@@ -270,8 +298,9 @@ mat-form-field textarea {
   }
 
   .right-field {
-    width: 100%;
-    margin-top: 10px;
+    align-items: left;
+    margin: 0;
+    text-align: left;
   }
 
   .item-number,
@@ -303,15 +332,21 @@ mat-form-field textarea {
     margin-left: 0;
     margin-right: 0;
   }
+  .left-controls {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    right: 5%;
+    margin-top: -30px;
+
+  }
   .encounter-item {
     flex-wrap: wrap;
   }
   .palkki {
-    width: 100%;
+    width: 90%;
   }
-  .item-name {
-    margin-left: -30px;
-  }
+
   .edit-mode .editti {
     display: none;
   }
@@ -324,10 +359,11 @@ mat-form-field textarea {
 
   .right-controls {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     position: absolute;
-    margin-left: 45%;
-  }
+    right: 15%;
+    padding-top: 35px;
+    }
 
   .weight-buttons {
     display: flex;
@@ -372,10 +408,7 @@ mat-form-field textarea {
 }
   
 
-  .formi {
-    max-width: 70%;
-    height: auto;
-  }
+
 
   .item-number,
   .item-name {
