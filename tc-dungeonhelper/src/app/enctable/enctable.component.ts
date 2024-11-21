@@ -33,6 +33,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DicerollService } from '../diceroll.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { ConfirmDialogComponent } from '../modals/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-enctable',
@@ -53,6 +54,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatCardModule,
     MatSelectModule,
     MatOptionModule,
+    ConfirmDialogComponent
   ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
@@ -348,9 +350,19 @@ export class EnctableComponent implements OnInit {
   }
 
   confirmDelete(biomeId: string, encounterId: string): void {
-    if (confirm('Are you sure you want to delete this encounter?')) {
-      this.deleteEnc(biomeId, encounterId);
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: {
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete this encounter?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteEnc(biomeId, encounterId);
+      }
+    });
   }
 
   public goBack(): void {
