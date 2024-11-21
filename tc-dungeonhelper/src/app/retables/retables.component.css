@@ -1,8 +1,39 @@
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
+
+.palkki {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: #000000ce;
+  width: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 10px;
+  border-radius: 0 0 20px 20px;
+}
+mat-card-title{
+  color: white;
+  font-size: 1.6rem;
+  font-family: "Faculty";
+  font-weight: bold;
+}
+
+mat-card-header{
+  padding: none;
+}
+.palkki mat-slide-toggle{
+  display: flex;
+  flex-direction: column;
+  color: aqua;
+  margin-left: 10%;
+}
 .grid-container {
   max-width: 800px;
   max-height: auto;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 130px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -17,12 +48,12 @@
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
-
-
 }
-
+.grid-item:hover mat-card-title{
+  color: #C5231D;
+}
 img {
-
+  max-width: 200px;
   cursor: pointer;
   transition: transform 0.5s ease;
 }
@@ -37,33 +68,17 @@ a {
 .card-color {
   background-color: #000000;
 }
-
-.sticky {
-  position: fixed; /* Keep the sticky positioning */
-  top: 100px; /* Adjust this value based on your navbar height */
-  left: 0; /* Align to the left */
-  width: 30%; /* Full width */
-  max-width: 400px;
-  
-  background-color: transparent; /* Optional: add some transparency */
-  z-index: 100; 
-}
-
 .title {
   text-align: center;
-  color: #c5231d;
-  font-size: 48px;
+  color: #EBDB86;
+  font-size: 2.5rem;
   padding-top: 40px;
-  padding-bottom: 40px;
-  font-weight: bold;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding-bottom: 10px;
+  text-shadow: 0px 0px 10px rgba(255, 234, 0, 0.474);
   letter-spacing: 2px;
   word-spacing: 5px;
-  font-family: "Agdasima", sans-serif;
-  background: linear-gradient(to bottom, #c5231d, #8b0a1a);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: "Faculty";
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -73,13 +88,8 @@ a {
     width: 100%;
     height: 100%;
   }
-  .sticky {
-
-    background-color: #000000b2;
-    
-    top: 30%;
-    
+  .palkki {
+    width: 100%;
   }
-  
-  
+
 }

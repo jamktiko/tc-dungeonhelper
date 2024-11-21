@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCard, MatCardModule } from '@angular/material/card';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-merchant-detail',
@@ -25,6 +27,8 @@ import { MatCard, MatCardModule } from '@angular/material/card';
     NgIf,
     CommonModule,
     FormsModule,
+    RouterModule,
+    MatExpansionModule,
     MatButton,
     MatButtonModule,
     MatProgressSpinnerModule,

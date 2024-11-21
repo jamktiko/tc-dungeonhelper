@@ -5,27 +5,31 @@
   margin-right: 20%;
 }
 mat-card-title{
-  color: #C5231D;
-  font-size: 25px;
+  color: #EBDB86;
+  font-family: 'Faculty';
+  font-size: 40px;
   font-weight: 600;
+
 }
 .merchant-card {
   background: transparent;
   padding: 20px;
-  border-radius: 10px;
+
+}
+button{
+  position: absolute;
+  left: 23%;
 }
 
 .merchant-info-container {
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 
 .merchant-info {
   background-color: #555;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  padding: 8px;
+  
 }
 
 .even-item {
@@ -38,18 +42,27 @@ mat-card-title{
 
 .item-details {
   display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
-.item-metadata {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 14%;
+}
+.item-details1{
+  display: flex;
+  flex-direction: row;
+
+}
+mat-expansion-panel-header{
+  height: 70px;
+}
+.item-metadata {
+  display: flex;
+  align-items: center;
   position: relative;
 }
-
+.item-image{
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
 
 .item-number {
   font-weight: bold;
@@ -60,6 +73,8 @@ mat-card-title{
 .item-name {
   font-size: 18px;
   font-weight: bold;
+  font-family: 'Faculty';
+  color: #EBDB86;
 }
 
 .item-type,
@@ -86,9 +101,18 @@ mat-card-title{
   .item-metadata{
     padding-left: 0;
   }
-  .item-cost{
-    position: static;
-    align-self: center;
-    margin-top: 8px;
+
+  .merchant-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .merchant-card {
+    width: 100%;
+    margin: 0;
+  }
+  button{
+    position: absolute;
+    left: 10px;
   }
 }

@@ -58,6 +58,7 @@ import { MatOptionModule } from '@angular/material/core';
   styleUrl: './enctable.component.css',
 })
 export class EnctableComponent implements OnInit {
+  randomEncounters: RandomEncounters[] = [];
   availableDice: string[] = [];
   w: WritableSignal<number> = signal(0);
   filteredEncounters: RandomEncounters | any;
@@ -67,6 +68,7 @@ export class EnctableComponent implements OnInit {
   newEncounter = {
     name: '',
     description: '',
+    description2: '',
     roll: '',
     weight: 1,
     img: '',

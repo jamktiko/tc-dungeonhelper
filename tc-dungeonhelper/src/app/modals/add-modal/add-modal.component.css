@@ -1,3 +1,5 @@
+@import "@angular/material/prebuilt-themes/magenta-violet.css";
+
 .mat-slide-toggle {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -20,4 +22,20 @@
   align-items: center;
   gap: 50px;
   padding-top: 20px;
+}
+h2 mat-dialog-title{
+  font-family: "Faculty";
+
+}
+mat-label {
+  color: #ebdb86;
+  font-family: "Faculty";
+  font-weight: 300;
+  padding-bottom: 1.2em;
+}
+
+#formi{
+  font-family: "Faculty";
+  background-color: #4F4C4C;
+
 }
