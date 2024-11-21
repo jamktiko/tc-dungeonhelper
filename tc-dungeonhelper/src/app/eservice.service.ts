@@ -50,15 +50,17 @@ export class EserviceService {
       .pipe(catchError(this.handleError));
   }
 
-  allSave(biomeId: string, encounters: any[]): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${biomeId}/saveAll`, { encounters });
-  }
 
   saveEnc(biomeId: string, encId: string, encData: any): Observable<any> {
     return this.http.put(
-      `${this.apiUrl}/saveEnc/${biomeId}/${encId}`,
-      encData
-    );
+      `${this.apiUrl}/${biomeId}/saveEnc/${encId}`,
+      encData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      }
+    ).pipe(catchError(this.handleError));
   }
 
   public addEnc(biomeId: string, newEncounter: any): Observable<any> {

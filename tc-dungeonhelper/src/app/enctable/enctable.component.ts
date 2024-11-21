@@ -296,67 +296,25 @@ export class EnctableComponent implements OnInit {
     }
   }
 
-  // ✅✅✅ Encounterin tallennus ✅✅✅
-  saveEnc() {
-    console.log('saveEnc() called');
-    if (!this.filteredEncounters || !this.filteredEncounters._id) {
-      this.snackBar.open('No encounters to save', 'Close', {
-        duration: 3000,
-        panelClass: ['mat-snackbar-warning'],
-      });
-      return;
-    }
-
-    console.log('Encounters to save:', this.filteredEncounters.enc);
-    this.filteredEncounters.enc.forEach((enc: any) => {
-      if (enc.isEditing) {
-        console.log('Saving encounter:', enc);
-        this.eservice
-          .saveEnc(this.filteredEncounters._id, enc._id, enc)
-          .subscribe({
-            next: (response) => {
-              console.log('Encounter updated:', response);
-              this.snackBar.open('Encounter saved successfully!', 'Close', {
-                duration: 3000,
-                panelClass: ['mat-snackbar-success'],
-              });
-              enc.isEditing = false; // Turn off editing mode after successful save
-            },
-            error: (error) => {
-              console.error('Error saving encounter:', error);
-              this.snackBar.open(
-                'Error saving encounter: ' + (error.message || 'Unknown error'),
-                'Close',
-                {
-                  duration: 3000,
-                  panelClass: ['mat-snackbar-error'],
-                }
-              );
-            }
-          });
-      }
-    });
-  }
-
-  allSave() {
-    this.isEditing = false;
-    localStorage.setItem('encounters', JSON.stringify(this.filteredEncounters));
+  // ✅✅✅ Yhden encounterin tallennus ✅✅✅
+  saveEnc(enc: any) {
     this.eservice
-      .allSave(this.filteredEncounters._id, this.filteredEncounters.enc)
-      .subscribe(
-        (response) => {
-          console.log('All encounters saved:', response);
-          // Display a snackbar notification
-          this.snackBar.open('All encounters saved successfully!', 'Close', {
+      .saveEnc(this.filteredEncounters._id, enc._id, {
+        ...enc,
+        die: enc.roll,
+      })
+      .subscribe({
+        next: (response) => {
+          this.snackBar.open('Encounter saved successfully!', 'Close', {
             duration: 3000,
             panelClass: ['mat-snackbar-success'],
           });
+          enc.isEditing = false; // Turn off editing mode after save
         },
-        (error) => {
-          console.error('Error saving all encounters:', error);
-          // Display a snackbar notification with an error message
+        error: (error) => {
+          console.error('Error saving encounter:', error);
           this.snackBar.open(
-            'Error saving all encounters: ' + error.message,
+            'Error saving encounter: ' + (error.message || 'Unknown error'),
             'Close',
             {
               duration: 3000,
@@ -364,7 +322,7 @@ export class EnctableComponent implements OnInit {
             }
           );
         }
-      );
+      });
   }
 
   // ���️���️���️ Encounterin muokkaus ���️���️���️
