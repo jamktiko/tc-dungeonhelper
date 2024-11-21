@@ -268,9 +268,6 @@ export class EnctableComponent implements OnInit {
               console.log('RULLA', result.roll);
               console.log('Uusi enkki', this.availableDice);
               this.getEncounters();
-              this.filteredEncounters.enc.push(
-                response.enc[response.enc.length - 1]
-              );
               this.snackBar.open('Encounter added successfully!', 'Close', {
                 duration: 3000,
                 panelClass: ['mat-snackbar-success'],
