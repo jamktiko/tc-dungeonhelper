@@ -52,9 +52,9 @@ export class MerchantsComponent implements OnInit {
     name: '',
     inventory: [{ type: '' }],
   };
+  isEditing: boolean = false;
 
   dialogConfig = new MatDialogConfig();
-  editMode: boolean = false;
 
   constructor(
     private merchantService: MerchantService,
@@ -65,6 +65,10 @@ export class MerchantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMerchants();
+  }
+
+  toggleEditMode(): void {
+    this.isEditing = !this.isEditing;
   }
 
   /**
