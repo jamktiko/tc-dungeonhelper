@@ -1,4 +1,5 @@
-<mat-card-content>
+<div id="formi">
+  <mat-card-content>
   <!-- First form field -->
   <mat-form-field>
     <mat-label>Merchant Name</mat-label>
@@ -7,8 +8,8 @@
 
   <!-- Item Type -->
   <mat-form-field>
-    <mat-label>Item Category</mat-label>
-    <mat-select [(ngModel)]="newMerchant.type">
+    <mat-label>Select Item Category</mat-label>
+    <mat-select [(ngModel)]="newMerchant.inventory[0]">
       <mat-option *ngFor="let type of itemTypes" [value]="type">
         {{type}}
       </mat-option>
@@ -16,7 +17,8 @@
   </mat-form-field>
 
   <!-- Save button -->
-  <button mat-raised-button color="primary" (click)="onSave()" type="button">
+  <button mat-flat-button style="background-color:#C5231D; color:white" (click)="onSave()" type="button">
     Create Merchant
   </button>
-</mat-card-content>
+  </mat-card-content>
+</div>
