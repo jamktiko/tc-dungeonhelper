@@ -4,24 +4,9 @@
     <button mat-flat-button style="background-color:#C5231D; color:white;" >Add New</button>
   </div>
   
-  <form class="addmerch" [formGroup]="merchantForm" (ngSubmit)="createMerchant()">
-    <mat-form-field>
-      <mat-label>Merchant Name</mat-label>
-      <input matInput formControlName="name" />
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Select Item Types</mat-label>
-      <mat-select formControlName="itemTypes" multiple>
-        <mat-option value="Weapon">Weapon</mat-option>
-        <mat-option value="Armor">Armor</mat-option>
-        <mat-option value="Consumable">Consumable</mat-option>
-        <mat-option value="Magic">Magic</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" type="submit">Create Merchant</button>
-  </form>
+  <button mat-raised-button (click)="merchantModalOpen()">
+    Create Merchant
+  </button>
   
   <div class="merchant-grid">
     <a class="merchant-item" *ngFor="let m of merchants" [routerLink]="'/merchants/' + m._id">
