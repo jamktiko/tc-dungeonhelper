@@ -302,16 +302,18 @@ export class EnctableComponent implements OnInit {
     this.eservice
       .saveEnc(this.filteredEncounters._id, enc._id, {
         ...enc,
-        die: enc.roll,
+        die: enc.roll, // Päivitetään nopan arvo kohtaamiseen
       })
       .subscribe({
+        // Jos tallennus onnistuu, ilmoitetaan käyttäjälle
         next: (response) => {
           this.snackBar.open('Encounter saved successfully!', 'Close', {
             duration: 3000,
             panelClass: ['mat-snackbar-success'],
           });
-          enc.isEditing = false; // Turn off editing mode after save
+          enc.isEditing = false; // Poistetaan edit-tila kun ollaan muokattu jotain
         },
+        // Epäonnistuessa ilmoitetaan virheilmoitus
         error: (error) => {
           console.error('Error saving encounter:', error);
           this.snackBar.open(
