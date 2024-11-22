@@ -84,6 +84,17 @@ mat-label {
 .right-controls {
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 25%;
+  padding-top: 20px;
+
+  }
+
+.left-controls {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  right: 20%;
 }
 
 .formi-container .right-field mat-form-field {

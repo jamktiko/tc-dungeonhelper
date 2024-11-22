@@ -7,7 +7,7 @@
 
 </div>
 
-<button class="editti" mat-flat-button style="background-color:#C5231D; color: white;" [disabled]="isEditing"
+<button class="editti" mat-flat-button style="background-color:#C5231D; color: white;" *ngIf="!isEditing"
   (click)="addEncounterModalOpen()">Add new</button>
 
 
@@ -22,7 +22,7 @@
     <span class="item-number">{{ i + 1 }}.</span>
 
     <span class="item-name" *ngIf="!enc.isEditing" (click)="openEncounterModal(enc)">{{ enc.name }}</span>
-
+  
     <div class="formi-container" *ngIf="enc.isEditing">
 
       <div class="left-fields">
@@ -42,7 +42,7 @@
           <span class="item-weight">{{ enc.weight }}</span>
           <button mat-icon-button (click)="decreaseWeight(enc); $event.stopPropagation()">&#9660;</button>
         </div>
-
+        
 
         <!-- Prosentti -->
         <span class="item-percent">{{ percentCalc(enc.weight, w()) }} %</span>
@@ -61,9 +61,14 @@
           <mat-label>Description</mat-label>
           <textarea matInput [(ngModel)]="enc.description"></textarea>
         </mat-form-field>
-
+        
       </div>
-
+      <div class="left-controls">
+        <button mat-flat-button style="background-color:#C5231D; color: white;" (click)="saveEnc(enc)" class="save-button">Save</button>
+        <button class="roska" mat-icon-button (click)="confirmDelete(filteredEncounters._id, enc._id)">
+          <span class="material-symbols-outlined" style="color: white;">delete</span>
+        </button>
+      </div>
       <!-- Painikkeet (Weight, Prosentti ja Delete) -->
       <div class="right-controls">
         <div class="weight-buttons">
@@ -75,19 +80,13 @@
         <!-- Prosentti -->
         <span class="item-percent">{{ percentCalc(enc.weight, w()) }} %</span>
 
-        <button (click)="saveEnc(enc)">Save</button>
-
-        <!-- Delete button -->
-        <button class="roska" mat-icon-button (click)="confirmDelete(filteredEncounters._id, enc._id)">
-          <span class="material-symbols-outlined" style="color: white;">delete</span>
-        </button>
+        
       </div>
     </div>
 
     <span class="item-percent1">{{ percentCalc(enc.weight, w()) }} %</span>
   </div>
-
-  <div class="dice-container">
+</div>
+  <div class="dice-container" *ngIf="!isEditing">
     <img class="noppa" src="../assets/noppaikoni.png" alt="logo" (click)="rollTable()" />
   </div>
-</div>

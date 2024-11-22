@@ -9,88 +9,64 @@
   transform: translateX(-50%);
   z-index: 100;
   padding: 10px;
+  border-radius: 0 0 20px 20px;
+}
 
+.right-buttons {
+  display: flex;
+  gap: 10px;
 }
-h3{
-  color: #EBDB86;
-  font-family: 'Faculty';
-}
-.addmerch{
-  padding-top: 100px;
-}
+
 .merchant-grid {
-  
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px;
+  padding: 80px 20px 20px 20px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .merchant-item {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  width: 300px;
-  max-width: 300px;
-  
-}
-
-.merchant-item mat-card {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+}
+
+mat-card {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  overflow: hidden;
-  
-}
-.merchant-item mat-card-title {
-  margin: 20px;
-  padding: 10px; 
-  font-family: 'Faculty';
-  font-size: 1.4rem;
+  transition: transform 0.2s;
+  flex: 1;
 }
 
-.merchant-item mat-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+mat-card:hover {
+  transform: translateY(-5px);
 }
-.merchant-item button{
+
+.delete-button {
   position: absolute;
-  top: 1px; 
-  right: 1px; 
-  color: rgb(209, 35, 35);
-  
-}
-.merchant-grid{
-  padding-top: 130px;
+  top: 10px;
+  right: 10px;
+  background-color: #C5231D;
+  color: white;
 }
 
+h3 {
+  color: #ebdb86;
+  font-family: "Faculty";
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.addmerch{
+  padding-top: 100px;
+}
 
 @media only screen and (max-width: 600px) {
-  .merchant-grid{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 10px;
-    padding-top: 100px;
-
+  .palkki {
+    width: 100%;
   }
-  .palkki{
   
-  width: 90%;
+  .merchant-grid {
+    grid-template-columns: 1fr;
   }
-
 }
