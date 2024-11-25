@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { SocialAuthService, SocialUser, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
     GoogleSigninButtonModule
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   error = '';
   user!: SocialUser;
   clicksub: Subscription;
@@ -32,48 +32,39 @@ export class LoginComponent implements OnInit {
     */
     this.clicksub = this.authService.getClickEvent().subscribe(() => {
       this.signOutGoogle();
-      });
+    });
   }
 
-   ngOnInit() {
+  ngOnInit() {
     /*
     signInGoogle() ei lähde automaattisesti käyntiin,
     jos signOutGoogle() on suoritettu, vaan Google-napin
     painallus vaaditaan.
     */
-      this.signInGoogle();
-  }
-
-  signInGoogle(): void {
-    // poistetaan vanha token
-    // jotta voidaan loggautua uudelleen
-    this.authService.logout();
-
-    // haetaan Google -käyttäjän profiilitiedot
     this.socauthService.authState.subscribe((user) => {
       this.user = user;
+      if (user) {
+        console.log('SocialUser', user);
+        // poistetaan vanha token jotta voidaan loggautua uudelleen
+        this.authService.logout();
 
-      console.log(this.user); // logataan Googlelta saatu profiili
-
-      /* Lähetetään glogin-metodilla Googlen idToken backendiin josta saadaan JWT
-         Myös userin id annetaan authServicelle, jotta sitä voidaan verrata siellä
-         backendistä saatuun userin id:hen. 
-     */
-      if (this.user != null) {
-        this.authService
-          .glogin(this.user.idToken, this.user.id)
+        /* Lähetetään glogin-metodilla Googlen idToken backendiin josta saadaan JWT
+           Myös userin id annetaan authServicelle, jotta sitä voidaan verrata siellä
+           backendistä saatuun userin id:hen. 
+        */
+        this.authService.glogin(user.idToken, user.id)
           .subscribe((result) => {
             if (result === true) {
               this.router.navigate(['/secret']);
             } else {
-              this.error = 'Tunnus tai salasana väärä';
+              this.error = 'Kirjautuminen epäonnistui';
             }
           });
       }
     });
   }
   
-  signOutGoogle():void {
+  signOutGoogle(): void {
     this.socauthService.signOut();
   }
   
@@ -89,5 +80,11 @@ export class LoginComponent implements OnInit {
           this.error = 'Tunnus tai salasana väärä';
         }
       });
+  }
+
+  ngOnDestroy() {
+    if (this.clicksub) {
+      this.clicksub.unsubscribe();
+    }
   }
 }
