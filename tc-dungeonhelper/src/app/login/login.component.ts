@@ -5,15 +5,18 @@ import { SocialAuthService, SocialUser, GoogleSigninButtonModule } from '@abacri
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    MatButton
   ]
 })
 export class LoginComponent implements OnInit, OnDestroy {
