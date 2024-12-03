@@ -32,7 +32,6 @@ import { ConfirmDialogComponent } from '../modals/confirm-dialog/confirm-dialog.
     MatDialogModule,
     MatSlideToggleModule,
     MatTableModule,
-    ConfirmDialogComponent
   ],
   templateUrl: './retables.component.html',
   styleUrl: './retables.component.css',
