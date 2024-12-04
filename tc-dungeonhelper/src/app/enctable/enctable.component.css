@@ -201,7 +201,20 @@ mat-card-title {
 .noppa:hover {
   transform: scale(1.2);
 }
-
+.noppa:active {
+  animation: spin 1.8s ease-out;
+}
+.noppa.rolling {
+  animation: spin 1.8s ease-out;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
 p {
   font-size: 20px;
   text-align: center;

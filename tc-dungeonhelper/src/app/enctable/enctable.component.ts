@@ -54,7 +54,6 @@ import { ConfirmDialogComponent } from '../modals/confirm-dialog/confirm-dialog.
     MatCardModule,
     MatSelectModule,
     MatOptionModule,
-    ConfirmDialogComponent
   ],
   templateUrl: './enctable.component.html',
   styleUrl: './enctable.component.css',
@@ -155,18 +154,29 @@ export class EnctableComponent implements OnInit {
 
    */
   public rollTable(): void {
-    if (this.filteredEncounters) {
-      const encounters = this.encTimesW(this.filteredEncounters.enc); //creates a new variable, which gets a array with encounters based on their weight.
-      const randomEncounter = sample(encounters);
-      console.log(encounters);
-      if (randomEncounter == undefined) {
-        return;
-      }
-      console.log(`Encounter ${randomEncounter.id}: ${randomEncounter.name}`);
-      console.log(randomEncounter.description);
-      this.dialog.open(EncounterModalComponent, {
-        data: { encounter: randomEncounter },
-      });
+    // Valitaan HTML-elementti, joka sisältää nopan
+    const dice = document.querySelector('.noppa');
+    if (dice) {
+      // Lisätään animaation
+      dice.classList.add('rolling');
+      
+      // Odota animaation keston verran ennen modaalin avaamista
+      setTimeout(() => {
+        dice.classList.remove('rolling');
+        if (this.filteredEncounters) {
+          const encounters = this.encTimesW(this.filteredEncounters.enc);
+          const randomEncounter = sample(encounters);
+          console.log(encounters);
+          if (randomEncounter == undefined) {
+            return;
+          }
+          console.log(`Encounter ${randomEncounter.id}: ${randomEncounter.name}`);
+          console.log(randomEncounter.description);
+          this.dialog.open(EncounterModalComponent, {
+            data: { encounter: randomEncounter },
+          });
+        }
+      }, 2000); // 2 sekuntia, sama kuin CSS-animaation kesto
     }
   }
 

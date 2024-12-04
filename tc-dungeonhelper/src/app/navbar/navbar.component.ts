@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { RetablesComponent } from '../retables/retables.component';
 import { MerchantsComponent } from '../merchants/merchants.component';
@@ -30,9 +30,22 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 export class NavbarComponent {
   constructor(private authService: AuthService) {}
-
-  toggleSidenav(sidenav: any) {
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const sidenavElement = document.querySelector('mat-sidenav');
+    if (sidenavElement && !sidenavElement.contains(event.target as Node)) {
+      this.closeSidenav();
+    }
+  }
+  toggleSidenav(sidenav: any): void {
     sidenav.toggle();
+  }
+
+  closeSidenav(): void {
+    const sidenav = document.querySelector('mat-sidenav');
+    if (sidenav) {
+      sidenav.dispatchEvent(new Event('click')); // Sulkee valikon
+    }
   }
 
   logout() {
