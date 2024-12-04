@@ -1,21 +1,35 @@
-
 .form-group{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    color: #EBDB86;
-    
+
     align-items: center;
     justify-content: center;
     padding-top: 20px;
     margin-left: 20%;
     margin-right: 20%;
     font-family: 'Faculty';
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    align-items: center;
 }
 button{
-    background-color: aqua;
+    margin-top: 20px;
 }
+.input-group input{
+    background-color: #C5231D;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    height: 30px;
+    width: 200px;
+}
+
 .google {
     display: flex;
     justify-content: center;
@@ -30,7 +44,4 @@ h3 {
     color: #EBDB86;
     margin-bottom: 1rem;
 
-}
-h3{
-    font-family: Faculty;
 }
