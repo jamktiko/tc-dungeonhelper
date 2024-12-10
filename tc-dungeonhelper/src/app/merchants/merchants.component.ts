@@ -47,7 +47,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './merchants.component.css',
 })
 export class MerchantsComponent implements OnInit {
-  merchants: Merchants | any;
+  merchants: Merchants[] = [];
   newMerchant = {
     name: '',
     inventory: [{ type: '' }],
@@ -77,10 +77,15 @@ export class MerchantsComponent implements OnInit {
    * Tämä funktio kutsutaan kun komponentti initialisoidaan.
    */
   public getMerchants() {
-    this.merchantService.getMerchants().subscribe((data: any[]) => {
-      this.merchants = data;
-
-      console.log(this.merchants);
+    this.merchantService.getMerchants().subscribe({
+      next: (data: Merchants[]) => {
+        this.merchants = data;
+        console.log(this.merchants);
+      },
+      error: (error) => {
+        console.error('Error fetching merchants:', error);
+        this.merchants = [];
+      }
     });
   }
 
