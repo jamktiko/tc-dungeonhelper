@@ -19,7 +19,7 @@
               "tiny-emitter",
               "escape-latex",
               "seedrandom"],
-            "outputPath": "dist",
+            "outputPath": "dist/tc-dungeonhelper",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
