@@ -17,15 +17,23 @@ export class MerchantService {
   }
 
   public getMerchants(): Observable<any> {
-    return this.http.get<any>(this.apiUrl).pipe(catchError(this.handleError));
+    const token = sessionStorage.getItem('accesstoken');
+    return this.http.get<any>(this.apiUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': token || ''
+      }),
+    }).pipe(catchError(this.handleError));
   }
 
   public createMerchant(newMerchant: any): Observable<any> {
     const url = `${this.apiUrl}/create`;
+    const token = sessionStorage.getItem('accesstoken');
     return this.http
       .post<any>(url, newMerchant, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
+          'x-access-token': token || ''
         }),
       })
       .pipe(catchError(this.handleError));
@@ -33,10 +41,12 @@ export class MerchantService {
 
   public deleteMerchant(id: string): Observable<any> {
     const url = `${this.apiUrl}/delete/${id}`;
+    const token = sessionStorage.getItem('accesstoken');
     return this.http
       .delete<any>(url, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
+          'x-access-token': token || ''
         }),
       })
       .pipe(catchError(this.handleError));
