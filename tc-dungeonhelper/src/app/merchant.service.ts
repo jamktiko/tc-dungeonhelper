@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Merchants } from './types';
-import { catchError, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MerchantService {
-  private apiUrl = environment.merchantUrl;
+  private apiUrl: string;
 
   constructor(private http: HttpClient) {
-    // Ensure the URL is properly formatted
-    if (this.apiUrl && !this.apiUrl.startsWith('http')) {
-      this.apiUrl = `http://${this.apiUrl}`;
-    }
+    this.apiUrl = environment.merchantUrl;
   }
 
-  private handleError(error: any): Observable<any> {
-    console.error('An error occurred', error);
-    return error.message || error;
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('An error occurred:', error);
+    return throwError(() => error);
   }
 
   public getMerchants(): Observable<any> {
