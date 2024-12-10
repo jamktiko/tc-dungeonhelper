@@ -15,9 +15,9 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   // autentikaatioreitit oman serverin ja googlen autentikaatioon
-  private baseUrl = environment.production ? 'http://dunkku.eu-north-1.elasticbeanstalk.com' : 'http://localhost:3000';
-  private basicLoginUrl = `${this.baseUrl}/users/login`;
-  private googleLoginUrl = `${this.baseUrl}/users/glogin`;
+  private baseUrl = environment.userUrl;
+  private basicLoginUrl = `${this.baseUrl}/login`;
+  private googleLoginUrl = `${this.baseUrl}/glogin`;
   public token: string;
   private jwtHelp = new JwtHelperService(); // helpperipalvelu jolla dekoodataan token
   private subject = new Subject<any>(); // subjectilla viesti navbariin että token on tullut
