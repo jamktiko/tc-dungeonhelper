@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Merchants } from './types';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
@@ -15,18 +15,44 @@ export class MerchantService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('An error occurred:', error);
-    return throwError(() => error);
+    let errorMessage = 'An error occurred:';
+    if (error.status === 200 && error.ok === false) {
+      // Handle the case where we got a 200 response but it's not considered OK
+      console.log('Response body:', error.error);
+      return throwError(() => new Error('Invalid response format'));
+    }
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 
   public getMerchants(): Observable<any> {
     const token = sessionStorage.getItem('accesstoken');
+    
+    // Log the request details for debugging
+    console.log('Making request to:', this.apiUrl);
+    console.log('With token:', token ? 'Present' : 'Missing');
+    
     return this.http.get<any>(this.apiUrl, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'x-access-token': token || ''
       }),
-    }).pipe(catchError(this.handleError));
+      // Add observe: 'response' to get the full response
+      observe: 'response'
+    }).pipe(
+      map(response => {
+        console.log('Full response:', response);
+        return response.body;
+      }),
+      catchError(this.handleError)
+    );
   }
 
   public createMerchant(newMerchant: any): Observable<any> {

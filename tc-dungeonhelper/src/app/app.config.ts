@@ -31,7 +31,7 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:4200'], 
+          allowedDomains: ['localhost:4200', 'dunkku.eu-north-1.elasticbeanstalk.com'], 
           disallowedRoutes: [] 
         }
       })
@@ -43,7 +43,9 @@ export const appConfig: ApplicationConfig = {
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('375310307310-qt4md6dr9bdbsm1opt9i1alpo3fu7634.apps.googleusercontent.com')
+            provider: new GoogleLoginProvider('375310307310-qt4md6dr9bdbsm1opt9i1alpo3fu7634.apps.googleusercontent.com', {
+              oneTapEnabled: false // Disable one-tap login for better compatibility
+            })
           }
         ]
       } as SocialAuthServiceConfig
