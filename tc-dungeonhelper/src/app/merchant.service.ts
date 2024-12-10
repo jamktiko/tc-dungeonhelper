@@ -9,7 +9,13 @@ import { environment } from '../environments/environment';
 })
 export class MerchantService {
   private apiUrl = environment.merchantUrl;
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+    // Ensure the URL is properly formatted
+    if (this.apiUrl && !this.apiUrl.startsWith('http')) {
+      this.apiUrl = `http://${this.apiUrl}`;
+    }
+  }
 
   private handleError(error: any): Observable<any> {
     console.error('An error occurred', error);
