@@ -155,6 +155,14 @@ export class EnctableComponent implements OnInit {
 
    */
   public rollTable(): void {
+    const dice = document.querySelector('.noppa');
+    if (dice) {
+      // Lisätään animaation
+      dice.classList.add('rolling');
+
+      // Odota animaation keston verran ennen modaalin avaamista
+      setTimeout(() => {
+        dice.classList.remove('rolling');
     if (this.filteredEncounters) {
       const encounters = this.encTimesW(this.filteredEncounters.enc); //creates a new variable, which gets a array with encounters based on their weight.
       const randomEncounter = sample(encounters);
@@ -167,8 +175,12 @@ export class EnctableComponent implements OnInit {
       this.dialog.open(EncounterModalComponent, {
         data: { encounter: randomEncounter },
       });
-    }
+    
   }
+    }, 2000);
+  }
+  }
+
 
   /**
    * 🔓🔓🔓 Avaa EncounterModal -komponentin valitulla encounterilla. 🔓🔓🔓
