@@ -17,15 +17,12 @@ export class MerchantService {
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An error occurred:';
     if (error.status === 200 && error.ok === false) {
-      // Handle the case where we got a 200 response but it's not considered OK
       console.log('Response body:', error.error);
       return throwError(() => new Error('Invalid response format'));
     }
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.error(errorMessage);
@@ -33,18 +30,12 @@ export class MerchantService {
   }
 
   public getMerchants(): Observable<any> {
-    const token = sessionStorage.getItem('accesstoken');
-    
-    // Log the request details for debugging
     console.log('Making request to:', this.apiUrl);
-    console.log('With token:', token ? 'Present' : 'Missing');
     
     return this.http.get<any>(this.apiUrl, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'x-access-token': token || ''
+        'Content-Type': 'application/json'
       }),
-      // Add observe: 'response' to get the full response
       observe: 'response'
     }).pipe(
       map(response => {
@@ -55,29 +46,25 @@ export class MerchantService {
     );
   }
 
-  public createMerchant(newMerchant: any): Observable<any> {
-    const url = `${this.apiUrl}/create`;
-    const token = sessionStorage.getItem('accesstoken');
-    return this.http
-      .post<any>(url, newMerchant, {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'x-access-token': token || ''
-        }),
+  public createMerchant(merchantData: any): Observable<any> {
+    console.log('Creating merchant with data:', merchantData);
+    
+    return this.http.post<any>(`${this.apiUrl}/create`, merchantData, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
-      .pipe(catchError(this.handleError));
+    }).pipe(
+      catchError(this.handleError)
+    );
   }
 
   public deleteMerchant(id: string): Observable<any> {
-    const url = `${this.apiUrl}/delete/${id}`;
-    const token = sessionStorage.getItem('accesstoken');
-    return this.http
-      .delete<any>(url, {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'x-access-token': token || ''
-        }),
+    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
-      .pipe(catchError(this.handleError));
+    }).pipe(
+      catchError(this.handleError)
+    );
   }
 }
