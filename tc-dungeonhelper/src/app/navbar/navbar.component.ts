@@ -1,5 +1,5 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { RetablesComponent } from '../retables/retables.component';
 import { MerchantsComponent } from '../merchants/merchants.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,9 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { AuthService } from '../services/auth.service';
-import { MatMenuModule } from '@angular/material/menu';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -23,7 +21,6 @@ import { Router } from '@angular/router';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatMenuModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
@@ -31,8 +28,6 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   isSidenavOpen = false;
-
-  constructor(private authService: AuthService, private router: Router) {}
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
@@ -47,18 +42,19 @@ export class NavbarComponent {
       this.sidenav.close();
     }
   }
+
   closeSidenav(): void {
     this.sidenav.close();
   }
+
   toggleSidenav(): void {
     this.sidenav.toggle();
   }
-  logout(): void {
-    this.authService.logout();
-  }
+
   onSidenavOpened(): void {
     this.isSidenavOpen = true;
   }
+
   onSidenavClosed(): void {
     this.isSidenavOpen = false;
   }
