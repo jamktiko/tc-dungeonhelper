@@ -4,7 +4,6 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/retables">Random Encounters</a>
       <a mat-list-item routerLink="/merchants">Merchant</a>
-      <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -27,10 +26,7 @@
           <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Logout</span>
-          </button>
+         
         </mat-menu>
       </div>
     </mat-toolbar>

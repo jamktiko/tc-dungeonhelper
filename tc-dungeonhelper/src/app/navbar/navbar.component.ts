@@ -8,7 +8,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { AuthService } from '../services/auth.service';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
@@ -29,13 +28,11 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  constructor(private authService: AuthService) {}
+  constructor() {}
 
   toggleSidenav(sidenav: any) {
     sidenav.toggle();
   }
 
-  logout() {
-    this.authService.logout();
-  }
+
 }
