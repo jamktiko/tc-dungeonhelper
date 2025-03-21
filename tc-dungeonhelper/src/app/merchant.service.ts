@@ -42,13 +42,17 @@ export class MerchantService {
     return this.http.get<any>(this.apiUrl, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'x-access-token': token || ''
+        'x-access-token': token || '',
+        'Accept': 'application/json'
       }),
       // Add observe: 'response' to get the full response
-      observe: 'response'
+      observe: 'response',
+      responseType: 'json'
     }).pipe(
       map(response => {
-        console.log('Full response:', response);
+        console.log('Response headers:', response.headers.keys());
+        console.log('Response status:', response.status);
+        console.log('Response body:', response.body);
         return response.body;
       }),
       catchError(this.handleError)
